@@ -5,17 +5,52 @@ This is a design system (tokens, components, and Storybook) for Tailor Brands' t
 > **Status: structure complete, visual values pending capture.** The environment this repo was built in could not reach `tailorbrands.com`: its network policy blocks the domain, and the Wayback Machine too (see [`reference/CAPTURE_LOG.md`](reference/CAPTURE_LOG.md)). So `tokens/tokens.json` currently holds neutral grayscale **placeholders**, each flagged `"$observed": false`. That follows the brief's "never invent a value" rule, and Storybook shows a banner while it's true. One command on any normal network replaces them with observed, source-linked values (see [Finishing the capture](#finishing-the-capture)). Everything else is built and verified: the components, the flow prototype, the capture → token pipeline, visual QA, and these docs.
 
 ```bash
-npm install
+npm install                # also builds the package (dist/) via prepare
 npm run storybook          # http://localhost:6006
 ```
+
+## Using the package (apps, v0)
+
+It's an installable React package: ESM with a `"use client"` banner, type declarations, one CSS file, and a Tailwind v4 theme. It works in a Next.js App Router + Tailwind app with no provider.
+
+```bash
+npm install github:Moragron/tailor-brands-design-system
+```
+
+```css
+/* app/globals.css — in this order */
+@import 'tailwindcss';
+@import 'tailor-brands-design-system/styles.css';
+@import 'tailor-brands-design-system/tailwind.css';
+```
+
+```tsx
+import { FlowLayout, ProgressStepper, ChipGroup, Button } from 'tailor-brands-design-system';
+```
+
+- **[`AGENTS.md`](AGENTS.md):** the component/prop/token contract for AI agents and developers.
+- **[`examples/next-app`](examples/next-app):** a working consumer app, built in CI.
+- **[`docs/v0-import.md`](docs/v0-import.md):** how to import into v0 Design Systems 2.0, with notes ready to paste.
+
+| Entry point | Contents |
+|---|---|
+| `tailor-brands-design-system` | Components and hooks (see `src/index.ts`) |
+| `…/styles.css` | Tokens + all component styles, in `@layer components` (Tailwind utilities override; preflight doesn't) |
+| `…/tailwind.css` | Tailwind v4 `@theme inline` mapping: `bg-tb-*`, `text-tb-*`, `rounded-tb-*`, `shadow-tb-*`, `font-tb-*`, `leading-tb-*` |
+| `…/base.css` | Optional `<body>` defaults |
+| `…/tokens.css`, `…/tokens.json` | Raw tokens |
 
 ## What's here
 
 | Path | What |
 |---|---|
 | `tokens/tokens.json` | **Source of truth.** Colours, type, spacing, radii, shadows, blur, breakpoints, layout. Each token carries `$derive` (the capture rule it comes from), `$observed`, and `$source` (file + JSON path of the capture it came from). |
-| `tokens/tokens.css` | Generated CSS custom properties (`--tb-*`), each with a provenance comment. |
-| `src/components/*` | 15 components with stories (see [component inventory](docs/component-inventory.md)). |
+| `tokens/tokens.css`, `tokens/tailwind.css` | Generated CSS custom properties (`--tb-*`, each with a provenance comment) and the Tailwind v4 theme mapping. |
+| `src/index.ts` → `dist/` | Package entry; `npm run build` (`scripts/build-lib.mjs`) produces `dist/index.js`, `dist/types`, `dist/styles.css`. |
+| `AGENTS.md`, `docs/v0-import.md` | Usage contract for AI agents; v0 import guide. |
+| `examples/next-app` | Reference consumer app (Next.js App Router + Tailwind v4). |
+| `.github/workflows` | CI (typecheck, package + Storybook build, pipeline self-test, example build) and Storybook → GitHub Pages. |
+| `src/components/*` | 16 components with stories (see [component inventory](docs/component-inventory.md)). |
 | `src/screens/OnboardingFlow.tsx` | All 14 screens (homepage + 13) composed **only** from the components: a click-through prototype plus one story per screen. |
 | `scripts/capture.mjs` + `flow.config.mjs` + `probe.mjs` | Playwright walk of homepage/pricing and the flow → screenshots, DOM + CSS snapshots, `getComputedStyle()` per UI role. |
 | `scripts/derive-tokens.mjs` | Captures → `tokens.json` → `tokens.css`, plus an audit table `reference/styles/_derivation.md`. |
@@ -55,7 +90,8 @@ The walk uses the same mock business every run. It clicks **Skip** on the SMS-co
 Done in the build environment:
 
 - `npm run typecheck`: clean.
-- `npm run build-storybook`: builds; 67 stories (60 component/screen + 7 token pages).
+- `npm run build-storybook`: builds; 69 stories (62 component/screen + 7 token pages).
+- **Package in a real app:** `examples/next-app` (Next.js 16 + Tailwind 4) installs the packed package and builds with both routes prerendered. In the browser, component styles survive Tailwind preflight, `text-tb-*` / `bg-tb-*` utilities resolve to the tokens, and there are no hydration errors. Every Tailwind token utility listed in `AGENTS.md` was compiled and checked.
 - **Click-through test:** Playwright drove the full prototype from homepage to registration. It confirmed:
   - Next is disabled until a state is chosen
   - chips toggle `aria-checked`

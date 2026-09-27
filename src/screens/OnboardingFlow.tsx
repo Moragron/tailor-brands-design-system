@@ -15,7 +15,8 @@ import { TimelineTabs } from '../components/TimelineTabs/TimelineTabs';
 import { LAUNCH_PLAN_TABS, SCANNING_MESSAGES } from '../data/flowContent';
 import { NOT_CAPTURED } from '../data/notCaptured';
 import { US_STATES } from '../data/usStates';
-import { FlowLayout } from './FlowLayout';
+import { FlowLayout } from '../components/FlowLayout/FlowLayout';
+import './OnboardingFlow.css';
 import { buggyShortName, displayName } from './businessName';
 
 export const STEPS = [

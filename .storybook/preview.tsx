@@ -2,7 +2,9 @@ import type { Preview } from '@storybook/react-vite';
 import tokens from '../tokens/tokens.json';
 import { ReferencePanel } from '../src/storybook/ReferencePanel';
 import '../tokens/tokens.css';
+import '../src/styles/foundation.css';
 import '../src/styles/base.css';
+import './preview.css';
 
 const preview: Preview = {
   parameters: {
