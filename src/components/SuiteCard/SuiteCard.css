@@ -1,0 +1,11 @@
+.tb-suite { background: var(--tb-color-surface-card); border: 1px solid var(--tb-color-border-card); border-radius: var(--tb-radius-card); box-shadow: var(--tb-shadow-card); padding: var(--tb-space-5); }
+.tb-suite__title { margin: 0 0 var(--tb-space-3); font-size: var(--tb-font-size-caption); letter-spacing: 0.06em; color: var(--tb-color-text-muted); }
+.tb-suite__items { list-style: none; margin: 0; padding: 0; display: grid; }
+.tb-suite-item { display: flex; gap: var(--tb-space-4); align-items: flex-start; justify-content: space-between; padding: var(--tb-space-4) 0; border-top: 1px solid var(--tb-color-border-card); }
+.tb-suite-item:first-child { border-top: 0; }
+.tb-suite-item__main { display: grid; gap: var(--tb-space-1); flex: 1; }
+.tb-suite-item__title { font-weight: var(--tb-font-weight-button); color: var(--tb-color-text-primary); display: flex; gap: var(--tb-space-2); align-items: center; flex-wrap: wrap; }
+.tb-suite-item__price { font-weight: var(--tb-font-weight-body); color: var(--tb-color-text-muted); }
+.tb-suite-item__actions { display: flex; gap: var(--tb-space-2); flex: none; }
+.tb-badge { font-size: 11px; font-weight: var(--tb-font-weight-button); background: var(--tb-color-badge-bg); color: var(--tb-color-badge-fg); border-radius: var(--tb-radius-chip); padding: 2px var(--tb-space-2); }
+/* Visual difference between added / removed rows beyond the button label: UNKNOWN — not observed. */

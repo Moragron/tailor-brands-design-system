@@ -1,0 +1,33 @@
+{
+  "name": "tailor-brands-design-system",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Reverse-engineered design system for the Tailor Brands tailored-onboarding flow (interview take-home).",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static",
+    "typecheck": "tsc --noEmit",
+    "capture": "node scripts/capture.mjs",
+    "tokens": "node scripts/derive-tokens.mjs",
+    "tokens:css": "node scripts/build-tokens-css.mjs",
+    "qa": "node scripts/visual-qa.mjs",
+    "selftest": "node scripts/selftest-pipeline.mjs"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "^10.6.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "pixelmatch": "^7.2.0",
+    "playwright": "^1.63.0",
+    "pngjs": "^7.0.0",
+    "storybook": "^10.6.0",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.1"
+  },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  }
+}
