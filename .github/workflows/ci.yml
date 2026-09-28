@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci                      # also builds dist/ via the prepare script
+      - run: npm run typecheck
+      - run: npm run build-storybook
+      - run: npx playwright install --with-deps chromium
+      - name: Capture pipeline self-test (probe → derive round-trip)
+        run: npm run selftest
+      - name: Consumer app builds against the packed package
+        run: npm run example

@@ -20,6 +20,7 @@ Ordered by reuse across the flow, as in the brief. Screen numbers follow `onboar
 | 9 | `Modal` + `GatedContent` | 13 | registration gate over **blurred** content | open | close control / escape hatch, scrim colour, blur radius, mobile sheet behaviour |
 | 9b | `RegistrationModal` | 13 | Google SSO, first/last name, phone (+1), email, password (6+), "How did you discover…" select (9 options), Continue | default | validation errors, submitting, SSO button label, full legal copy, field order |
 | 10 | `TimelineTabs` + `TimelineList` | 13 | This week / Quarterly / Yearly | "This week" content (Today / Once formed) | tab shape (only seen blurred), Quarterly/Yearly content (behind the gate) |
+| – | `FlowLayout` | all | page shell: header (brand + stepper/section nav), optional sticky banner, centred column, footer CTA row | — | logo asset (plain-text wordmark stand-in), mobile header, footer alignment on the live site |
 | – | `PricingCard` | 0 | Lite / Essential (POPULAR) / Elite | default | CTA labels, hover, annual/monthly toggle |
 | – | Cookie banner | 0 | Decline All / Accept & Close | shown | **not built**: homepage-only and outside the flow; the capture records it as `cookieBanner` |
 

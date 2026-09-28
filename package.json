@@ -1,10 +1,50 @@
 {
   "name": "tailor-brands-design-system",
-  "private": true,
   "version": "0.1.0",
+  "private": true,
+  "description": "Reverse-engineered React design system for the Tailor Brands tailored-onboarding flow: tokens, components, Tailwind v4 theme.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Moragron/tailor-brands-design-system.git"
+  },
   "type": "module",
-  "description": "Reverse-engineered design system for the Tailor Brands tailored-onboarding flow (interview take-home).",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./base.css": "./src/styles/base.css",
+    "./tailwind.css": "./tokens/tailwind.css",
+    "./tokens.css": "./tokens/tokens.css",
+    "./tokens.json": "./tokens/tokens.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "tokens",
+    "src/styles/base.css",
+    "AGENTS.md",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
   "scripts": {
+    "build": "node scripts/build-lib.mjs",
+    "prepare": "node scripts/build-lib.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-static",
     "typecheck": "tsc --noEmit",
@@ -12,7 +52,8 @@
     "tokens": "node scripts/derive-tokens.mjs",
     "tokens:css": "node scripts/build-tokens-css.mjs",
     "qa": "node scripts/visual-qa.mjs",
-    "selftest": "node scripts/selftest-pipeline.mjs"
+    "selftest": "node scripts/selftest-pipeline.mjs",
+    "example": "npm --prefix examples/next-app install && npm --prefix examples/next-app run build"
   },
   "devDependencies": {
     "@storybook/react-vite": "^10.6.0",
@@ -22,12 +63,10 @@
     "pixelmatch": "^7.2.0",
     "playwright": "^1.63.0",
     "pngjs": "^7.0.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "storybook": "^10.6.0",
     "typescript": "^5.9.3",
     "vite": "^8.3.1"
-  },
-  "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
   }
 }

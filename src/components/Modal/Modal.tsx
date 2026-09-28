@@ -18,7 +18,8 @@ export function Modal({ open, title, children, onClose }: ModalProps) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
-    ref.current?.querySelector<HTMLElement>('input, button, select, [tabindex]')?.focus();
+    const root = ref.current;
+    (root?.querySelector<HTMLElement>('input, select, textarea') ?? root?.querySelector<HTMLElement>('button, [tabindex]'))?.focus();
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose?.(); };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);

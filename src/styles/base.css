@@ -1,5 +1,5 @@
-*, *::before, *::after { box-sizing: border-box; }
-[hidden] { display: none !important; } /* component display rules must not defeat the hidden attribute */
+/* OPTIONAL global page styles — shipped as `tailor-brands-design-system/base.css`.
+   Opt in only for apps that are fully Tailor-branded; it styles <body>. */
 body {
   margin: 0;
   background: var(--tb-color-surface-page);
@@ -8,19 +8,3 @@ body {
   font-size: var(--tb-font-size-body);
   line-height: var(--tb-font-line-height-body);
 }
-.tb-h1 { font-family: var(--tb-font-family-heading); font-size: var(--tb-font-size-h1); font-weight: var(--tb-font-weight-h1); line-height: var(--tb-font-line-height-h1); color: var(--tb-color-text-primary); margin: 0; }
-.tb-h2 { font-family: var(--tb-font-family-heading); font-size: var(--tb-font-size-h2); font-weight: var(--tb-font-weight-h2); line-height: var(--tb-font-line-height-h2); color: var(--tb-color-text-primary); margin: 0; }
-.tb-h3 { font-size: var(--tb-font-size-h3); font-weight: var(--tb-font-weight-h2); color: var(--tb-color-text-primary); margin: 0; }
-.tb-body { font-size: var(--tb-font-size-body); margin: 0; }
-.tb-caption { font-size: var(--tb-font-size-caption); color: var(--tb-color-text-muted); margin: 0; }
-.tb-not-captured { font-size: var(--tb-font-size-caption); color: var(--tb-color-text-muted); font-style: italic; }
-/* Focus ring: not observed on the live site. Added as an accessibility baseline (see README → Assumptions). */
-.tb-focusable:focus-visible { outline: 2px solid var(--tb-color-text-primary); outline-offset: 2px; }
-.tb-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
-/* Storybook chrome (not part of the design system) */
-.sb-frame { display: grid; gap: 24px; }
-.sb-token-status { font: 12px/1.4 system-ui, sans-serif; background: #fff4d6; color: #5c4400; border: 1px solid #e8cf8a; padding: 6px 10px; border-radius: 4px; }
-.sb-reference { font: 12px/1.4 system-ui, sans-serif; border-top: 1px dashed #bbb; padding-top: 12px; color: #555; }
-.sb-reference img { max-width: 100%; border: 1px solid #ddd; margin-top: 8px; }
-.sb-reference__missing { margin-top: 8px; padding: 16px; background: #f6f6f6; border: 1px dashed #ccc; }
