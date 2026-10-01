@@ -2,10 +2,7 @@
 
 This is a design system (tokens, components, and Storybook) for Tailor Brands' tailored-onboarding flow (`studio.tailorbrands.com/tailored-onboarding/…`), rebuilt without access to their Figma or source code. It was built for a Growth PM take-home. The flow's order, copy and defects come from [`reference/onboarding-flow-notes.md`](reference/onboarding-flow-notes.md) (observed 26 Sep 2026, desktop, mock business "Swell & Salt Surf Co.", a CA surf shop). The visual layer comes from a scripted capture of the live site.
 
-> **Status: tokens partly observed (55 of 69).** The live capture ran on 1 Oct 2026. Every observed token in `tokens/tokens.json` is flagged `"$observed": true` with a `$source` pointing at the exact capture in `reference/styles/`; the rest are still neutral placeholders (`"$observed": false`), per the brief's "never invent a value" rule. Two things happened that matter for reading those values:
->
-> 1. **The flow in the notes is no longer served.** Since the walkthrough on 26 Sep, the homepage's "Start" sends every new visitor to a different onboarding (`/boarding/business-guide/<id>/…`, a 10-step questionnaire), and the old `/tailored-onboarding/…` URLs redirect to the studio home. Four fresh visitors all landed in the new flow. The tokens were therefore measured on the **current** flow: the same studio app and brand system (same buttons, cards, fonts, colours). The components and screens remain based on the notes.
-> 2. **The capture stops after 3 steps** because the site calls hosts this environment's network policy blocks (`sauron.tailorbrands.com`, `statsigapi.net`, `featureassets.org`, `www.google.com`, `cloudflare-dns.com`); the app then shows its error page. Tokens that only appear later in the flow (modal, banner, disabled button, progress track) are still placeholders. See [Finishing the capture](#finishing-the-capture).
+> **Status: 67 of 72 tokens observed from the live flow.** The live capture walked all 14 screens of the tailored-onboarding flow described in the notes on 1 Oct 2026 (homepage → registration modal; nothing submitted). Every observed token in `tokens/tokens.json` is flagged `"$observed": true` with a `$source` pointing at the exact capture in `reference/styles/`. The other 5 have no counterpart in the flow and stay neutral placeholders (`"$observed": false`), per the brief's "never invent a value" rule: muted surface, solid badge background, error colour, `h3` and page gradient. The full audit is in `reference/styles/_derivation.md`.
 
 ```bash
 npm install                # also builds the package (dist/) via prepare
@@ -122,15 +119,21 @@ Done in the build environment:
 
 ## Known gaps
 
-1. **14 of 69 tokens are still placeholders.** These are the ones that only appear later in the flow or not at all in it:
-   - modal: radius, shadow, scrim, backdrop blur
-   - promo banner: colours, radius
-   - disabled primary button (the current flow shows *Skip* instead of a disabled *Next*)
-   - progress track, muted surface, `h3`, error colour, and the solid badge colour (the only badge seen sits on a gradient, recorded as `effect.badge-gradient`)
+1. **5 of 72 tokens are still placeholders**, because the flow has no element for them:
+   - muted surface
+   - solid badge background (the "*FREE"/"ADDED" tags have transparent backgrounds; the homepage "POPULAR" strip is a gradient, recorded as `effect.badge-gradient`)
+   - error colour (no validation error was triggered)
+   - `h3`
+   - page gradient (the flow uses a faint radial glow and a state-seal illustration, not a gradient)
 
    `reference/styles/_derivation.md` lists every token with its source, the number of captures that agree, and conflicting values.
-2. **Fonts are licensed, so they're referenced, not shipped.** Tailor Brands uses **Proxima Nova** (body) and **Gazpacho Bold** (headings), and neither is bundled. Tokens carry a not-observed `$fallback` (Helvetica/Arial; Georgia), so apps without the licence still render sensibly. Load the real fonts in an app that has the licence.
-3. **Role mapping is approximate where the flows differ.** The old flow's chips map to the new flow's option cards, which are white with 4px corners, a shadow and no border; "caption" maps to the 20px question subtitle. `h1` sizes vary per screen (32px landing, 28px question, 26px two-question pages); the most common value wins, and the alternatives are listed in `_derivation.md`.
+2. **Fonts are licensed, so they're referenced, not shipped.** Tailor Brands uses **Proxima Nova** (body) and **Memories** (headings, in the flow; marketing pages also use Gazpacho), and none of them are bundled. Tokens carry a not-observed `$fallback` (Helvetica/Arial; Georgia), so apps without the licence still render sensibly. Load the real fonts in an app that has the licence.
+3. **The live flow has evolved since the notes (26 Sep → 1 Oct).** The screen order and the patterns are the same, but:
+   - screen 3 now asks "Who actually does the work day-to-day?" (options such as "Just me", "Me + family helping")
+   - Liability and Branding items show an "ADDED" tag instead of Remove buttons
+   - the registration modal is a full-page translucent overlay (white at 85%, 12px backdrop blur), not a card
+
+   Components and screen stories still follow the notes; the captures show today's version.
 4. **States never observed**: hover, active, focus, error/validation, loading, and empty/no-results, for every component. See the per-component list in the [inventory](docs/component-inventory.md).
 5. **Mobile.** The notes are desktop-only. Breakpoints get inferred from `@media` rules, but mobile *behaviour* needs `npm run capture -- --viewport 390x844`.
 6. **Copy not recorded:**
@@ -149,9 +152,11 @@ Done in the build environment:
 
 `npm run capture` detects which flow the homepage routes to. It runs the scripted notes flow if that comes back, and otherwise the generic **business-guide walker**. The walker captures each step, answers it with the first option under each question (or the mock text/state), and stops at any sign-up or payment gate without submitting. `npm run tokens` always rebuilds `tokens.json` from the baseline `tokens/tokens.base.json`, so a re-run never keeps a stale value.
 
-To capture the rest of the flow, the capturing machine needs to reach every host the site uses. On a normal computer that's automatic. In the Claude Code cloud environment, allow these in its network settings (or choose a broader access level):
+The capturing machine needs to reach every host the site uses. On a normal computer that's automatic. In the Claude Code cloud environment, allow these in its network settings (or choose a broader access level):
 
 `tailorbrands.com`, `www.tailorbrands.com`, `studio.tailorbrands.com`, `sauron.tailorbrands.com`, `statsigapi.net`, `featureassets.org`, `www.google.com`, `cloudflare-dns.com`
+
+Without `statsigapi.net` / `featureassets.org`, the site can't load its experiment assignment and routes visitors to a different onboarding (a 10-step "business guide"). The capture then falls back to its business-guide walker, which measures the wrong flow.
 
 Then:
 
@@ -197,6 +202,7 @@ The design system choices below are aimed at the friction points already flagged
 
 ### Also worth raising
 - **Name truncation** ("Swell Salt" for "Swell & Salt Surf Co.", screens 4–5). The flow's pitch is "I know your business", and it gets the business name wrong on the first personalised screen. `displayName()` renders the user's input verbatim; the stories show both versions. **Root cause found in the 1 Oct capture:** the homepage strips `&` and `.` *before the flow starts*. "Start" navigates to `…/tailored-onboarding?name=Swell%20Salt%20Surf%20Co`, and the new flow greets "Let's get to know Swell Salt Surf Co". So the fix is in the homepage form handler, not in the onboarding copy.
-- **The onboarding changed within 5 days** (26 Sep → 1 Oct): a 13-screen AI-personalised flow with pre-added suites became a 10-step "business guide" questionnaire. That's consistent with an active experiment: the app loads Statsig (`statsigapi.net`). Worth asking in the interview which variant is winning, and on what metric.
+- **Experiment fallback sends users to a different onboarding.** When the experiment service (Statsig) is unreachable, for example because an ad-blocker or corporate firewall blocks `statsigapi.net`, "Start" routes visitors to the 10-step "business guide" flow instead of the tailored onboarding. 4 of 4 fresh sessions did so while Statsig was blocked; with it reachable, every run got the tailored flow. That's worth asking about: what share of real traffic silently lands in the fallback, and is it measured as its own variant?
+- **The flow changed within 5 days** (26 Sep → 1 Oct): new screen-3 question copy, "ADDED" tags instead of Remove buttons on the suites, and a full-page registration overlay. The "Sign up" / "Continue" mismatch is still live.
 - **"After filling"** on the blueprint: a copy typo on the screen meant to show competence.
 - **Fear framing without a check** on Branding ("If swellsaltsurfco.com or similar domain is unavailable…"), with no availability lookup. A small domain-availability component would turn the fear framing into something the user can check and act on.

@@ -40,7 +40,7 @@ function resolve(rule) {
     for (const pool of [captures.filter(isOnboarding), captures.filter((c) => !isOnboarding(c))]) {
       const hits = pool
         .map((c) => ({ file: c.file, v: c.roles?.[role]?.styles?.[prop] }))
-        .filter((x) => x.v !== undefined && x.v !== null && x.v !== '' && x.v !== 'none')
+        .filter((x) => x.v !== undefined && x.v !== null && x.v !== '' && (x.v !== 'none' || ['boxShadow', 'backgroundImage'].includes(prop)))
         // A transparent background usually means "painted by a parent", so it isn't evidence; a
         // transparent border, though, is a real design decision (e.g. borderless cards).
         .filter((x) => !(prop === 'backgroundColor' && x.v === 'rgba(0, 0, 0, 0)'));
@@ -123,6 +123,9 @@ function walk(node, path) {
     if (r) {
       found++;
       t.$value = t.$type === 'color' ? toHex(r.value) : r.value;
+      // filter/backdrop-filter values arrive as "blur(12px)"; the token stores the radius only.
+      const blur = /blur\(([^)]+)\)/.exec(t.$value);
+      if (blur && t.$derive?.toLowerCase().includes('filter')) t.$value = blur[1];
       t.$observed = true;
       t.$source = r.source;
       t.$evidence = r.evidence;

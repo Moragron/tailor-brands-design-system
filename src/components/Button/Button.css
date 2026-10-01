@@ -12,4 +12,5 @@
 /* Disabled: OBSERVED (Next on /business-state until a state is chosen). Exact colours come from primaryButtonDisabled capture. */
 .tb-button:disabled { background: var(--tb-color-action-primary-disabled-bg); color: var(--tb-color-action-primary-disabled-fg); border-color: transparent; cursor: not-allowed; }
 .tb-button--full { width: 100%; }
-/* Hover / active / loading: UNKNOWN — not observed. Intentionally unstyled. */
+/* Hover: OBSERVED on the live "Next" button (11-liability__next-hover). Active / loading: UNKNOWN. */
+.tb-button--primary:hover:not(:disabled) { background: var(--tb-color-action-primary-hover-bg); }

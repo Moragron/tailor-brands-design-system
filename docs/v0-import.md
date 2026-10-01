@@ -4,7 +4,7 @@ How to turn this repo into a v0 design system skill. v0 reads the sources, build
 
 ## Before you import
 
-1. **Check the token status.** `tokens/tokens.json` → `$meta.status`. As of 1 Oct 2026 it's `partial`: the core look (colours, fonts, buttons, cards, spacing, page background) is measured from the live site; modal, banner and a few state colours are still placeholders (README → *Known gaps*). Finishing the capture first gives v0 the complete look. Re-importing later works, but existing v0 projects don't update automatically.
+1. **Check the token status.** `tokens/tokens.json` → `$meta.status`. As of 1 Oct 2026, 67 of 72 tokens are measured from the live onboarding; the 5 left have no counterpart in the flow (README → *Known gaps*). Re-importing later works, but existing v0 projects don't update automatically.
 2. **Make the repo readable by v0.** Either connect GitHub in v0 with access to `Moragron/tailor-brands-design-system`, or make the repo public.
 3. **Merge to `main`** (v0 reference sources pin a branch/ref), and let CI go green.
 4. **Publish Storybook** (optional, but v0 accepts it as a link). Enable GitHub Pages → *Source: GitHub Actions*. The `storybook-pages` workflow deploys it on every push to `main`.
@@ -29,7 +29,7 @@ Required global CSS, in app/globals.css, in this order:
   @import 'tailor-brands-design-system/styles.css';
   @import 'tailor-brands-design-system/tailwind.css';
   @import 'tailor-brands-design-system/base.css';   (optional body defaults)
-No provider or theme wrapper is needed. Fonts are Tailor Brands' licensed Proxima Nova / Gazpacho Bold, referenced with fallbacks and not bundled; don't add them unless licensed. Do not also import the CSS from JS.
+No provider or theme wrapper is needed. Fonts are Tailor Brands' licensed Proxima Nova / Memories, referenced with fallbacks and not bundled; don't add them unless licensed. Do not also import the CSS from JS.
 
 Read AGENTS.md at the repo root first: it lists every component, prop and token that is safe to use. The reference consumer app is examples/next-app (app/globals.css, app/layout.tsx, app/customers-step.tsx).
 

@@ -15,7 +15,7 @@ export type RegistrationModalProps = {
    * The live site shows 'By clicking "Sign up"' above a "Continue" button — reproduce with legalCtaLabel="Sign up".
    */
   legalCtaLabel?: string;
-  /** SSO button label was not recorded in the notes. */
+  /** Observed: "Continue with Google" (13-registration__modal.png). */
   googleLabel?: string;
   onSubmit?: (data: Record<string, string>) => void;
 };
@@ -28,8 +28,9 @@ export function RegistrationModal({ open = true, ctaLabel = 'Continue', legalCta
     onSubmit?.(Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>);
   };
   return (
-    <Modal open={open} title="Register to access your business report for free.">
+    <Modal open={open} title="Register to access your business report for free">
       <form className="tb-registration" onSubmit={submit}>
+        <p className="tb-caption tb-registration__lead">This info stays private and won't appear on any public records.</p>
         <Button variant="secondary" fullWidth className="tb-registration__sso">
           <span aria-hidden>G</span> {googleLabel}
         </Button>
@@ -40,7 +41,7 @@ export function RegistrationModal({ open = true, ctaLabel = 'Continue', legalCta
         </div>
         <TextInput name="phone" label="Phone" type="tel" prefix="+1" autoComplete="tel-national" />
         <TextInput name="email" label="Email" type="email" autoComplete="email" required />
-        <TextInput name="password" label="Password" type="password" minLength={6} helper="6+ characters" autoComplete="new-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+        <TextInput name="password" label="Password" type="password" minLength={6} helper="At least 6 characters" autoComplete="new-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
         <div className="tb-field">
           <label htmlFor={`${id}-discover`} className="tb-field__label">How did you discover Tailor Brands?</label>
           <div className="tb-field__control">
@@ -52,8 +53,9 @@ export function RegistrationModal({ open = true, ctaLabel = 'Continue', legalCta
         </div>
         <Button type="submit" fullWidth>{ctaLabel}</Button>
         <p className="tb-caption tb-registration__legal">
-          {/* Only the opening words and the marketing-email consent were recorded; the rest is paraphrased. */}
-          By clicking “{legalCtaLabel ?? ctaLabel}” you agree to receive marketing emails. <span className="tb-not-captured">[full legal copy not captured]</span>
+          {/* Verbatim from the live site (13-registration__modal.png), with the button name taken from ctaLabel. */}
+          By clicking “{legalCtaLabel ?? ctaLabel}” you agree to our Terms Of Use and Privacy Policy. In addition, you also agree to
+          receive email messages from us about your experience with our service, and features you can use.
         </p>
       </form>
     </Modal>

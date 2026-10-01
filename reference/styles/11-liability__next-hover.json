@@ -1,0 +1,56 @@
+{
+  "screen": "11-liability__next-hover",
+  "url": "https://studio.tailorbrands.com/tailored-onboarding/131864904/liability",
+  "viewport": {
+    "w": 1440,
+    "h": 900
+  },
+  "capturedAt": "2026-10-01T18:17:45.161Z",
+  "roles": {
+    "primaryButtonHover": {
+      "matchedSelector": "button:hover",
+      "path": "button#react-aria1236881866-_r_6c_",
+      "text": "Next",
+      "rect": {
+        "x": 933,
+        "y": 846,
+        "w": 75,
+        "h": 38
+      },
+      "styles": {
+        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgb(21, 92, 186)",
+        "backgroundImage": "none",
+        "fontFamily": "proxima-nova, helvetica, arial, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "20px",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "paddingTop": "8px",
+        "paddingRight": "16px",
+        "paddingBottom": "8px",
+        "paddingLeft": "16px",
+        "marginTop": "0px",
+        "marginRight": "0px",
+        "marginBottom": "0px",
+        "marginLeft": "0px",
+        "gap": "normal",
+        "borderTopWidth": "1px",
+        "borderTopStyle": "solid",
+        "borderTopColor": "rgba(0, 0, 0, 0)",
+        "borderTopLeftRadius": "9999px",
+        "borderTopRightRadius": "9999px",
+        "boxShadow": "none",
+        "maxWidth": "none",
+        "width": "74.9062px",
+        "height": "38px",
+        "opacity": "1",
+        "filter": "none",
+        "backdropFilter": "none",
+        "cursor": "pointer",
+        "transition": "0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      }
+    }
+  }
+}

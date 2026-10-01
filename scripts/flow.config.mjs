@@ -11,6 +11,10 @@ export const MOCK = {
   activity: 'Surf shop selling surfboards, wetsuits and surf lessons',
 };
 
+// Chips on the tailored-onboarding screens are <button aria-pressed> wrapped in decorative spans
+// (observed 1 Oct 2026: class funnel-suggestion-chips_*).
+export const CHIP_SELECTORS = ['button[aria-pressed][class*=suggestion-chip]', 'button[aria-pressed]', '[role=checkbox]', '[role=radio]'];
+
 export const HOME_URL = 'https://www.tailorbrands.com/';
 export const PRICING_URLS = ['https://www.tailorbrands.com/pricing'];
 
@@ -21,12 +25,18 @@ export const COMMON_ROLES = [
   { role: 'h2', selectors: ['h2'] },
   { role: 'h3', selectors: ['h3'] },
   { role: 'body', selectors: ['main p', 'p'] },
-  { role: 'primaryButton', selectors: ['button', 'a[role=button]', 'a'], text: '^(next|start|continue|accept & close|get started)$' },
+  // Enabled only: question screens are measured before they're answered, while Next is disabled.
+  { role: 'primaryButton', selectors: ['button:not([disabled]):not([aria-disabled=true])', 'a[role=button]', 'a'], text: '^(next|start|continue|accept & close|get started)$' },
+  { role: 'primaryButtonDisabled', selectors: ['button[disabled]', 'button[aria-disabled=true]'], text: '^(next|continue)$' },
   { role: 'secondaryButton', selectors: ['button', 'a'], text: '^(skip|remove|back|decline all)$' },
   // climbToBox: the visible border often lives on a wrapper, not on the <input> itself.
   { role: 'input', selectors: ['input[type=text]', 'input:not([type=hidden]):not([type=checkbox]):not([type=radio])', 'textarea'], climbToBox: true },
   { role: 'stepCounter', selectors: ['*'], text: '^\\s*\\d{1,2}\\s*/\\s*\\d{1,2}\\s*$', leaf: true },
-  { role: 'content', selectors: ['main', '[class*=content]', '[class*=container]'] },
+  // The content column (observed 1 Oct 2026: intake-ai-body / analysis-progress / upsell content,
+  // max-width 36rem = 576px). Only elements with a fixed px max-width count.
+  // The 768px outer container (upsell-content-inner) holds a 576px column on every screen; prefer
+  // that inner column, fall back to the container.
+  { role: 'content', selectors: ['[class*=intake-ai-body]', '[class*=analysis-progress]', '[class*=upsell-content-inner] *', '[class*=upsell-content-inner]', '[class*=upsell-content]'], styleMatch: { prop: 'maxWidth', re: '^[0-9.]+px$' } },
 ];
 
 // Per-screen steps. `roles` add screen-specific probes; `before`/`after` roles are captured
@@ -87,12 +97,13 @@ export const SCREENS = [
   },
   {
     id: '04-about-your-business-1',
-    note: '3/6 owner chips (AI-personalised; chip labels not recorded in notes). Watch for the "Swell Salt" name bug.',
-    roles: [{ role: 'chip', selectors: ['[role=checkbox]', '[aria-pressed]', 'label', 'button'], chip: true }],
+    note: '3/6 owner chips (AI-personalised per visit). Watch for the "Swell Salt" name bug.',
+    roles: [{ role: 'chip', selectors: CHIP_SELECTORS }],
     act: async (page, h) => {
       await h.clickFirstChip();
+      await page.waitForTimeout(600);
       await h.captureRoles('04-about-your-business-1__chip-selected', [
-        { role: 'chipSelected', selectors: ['[aria-checked=true]', '[aria-pressed=true]', '[class*=selected]', '[class*=active]', 'input:checked + *', 'label:has(input:checked)'] },
+        { role: 'chipSelected', selectors: ['[aria-pressed=true]', '[aria-checked=true]', '[class*=selected]', 'label:has(input:checked)'] },
       ]);
       await h.screenshot('04-about-your-business-1__chip-selected');
       await h.clickText(/^next$/i);
@@ -100,12 +111,14 @@ export const SCREENS = [
     expectUrl: /about-your-business-2/,
   },
   {
+    // Options are AI-generated per visit (the notes recorded "Local surfers", "Visiting surfers", …),
+    // so pick the first two chips rather than matching labels.
     id: '05-about-your-business-2',
     note: '4/6 customer chips + free text.',
-    roles: [{ role: 'chip', selectors: ['*'], text: '^local surfers$', leaf: true, climbToBox: true }],
+    roles: [{ role: 'chip', selectors: CHIP_SELECTORS }],
     act: async (page, h) => {
-      await h.clickText(/^local surfers$/i);
-      await h.clickText(/^visiting surfers$/i);
+      await h.clickFirstChip(0);
+      await h.clickFirstChip(1);
       await h.clickText(/^next$/i);
     },
     expectUrl: /about-your-business-3/,
@@ -113,10 +126,9 @@ export const SCREENS = [
   {
     id: '06-about-your-business-3',
     note: '5/6 channel chips.',
-    roles: [{ role: 'chip', selectors: ['*'], text: '^in-store pickup$', leaf: true, climbToBox: true }],
+    roles: [{ role: 'chip', selectors: CHIP_SELECTORS }],
     act: async (page, h) => {
-      await h.clickText(/^in-store pickup$/i);
-      await h.clickText(/^in-person lessons$/i);
+      await h.clickFirstChip(0);
       await h.clickText(/^next$/i);
     },
     expectUrl: /business-expenses/,
@@ -124,23 +136,26 @@ export const SCREENS = [
   {
     id: '07-business-expenses',
     note: '6/6 revenue bands (single select).',
-    roles: [{ role: 'card', selectors: ['*'], text: '^not yet$', leaf: true, climbToBox: true }],
+    roles: [{ role: 'card', selectors: [...CHIP_SELECTORS, '[role=radio]'] }],
     act: async (page, h) => {
-      await h.clickText(/^not yet$/i);
+      const notYet = page.getByText(/^not yet$/i).first();
+      if (await notYet.count()) await notYet.click({ timeout: 8000 }); else await h.clickFirstChip(0);
+      await page.waitForTimeout(600);
       await h.captureRoles('07-business-expenses__selected', [
-        { role: 'cardSelected', selectors: ['[aria-checked=true]', '[aria-pressed=true]', '[class*=selected]', '[class*=active]', 'label:has(input:checked)'] },
+        { role: 'cardSelected', selectors: ['[aria-pressed=true]', '[aria-checked=true]', '[class*=selected]', 'label:has(input:checked)'] },
       ]);
       await h.clickText(/^next$/i, { optional: true });
     },
-    expectUrl: /scanning/,
+    expectUrl: /scanning|blueprint/,
   },
   {
     id: '08-scanning',
     note: 'Labor-illusion loader (~15s). Screenshots taken over time to record the rotating status text and %.',
     roles: [
-      { role: 'loaderPercent', selectors: ['*'], text: '^\\s*\\d{1,3}\\s*%\\s*$', leaf: true },
-      { role: 'loaderTrack', selectors: ['[role=progressbar]', '[class*=progress]', '[class*=track]'] },
-      { role: 'loaderFill', selectors: ['[role=progressbar] > *', '[class*=progress] > *', '[class*=fill]', '[class*=bar]'] },
+      // Observed 1 Oct 2026: analysis-step_analysis-progress-{track,fill,pct}__*
+      { role: 'loaderPercent', selectors: ['[class*=progress-pct]', '*'], text: '^\\s*\\d{1,3}\\s*%\\s*$', leaf: true },
+      { role: 'loaderTrack', selectors: ['[class*=progress-track]', '[role=progressbar]'] },
+      { role: 'loaderFill', selectors: ['[class*=progress-fill]', '[role=progressbar] > *'] },
     ],
     act: async (page, h) => {
       for (const t of [3, 6, 9, 12]) {
@@ -174,19 +189,30 @@ export const SCREENS = [
   },
   {
     id: '11-liability',
-    note: 'Personal Liability Suite, items pre-added with Remove buttons. "What is it" drawer opened and captured.',
+    note: 'Personal Liability Suite, items pre-added. On 1 Oct 2026 items showed an "ADDED" tag rather than Remove buttons, and "What is it" was not visible until an item is opened.',
     roles: [
       { role: 'card', selectors: ['*'], text: '^annual report', leaf: true, climbToBox: true },
       { role: 'suiteHeading', selectors: ['*'], text: 'personal liability suite', leaf: true },
+      { role: 'badge', selectors: ['*'], text: '^added$', leaf: true },
     ],
     act: async (page, h) => {
-      await h.clickText(/what is it/i);
-      await page.waitForTimeout(800);
+      // Hover state of the primary button (observed deliberately, then the mouse is moved away).
+      const next = page.getByRole('button', { name: /^next$/i }).first();
+      await next.hover().catch(() => {});
+      await page.waitForTimeout(500);
+      await h.captureRoles('11-liability__next-hover', [{ role: 'primaryButtonHover', selectors: ['button:hover'], text: '^next$' }]);
+      await page.mouse.move(0, 0);
+      // "What is it" if it's visible; otherwise open the first item to reveal its details.
+      const whatIsIt = page.getByText(/what is it/i).filter({ visible: true }).first();
+      if (await whatIsIt.count()) await whatIsIt.click({ timeout: 8000 });
+      else await page.getByText(/^annual report$/i).first().click({ timeout: 8000 }).catch(() => {});
+      await page.waitForTimeout(1200);
       await h.screenshot('11-liability__drawer-open');
       await h.captureRoles('11-liability__drawer-open', [
-        { role: 'drawer', selectors: ['[role=dialog]', 'aside', '[class*=drawer]', '[class*=sheet]'] },
+        { role: 'drawer', selectors: ['[role=dialog]', 'aside', '[class*=drawer]', '[class*=sheet]', '[class*=expand]', '[aria-expanded=true]'] },
       ]);
       await page.keyboard.press('Escape');
+      await page.waitForTimeout(500);
       await h.clickText(/^next$/i);
     },
     expectUrl: /branding/,
@@ -209,7 +235,25 @@ export const SCREENS = [
       { role: 'googleButton', selectors: ['button', 'a', 'div[role=button]'], text: 'google' },
       { role: 'select', selectors: ['select', '[role=combobox]'] },
     ],
-    act: async () => {},
+    // The plan animates in first; the registration modal appears afterwards. Wait for it, then
+    // capture the modal state separately. Nothing is typed or submitted.
+    act: async (page, h) => {
+      const modal = page.locator('[role=dialog], [aria-modal=true], input[type=password], input[type=email]').filter({ visible: true }).first();
+      await modal.waitFor({ timeout: 45000 }).catch(() => {});
+      await page.waitForTimeout(2000);
+      await h.screenshot('13-registration__modal');
+      await h.captureRoles('13-registration__modal', [
+        { role: 'modal', selectors: ['[role=dialog]', '[aria-modal=true]', '[class*=modal]', '[class*=Modal]', 'form:has(input[type=password])'], climbToBox: true },
+        { role: 'modalBackdrop', selectors: ['[class*=overlay]', '[class*=backdrop]', '[class*=Overlay]', '[class*=Backdrop]'] },
+        { role: 'blurredContent', selectors: ['main *', 'body *'], styleMatch: { prop: 'filter', re: 'blur' } },
+        { role: 'input', selectors: ['input[type=email]', 'input[type=text]', 'input[type=tel]'], climbToBox: true },
+        { role: 'primaryButton', selectors: ['button[type=submit]', 'button'], text: '^(continue|sign up|register)$' },
+        { role: 'googleButton', selectors: ['button', 'a', 'div[role=button]'], text: 'google' },
+        { role: 'select', selectors: ['select', '[role=combobox]'] },
+        { role: 'h2', selectors: ['[role=dialog] h1', '[role=dialog] h2', 'h2'] },
+        { role: 'tab', selectors: ['[role=tab]', 'button', '*'], text: '^this week$', leaf: true },
+      ]);
+    },
   },
 ];
 

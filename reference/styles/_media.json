@@ -1,48 +1,48 @@
 {
   "not (prefers-reduced-motion)": {
-    "count": 24,
+    "count": 52,
     "screens": [
       "00-home"
     ]
   },
   "(min-width: 960px)": {
-    "count": 6,
+    "count": 13,
     "screens": [
       "00-home"
     ]
   },
   "(min-width: 782px)": {
-    "count": 12,
+    "count": 26,
     "screens": [
       "00-home"
     ]
   },
   "(max-width: 781px)": {
-    "count": 6,
+    "count": 13,
     "screens": [
       "00-home"
     ]
   },
   "(min-width: 768px)": {
-    "count": 24,
+    "count": 52,
     "screens": [
       "00-home"
     ]
   },
   "(max-width: 768px)": {
-    "count": 24,
+    "count": 52,
     "screens": [
       "00-home"
     ]
   },
   "(max-width: 767px)": {
-    "count": 24,
+    "count": 52,
     "screens": [
       "00-home"
     ]
   },
   "(min-width: 481px)": {
-    "count": 27,
+    "count": 41,
     "screens": [
       "00-home",
       "bg-01-landing-page",
@@ -51,124 +51,150 @@
     ]
   },
   "only screen and (max-width: 768px)": {
-    "count": 12,
+    "count": 26,
     "screens": [
       "00-home"
     ]
   },
   "only screen and (min-width: 1000px)": {
-    "count": 6,
+    "count": 13,
     "screens": [
       "00-home"
     ]
   },
   "only screen and (max-width: 400px)": {
-    "count": 6,
+    "count": 13,
     "screens": [
       "00-home"
     ]
   },
   "only screen and (min-width: 641px)": {
-    "count": 6,
+    "count": 13,
     "screens": [
       "00-home"
     ]
   },
   "screen and (prefers-reduced-motion: reduce)": {
-    "count": 6,
+    "count": 13,
     "screens": [
       "00-home"
     ]
   },
   "(min-resolution: 192dpi)": {
-    "count": 6,
+    "count": 13,
     "screens": [
       "00-home"
     ]
   },
   "screen and (max-width: 600px)": {
-    "count": 12,
+    "count": 26,
     "screens": [
       "00-home"
     ]
   },
   "(max-width: 991.98px)": {
-    "count": 960,
+    "count": 2080,
     "screens": [
       "00-home"
     ]
   },
   "(max-width: 767.98px)": {
-    "count": 438,
+    "count": 1029,
     "screens": [
-      "00-home"
+      "00-home",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   },
   "(prefers-reduced-motion: no-preference)": {
-    "count": 6,
+    "count": 13,
     "screens": [
       "00-home"
     ]
   },
   "(min-width: 1200px)": {
-    "count": 6,
+    "count": 13,
     "screens": [
       "00-home"
     ]
   },
   "(min-width: 769px)": {
-    "count": 6,
+    "count": 13,
     "screens": [
       "00-home"
     ]
   },
   "(max-width: 575.98px)": {
-    "count": 1998,
+    "count": 4329,
     "screens": [
       "00-home"
     ]
   },
   "(min-width: 992px)": {
-    "count": 216,
+    "count": 468,
     "screens": [
       "00-home"
     ]
   },
   "(min-width: 768px) and (max-width: 991.98px)": {
-    "count": 42,
+    "count": 91,
     "screens": [
       "00-home"
     ]
   },
   "(min-width: 576px) and (max-width: 767.98px)": {
-    "count": 72,
+    "count": 156,
     "screens": [
       "00-home"
     ]
   },
   "(max-width: 991.98px) and (min-width: 576px)": {
-    "count": 6,
+    "count": 13,
     "screens": [
       "00-home"
     ]
   },
   "(min-width: 576px) and (max-width: 991.98px)": {
-    "count": 108,
+    "count": 234,
     "screens": [
       "00-home"
     ]
   },
   "(min-width: 640px)": {
-    "count": 54,
+    "count": 117,
     "screens": [
       "00-home"
     ]
   },
   "(prefers-reduced-motion: reduce)": {
-    "count": 9,
+    "count": 1136,
     "screens": [
       "00-home",
-      "bg-04-error"
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   },
   "(prefers-color-scheme: dark)": {
@@ -204,12 +230,25 @@
     ]
   },
   "(max-width: 540px)": {
-    "count": 49,
+    "count": 369,
     "screens": [
       "bg-01-landing-page",
       "bg-02-focus",
       "bg-03-offer",
-      "bg-04-error"
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   },
   "(max-width: 480px)": {
@@ -229,21 +268,47 @@
     ]
   },
   "(min-width: 1180px)": {
-    "count": 655,
+    "count": 1855,
     "screens": [
       "bg-01-landing-page",
       "bg-02-focus",
       "bg-03-offer",
-      "bg-04-error"
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   },
   "(min-width: 720px)": {
-    "count": 3327,
+    "count": 18847,
     "screens": [
       "bg-01-landing-page",
       "bg-02-focus",
       "bg-03-offer",
-      "bg-04-error"
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   },
   "screen and (max-width: 767px)": {
@@ -263,12 +328,25 @@
     ]
   },
   "screen and (max-width: 720px)": {
-    "count": 3155,
+    "count": 3555,
     "screens": [
       "bg-01-landing-page",
       "bg-02-focus",
       "bg-03-offer",
-      "bg-04-error"
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   },
   "screen and (min-width: 720px) and (max-width: 1180px)": {
@@ -344,21 +422,47 @@
     ]
   },
   "not all and (min-width: 1180px)": {
-    "count": 16,
+    "count": 176,
     "screens": [
       "bg-01-landing-page",
       "bg-02-focus",
       "bg-03-offer",
-      "bg-04-error"
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   },
   "not all and (min-width: 720px)": {
-    "count": 16,
+    "count": 96,
     "screens": [
       "bg-01-landing-page",
       "bg-02-focus",
       "bg-03-offer",
-      "bg-04-error"
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   },
   "(min-width: 1800px)": {
@@ -370,27 +474,79 @@
     ]
   },
   "(hover: hover) and (pointer: fine)": {
-    "count": 2,
+    "count": 162,
     "screens": [
-      "bg-04-error"
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   },
   "(pointer: coarse)": {
-    "count": 1,
+    "count": 81,
     "screens": [
-      "bg-04-error"
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   },
   "(max-width: 720px)": {
-    "count": 2,
+    "count": 162,
     "screens": [
-      "bg-04-error"
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   },
   "(pointer: fine)": {
-    "count": 1,
+    "count": 81,
     "screens": [
-      "bg-04-error"
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
     ]
   }
 }

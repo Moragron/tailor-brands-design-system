@@ -6,7 +6,7 @@
     "w": 1440,
     "h": 900
   },
-  "capturedAt": "2026-10-01T17:27:30.153Z",
+  "capturedAt": "2026-10-01T18:13:49.470Z",
   "roles": {
     "page": {
       "matchedSelector": "body",
@@ -190,7 +190,7 @@
       }
     },
     "primaryButton": {
-      "matchedSelector": "button",
+      "matchedSelector": "button:not([disabled]):not([aria-disabled=true])",
       "path": "form#fluentform_31 > fieldset > div.ff-el-group.ff-text-left > button.ff-btn.ff-btn-submit",
       "text": "Start",
       "rect": {
@@ -234,6 +234,7 @@
         "transition": "background 0.2s"
       }
     },
+    "primaryButtonDisabled": null,
     "secondaryButton": null,
     "input": {
       "matchedSelector": "input[type=text]",
@@ -281,51 +282,7 @@
       }
     },
     "stepCounter": null,
-    "content": {
-      "matchedSelector": "[class*=content]",
-      "path": "div#gspb_row-id-gsbp-d31366e > div.gspb_row__content",
-      "text": "Form an LLC Services Resources Why Tailor Brands (332)-286-2770 Form an LLC Services Resources Why Tailor Brands (332)-2",
-      "rect": {
-        "x": 120,
-        "y": 0,
-        "w": 1200,
-        "h": 74
-      },
-      "styles": {
-        "color": "rgb(0, 0, 1)",
-        "backgroundColor": "rgba(0, 0, 0, 0)",
-        "backgroundImage": "none",
-        "fontFamily": "\"Proxima Nova\", sans-serif",
-        "fontSize": "19.2px",
-        "fontWeight": "400",
-        "lineHeight": "26.88px",
-        "letterSpacing": "normal",
-        "textTransform": "none",
-        "paddingTop": "0px",
-        "paddingRight": "0px",
-        "paddingBottom": "0px",
-        "paddingLeft": "0px",
-        "marginTop": "0px",
-        "marginRight": "110px",
-        "marginBottom": "0px",
-        "marginLeft": "110px",
-        "gap": "normal",
-        "borderTopWidth": "0px",
-        "borderTopStyle": "none",
-        "borderTopColor": "rgb(0, 0, 1)",
-        "borderTopLeftRadius": "0px",
-        "borderTopRightRadius": "0px",
-        "boxShadow": "none",
-        "maxWidth": "1200px",
-        "width": "1200px",
-        "height": "74.4062px",
-        "opacity": "1",
-        "filter": "none",
-        "backdropFilter": "none",
-        "cursor": "auto",
-        "transition": "all"
-      }
-    },
+    "content": null,
     "cookieBanner": null,
     "pricingCard": {
       "matchedSelector": "div",

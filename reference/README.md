@@ -12,4 +12,11 @@ The raw evidence every token and component traces back to. Written by `npm run c
 | `styles/_media.json` | All `@media` conditions seen, with counts (breakpoint evidence). |
 | `styles/_derivation.md` | Written by `npm run tokens`: token → value → source → agreement → conflicting values. |
 
-**Current state (1 Oct 2026):** captures exist for the pricing page, the homepage and the first three steps of the current "business guide" onboarding (`bg-*`), plus `bg-04-error__exit.png`, where the flow failed because hosts it depends on are blocked in the build environment (see `CAPTURE_LOG.md`). The tailored-onboarding flow described in `onboarding-flow-notes.md` is no longer served to new visitors, so no captures of it exist. Earlier failed attempts are kept in the log.
+**Current state (1 Oct 2026):** a complete capture of the pricing page, the homepage and all 13 tailored-onboarding screens, plus interaction states:
+- `__arrival`: transient states before network idle
+- `__autocomplete-open`, `__chip-selected`, `__selected`: selection and autocomplete states
+- `__drawer-open`: the Liability item opened
+- `__next-hover`: the hover colour of the primary button
+- `__modal`: the registration overlay
+
+`CAPTURE_LOG.md` also keeps the earlier attempts, which failed because hosts the site depends on were blocked in the build environment.

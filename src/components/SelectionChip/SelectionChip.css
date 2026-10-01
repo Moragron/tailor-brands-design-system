@@ -11,7 +11,7 @@
   padding: var(--tb-space-2) var(--tb-space-4);
   cursor: pointer;
 }
-.tb-chip[data-selected] { background: var(--tb-color-chip-selected-bg); color: var(--tb-color-chip-selected-fg); border-color: var(--tb-color-chip-selected-border); }
+.tb-chip[data-selected] { background: var(--tb-color-chip-selected-bg); color: var(--tb-color-chip-selected-fg); border-color: var(--tb-color-chip-selected-border); box-shadow: var(--tb-shadow-chip-selected); font-weight: var(--tb-font-weight-chip-selected); }
 /* Hover / disabled / max-selection states: UNKNOWN — not observed. */
 .tb-chip-group__free-text {
   font: inherit;

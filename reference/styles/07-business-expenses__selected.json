@@ -1,0 +1,56 @@
+{
+  "screen": "07-business-expenses__selected",
+  "url": "https://studio.tailorbrands.com/tailored-onboarding/131864904/business-expenses",
+  "viewport": {
+    "w": 1440,
+    "h": 900
+  },
+  "capturedAt": "2026-10-01T18:16:20.017Z",
+  "roles": {
+    "cardSelected": {
+      "matchedSelector": "[aria-pressed=true]",
+      "path": "div.intake-bookkeeping-step_intake-bookkeeping-body__CF7yT > div.intake-bookkeeping-step_intake-bookkeeping-chips-wrap__GwY2V > div.funnel-suggestion-chips_funnel-suggestion-chips__-r8FB > span.funnel-suggestion-chips_funnel-suggestion-chip-slot__IcDGX > span.funnel-ai-ring_funnel-ai-ring-wrap__Xma0F > button.funnel-suggestion-chips_funnel-suggestion-chip__iswx5.funnel-suggestion-chips_funnel-suggestion-chip-selected__pNw20",
+      "text": "Not yet",
+      "rect": {
+        "x": 639,
+        "y": 369,
+        "w": 93,
+        "h": 41
+      },
+      "styles": {
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "backgroundImage": "none",
+        "fontFamily": "proxima-nova, helvetica, arial, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "600",
+        "lineHeight": "22.5px",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "paddingTop": "8px",
+        "paddingRight": "20px",
+        "paddingBottom": "8px",
+        "paddingLeft": "20px",
+        "marginTop": "0px",
+        "marginRight": "0px",
+        "marginBottom": "0px",
+        "marginLeft": "0px",
+        "gap": "normal",
+        "borderTopWidth": "1px",
+        "borderTopStyle": "solid",
+        "borderTopColor": "rgba(0, 0, 0, 0)",
+        "borderTopLeftRadius": "9999px",
+        "borderTopRightRadius": "9999px",
+        "boxShadow": "rgba(134, 153, 237, 0.35) 0px 8px 24px -8px, rgba(61, 88, 143, 0.25) 0px 4px 12px -4px",
+        "maxWidth": "none",
+        "width": "92.8438px",
+        "height": "40.5px",
+        "opacity": "1",
+        "filter": "none",
+        "backdropFilter": "none",
+        "cursor": "pointer",
+        "transition": "all"
+      }
+    }
+  }
+}

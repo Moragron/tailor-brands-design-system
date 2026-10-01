@@ -49,7 +49,8 @@
         "$value": "#f4f4f4",
         "$observed": false,
         "$source": null,
-        "$derive": "banner.backgroundColor"
+        "$derive": null,
+        "$note": "No muted-surface role was identified in the flow (the original rule borrowed the banner colour, which is yellow here). Placeholder."
       }
     },
     "border": {
@@ -82,6 +83,13 @@
         "$observed": false,
         "$source": null,
         "$derive": "primaryButton.color"
+      },
+      "primary-hover-bg": {
+        "$type": "color",
+        "$value": "#1a1a1a",
+        "$observed": false,
+        "$source": null,
+        "$derive": "primaryButtonHover.backgroundColor"
       },
       "primary-disabled-bg": {
         "$type": "color",
@@ -193,7 +201,7 @@
         "$value": "#ffffff",
         "$observed": false,
         "$source": null,
-        "$derive": "badgeText.color"
+        "$derive": "badge.color|badgeText.color"
       }
     },
     "progress": {
@@ -241,7 +249,7 @@
         "$source": null,
         "$derive": "body.fontFamily",
         "$fallback": "helvetica, arial, sans-serif",
-        "$note": "Tailor Brands' fonts (Proxima Nova, Gazpacho) are licensed web fonts and are NOT bundled. $fallback (not observed) is appended in tokens.css so apps without the licence get a sensible font."
+        "$note": "Tailor Brands' fonts (Proxima Nova; Memories in the flow, Gazpacho on marketing pages) are licensed web fonts and are NOT bundled. $fallback (not observed) is appended in tokens.css so apps without the licence get a sensible font."
       },
       "heading": {
         "$type": "fontFamily",
@@ -250,7 +258,7 @@
         "$source": null,
         "$derive": "h1.fontFamily",
         "$fallback": "Georgia, 'Times New Roman', serif",
-        "$note": "Tailor Brands' fonts (Proxima Nova, Gazpacho) are licensed web fonts and are NOT bundled. $fallback (not observed) is appended in tokens.css so apps without the licence get a sensible font."
+        "$note": "Tailor Brands' fonts (Proxima Nova; Memories in the flow, Gazpacho on marketing pages) are licensed web fonts and are NOT bundled. $fallback (not observed) is appended in tokens.css so apps without the licence get a sensible font."
       }
     },
     "size": {
@@ -325,6 +333,13 @@
         "$observed": false,
         "$source": null,
         "$derive": "primaryButton.fontWeight"
+      },
+      "chip-selected": {
+        "$type": "fontWeight",
+        "$value": "600",
+        "$observed": false,
+        "$source": null,
+        "$derive": "chipSelected.fontWeight"
       }
     },
     "line-height": {
@@ -482,6 +497,14 @@
       "$observed": false,
       "$source": null,
       "$derive": "modal.boxShadow"
+    },
+    "chip-selected": {
+      "$type": "shadow",
+      "$value": "none",
+      "$observed": false,
+      "$source": null,
+      "$derive": "chipSelected.boxShadow",
+      "$note": "Selected chips are lifted by a soft shadow (and a decorative gradient ring), not a border."
     }
   },
   "effect": {
@@ -490,8 +513,8 @@
       "$value": "6px",
       "$observed": false,
       "$source": null,
-      "$derive": "blurredContent.filter|modalBackdrop.backdropFilter",
-      "$note": "The blurred-report-behind-modal pattern is observed; the blur radius is not."
+      "$derive": "modalBackdrop.backdropFilter|blurredContent.filter",
+      "$note": "The registration gate is a translucent overlay with backdrop-filter: blur(); the radius inside blur() is stored."
     },
     "page-gradient": {
       "$type": "gradient",

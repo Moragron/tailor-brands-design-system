@@ -1,0 +1,101 @@
+{
+  "screen": "02-business-state__autocomplete-open",
+  "url": "https://studio.tailorbrands.com/tailored-onboarding/131864904/business-state",
+  "viewport": {
+    "w": 1440,
+    "h": 900
+  },
+  "capturedAt": "2026-10-01T18:14:44.026Z",
+  "roles": {
+    "autocompleteMenu": {
+      "matchedSelector": "[role=listbox]",
+      "path": "div#react-aria1236881866-_r_4_",
+      "text": "California",
+      "rect": {
+        "x": 433,
+        "y": 249,
+        "w": 414,
+        "h": 47
+      },
+      "styles": {
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "fontFamily": "proxima-nova, helvetica, arial, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "paddingTop": "4px",
+        "paddingRight": "4px",
+        "paddingBottom": "4px",
+        "paddingLeft": "4px",
+        "marginTop": "0px",
+        "marginRight": "0px",
+        "marginBottom": "0px",
+        "marginLeft": "0px",
+        "gap": "normal",
+        "borderTopWidth": "0px",
+        "borderTopStyle": "solid",
+        "borderTopColor": "rgb(209, 213, 219)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "boxShadow": "none",
+        "maxWidth": "none",
+        "width": "414px",
+        "height": "46.5px",
+        "opacity": "1",
+        "filter": "none",
+        "backdropFilter": "none",
+        "cursor": "auto",
+        "transition": "all"
+      }
+    },
+    "autocompleteOption": {
+      "matchedSelector": "[role=option]",
+      "path": "div#react-aria1236881866-_r_4_-option-California",
+      "text": "California",
+      "rect": {
+        "x": 437,
+        "y": 253,
+        "w": 406,
+        "h": 39
+      },
+      "styles": {
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "fontFamily": "proxima-nova, helvetica, arial, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "400",
+        "lineHeight": "22.5px",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "paddingTop": "8px",
+        "paddingRight": "16px",
+        "paddingBottom": "8px",
+        "paddingLeft": "16px",
+        "marginTop": "0px",
+        "marginRight": "0px",
+        "marginBottom": "0px",
+        "marginLeft": "0px",
+        "gap": "8px",
+        "borderTopWidth": "0px",
+        "borderTopStyle": "solid",
+        "borderTopColor": "rgb(209, 213, 219)",
+        "borderTopLeftRadius": "8px",
+        "borderTopRightRadius": "8px",
+        "boxShadow": "none",
+        "maxWidth": "none",
+        "width": "406px",
+        "height": "38.5px",
+        "opacity": "1",
+        "filter": "none",
+        "backdropFilter": "none",
+        "cursor": "pointer",
+        "transition": "all"
+      }
+    }
+  }
+}

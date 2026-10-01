@@ -12,7 +12,7 @@
 //   npm run capture -- --headed                      # watch it / step in manually
 import { chromium } from 'playwright';
 import { existsSync, mkdirSync, writeFileSync, appendFileSync, readFileSync } from 'node:fs';
-import { COMMON_ROLES, SCREENS, HOME_URL, PRICING_URLS, BUSINESS_GUIDE } from './flow.config.mjs';
+import { COMMON_ROLES, SCREENS, HOME_URL, PRICING_URLS, BUSINESS_GUIDE, CHIP_SELECTORS } from './flow.config.mjs';
 import { X509Certificate, createHash } from 'node:crypto';
 import { PROPS, probe, histogram } from './probe.mjs';
 
@@ -104,8 +104,13 @@ const h = {
     await input.pressSequentially(value, { delay: 40 });
     await page.waitForTimeout(800);
   },
-  async clickFirstChip() {
-    const roles = await page.evaluate(probe, { specs: [{ role: 'chip', selectors: ['[role=checkbox]', '[aria-pressed]', 'label', 'button'], chip: true }], PROPS });
+  async clickFirstChip(index = 0) {
+    // Prefer real toggle buttons; fall back to the visual heuristic for unknown markup.
+    for (const sel of CHIP_SELECTORS) {
+      const chips = page.locator(sel).filter({ visible: true });
+      if ((await chips.count()) > index) { await chips.nth(index).click({ timeout: 8000 }); await page.waitForTimeout(400); return; }
+    }
+    const roles = await page.evaluate(probe, { specs: [{ role: 'chip', selectors: ['label', 'button'], chip: true }], PROPS });
     if (!roles.chip) throw new Error('no chip-like element found');
     const { x, y, w, h: ht } = roles.chip.rect;
     await page.mouse.click(x + w / 2, y - (await page.evaluate(() => scrollY)) + ht / 2);
@@ -146,6 +151,7 @@ if (startUrl) {
 for (const screen of screens) {
   const id = screen.id;
   try {
+    await page.mouse.move(0, 0); // never measure a hover state left over from the previous click
     await h.screenshot(`${id}__arrival`, { fullPage: false }); // catches transient states (AI "thinking", cookie banner)
     await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
     await page.waitForTimeout(1500);
