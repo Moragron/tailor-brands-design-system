@@ -1,6 +1,6 @@
 {
   "name": "tailor-brands-design-system",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Tailor Brands design system for Lovable: design tokens + content-free React components, styled for Tailwind 4 (Tailwind 3 preset included). Bring your own copy.",
   "license": "UNLICENSED",
@@ -19,6 +19,7 @@
     "typecheck": "tsc --noEmit",
     "tokens:css": "node scripts/build-tokens-css.mjs",
     "tokens:check": "node scripts/build-tokens-css.mjs && git diff --exit-code -- src/styles",
+    "lovable:sync": "node scripts/sync-lovable.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-static",
     "research:storybook": "storybook dev -c research/.storybook -p 6007",
