@@ -2,10 +2,7 @@ import type { ButtonHTMLAttributes } from 'react';
 import './Button.css';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  /**
-   * primary: Next / Start / Continue / Accept & Close / Add.
-   * secondary: Skip / Remove / Decline All.
-   */
+  /** primary: the main action of a view. secondary: alternative or dismissive actions. */
   variant?: 'primary' | 'secondary';
   fullWidth?: boolean;
 };

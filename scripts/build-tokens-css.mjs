@@ -29,10 +29,11 @@ function walk(node, path) {
     if (key.startsWith('$') || typeof val !== 'object' || val === null) continue;
     if ('$value' in val) {
       const name = `--tb-${[...path, key].join('-')}`;
-      const provenance = val.$observed ? `observed: ${val.$source}` : 'PLACEHOLDER — not observed';
+      // Provenance (source file, evidence) stays in tokens.json; the CSS only says whether it was measured.
+      const provenance = val.$observed ? 'measured' : 'placeholder';
       // $fallback (font stacks) is appended so apps without the licensed font degrade gracefully.
       const value = val.$fallback ? `${val.$value}, ${val.$fallback}` : val.$value;
-      lines.push(`  ${name}: ${value}; /* ${provenance}${val.$fallback ? '; fallback appended (not observed)' : ''} */`);
+      lines.push(`  ${name}: ${value}; /* ${provenance}${val.$fallback ? ' + fallback stack' : ''} */`);
       const tw = twName([...path, key]);
       if (tw) tailwind.push(`  ${tw}: var(${name});`);
     } else {

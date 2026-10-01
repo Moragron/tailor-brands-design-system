@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Tailor Brands design system — example',
+  title: 'Design system example',
   description: 'Reference consumer app for tailor-brands-design-system',
 };
 

@@ -6,8 +6,8 @@ The minimal, correct way to use `tailor-brands-design-system` in an app. It's al
 |---|---|
 | `app/globals.css` | The required CSS imports, in order |
 | `app/layout.tsx` | No provider or font setup needed |
-| `app/customers-step.tsx` | A `'use client'` step: `FlowLayout` + `ProgressStepper` + `ChipGroup` + gated `Button`, plus a token-based Tailwind utility |
-| `app/page.tsx`, `app/plan/page.tsx` | Server components rendering design system components; the gated registration pattern |
+| `app/question-step.tsx` | A `'use client'` step: `StepLayout` + `ProgressStepper` + `ChipGroup` + a `Button` that stays disabled until answered, plus token-based Tailwind utilities |
+| `app/page.tsx`, `app/results/page.tsx` | Server components rendering design-system components; content behind a sign-in gate |
 
 ```bash
 npm install     # installs the design system from ../.. as a packed copy (.npmrc install-links=true)

@@ -4,18 +4,14 @@ import './InfoDrawer.css';
 export type InfoDrawerSection = { heading: string; body: ReactNode };
 
 export type InfoDrawerProps = {
-  /** Observed trigger copy: "What is it" */
-  triggerLabel?: string;
-  /** Observed section headings: What / Why important / What we do */
+  /** Text of the toggle, e.g. "Learn more" */
+  triggerLabel: string;
   sections: InfoDrawerSection[];
   defaultOpen?: boolean;
 };
 
-/**
- * Inline disclosure. The notes call it a "drawer" but don't say whether it expands in place
- * or slides in as a sheet — check reference/screenshots/11-liability__drawer-open.png.
- */
-export function InfoDrawer({ triggerLabel = 'What is it', sections, defaultOpen = false }: InfoDrawerProps) {
+/** Inline disclosure: a text toggle that expands a panel of headed sections. */
+export function InfoDrawer({ triggerLabel, sections, defaultOpen = false }: InfoDrawerProps) {
   const [open, setOpen] = useState(defaultOpen);
   const id = useId();
   return (

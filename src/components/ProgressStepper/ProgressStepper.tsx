@@ -1,13 +1,13 @@
 import './ProgressStepper.css';
 
-type FractionProps = { variant?: 'fraction'; current: number; total?: number };
+type FractionProps = { variant?: 'fraction'; current: number; total: number };
 type SectionsProps = { variant: 'sections'; sections: string[]; activeIndex: number };
 export type ProgressStepperProps = FractionProps | SectionsProps;
 
 /**
- * Two observed forms:
- * - "fraction": the "1/6"…"6/6" counter on the questionnaire screens.
- * - "sections": the Entity / Liability / Branding nav on the recommendation screens.
+ * Progress through a multi-step experience.
+ * - "fraction": a compact "2/5" counter.
+ * - "sections": a row of named sections with the active one emphasised.
  */
 export function ProgressStepper(props: ProgressStepperProps) {
   if (props.variant === 'sections') {
@@ -27,10 +27,9 @@ export function ProgressStepper(props: ProgressStepperProps) {
       </nav>
     );
   }
-  const total = props.total ?? 6;
   return (
-    <div className="tb-stepper tb-stepper--fraction" aria-label={`Step ${props.current} of ${total}`}>
-      {props.current}/{total}
+    <div className="tb-stepper tb-stepper--fraction" aria-label={`Step ${props.current} of ${props.total}`}>
+      {props.current}/{props.total}
     </div>
   );
 }

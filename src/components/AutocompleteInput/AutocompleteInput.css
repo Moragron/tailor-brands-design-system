@@ -9,4 +9,3 @@
 }
 .tb-autocomplete__list li { padding: var(--tb-space-2) var(--tb-space-4); cursor: pointer; }
 .tb-autocomplete__list li[data-active] { background: var(--tb-color-surface-muted); }
-/* Menu styling: captured separately as 02-business-state__autocomplete-open; until then UNKNOWN. */

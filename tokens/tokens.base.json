@@ -1,7 +1,7 @@
 {
   "$meta": {
     "status": "placeholder",
-    "statusNote": "Baseline: derivation rules ($derive) plus neutral placeholder values. scripts/derive-tokens.mjs reads this file and writes tokens.json; never edit tokens.json by hand.",
+    "statusNote": "Baseline: derivation rules ($derive) plus neutral placeholder values. research/scripts/derive-tokens.mjs reads this file and writes tokens.json; never edit tokens.json by hand.",
     "generatedBy": "hand-written baseline",
     "generatedAt": null
   },
@@ -50,7 +50,7 @@
         "$observed": false,
         "$source": null,
         "$derive": null,
-        "$note": "No muted-surface role was identified in the flow (the original rule borrowed the banner colour, which is yellow here). Placeholder."
+        "$note": "Not measured: neutral placeholder for subtle backgrounds (tab track, expanded panels)."
       }
     },
     "border": {
@@ -190,11 +190,11 @@
     "badge": {
       "bg": {
         "$type": "color",
-        "$value": "#1a1a1a",
+        "$value": "transparent",
         "$observed": false,
         "$source": null,
         "$derive": "badge.backgroundColor",
-        "$note": "The only badge observed (homepage/pricing \"POPULAR\") sits on a gradient strip \u2014 see effect.badge-gradient. No solid badge colour was observed."
+        "$note": "Tags were measured with transparent backgrounds and a 1px outline in their text colour; kept transparent (not a measured colour)."
       },
       "fg": {
         "$type": "color",
@@ -236,7 +236,7 @@
         "$observed": false,
         "$source": null,
         "$derive": null,
-        "$note": "UNKNOWN \u2014 no error state was observed anywhere in the flow. Kept as a neutral stand-in so form components compile."
+        "$note": "Not measured: neutral placeholder for error text and borders. Pick a brand error colour for production use."
       }
     }
   },
@@ -249,7 +249,7 @@
         "$source": null,
         "$derive": "body.fontFamily",
         "$fallback": "helvetica, arial, sans-serif",
-        "$note": "Tailor Brands' fonts (Proxima Nova; Memories in the flow, Gazpacho on marketing pages) are licensed web fonts and are NOT bundled. $fallback (not observed) is appended in tokens.css so apps without the licence get a sensible font."
+        "$note": "Proxima Nova (text) and Memories (headings) are licensed web fonts and are NOT bundled. $fallback is appended in tokens.css so apps without a licence render a close system font."
       },
       "heading": {
         "$type": "fontFamily",
@@ -258,7 +258,7 @@
         "$source": null,
         "$derive": "h1.fontFamily",
         "$fallback": "Georgia, 'Times New Roman', serif",
-        "$note": "Tailor Brands' fonts (Proxima Nova; Memories in the flow, Gazpacho on marketing pages) are licensed web fonts and are NOT bundled. $fallback (not observed) is appended in tokens.css so apps without the licence get a sensible font."
+        "$note": "Proxima Nova (text) and Memories (headings) are licensed web fonts and are NOT bundled. $fallback is appended in tokens.css so apps without a licence render a close system font."
       }
     },
     "size": {
@@ -367,7 +367,7 @@
     }
   },
   "space": {
-    "$note": "Scale = base unit \u00d7 multipliers. derive-tokens infers the base (4 or 8) from the padding/margin/gap histogram in /reference/styles.",
+    "$note": "Scale = base unit \u00d7 multipliers; the base (4px) was inferred from measured paddings, margins and gaps.",
     "base": {
       "$type": "dimension",
       "$value": "4px",
@@ -504,7 +504,7 @@
       "$observed": false,
       "$source": null,
       "$derive": "chipSelected.boxShadow",
-      "$note": "Selected chips are lifted by a soft shadow (and a decorative gradient ring), not a border."
+      "$note": "Selected chips and cards are lifted by a soft, blue-tinted shadow instead of a border."
     }
   },
   "effect": {
@@ -514,7 +514,7 @@
       "$observed": false,
       "$source": null,
       "$derive": "modalBackdrop.backdropFilter|blurredContent.filter",
-      "$note": "The registration gate is a translucent overlay with backdrop-filter: blur(); the radius inside blur() is stored."
+      "$note": "Blur radius used behind gates and overlays (backdrop-filter: blur())."
     },
     "page-gradient": {
       "$type": "gradient",
@@ -522,7 +522,7 @@
       "$observed": false,
       "$source": null,
       "$derive": "pageBackground.backgroundImage",
-      "$note": "Background image of the onboarding page (the studio uses a soft vertical gradient)."
+      "$note": "Optional background image for full pages; none when not measured."
     },
     "badge-gradient": {
       "$type": "gradient",
@@ -530,11 +530,11 @@
       "$observed": false,
       "$source": null,
       "$derive": "badge.backgroundImage",
-      "$note": "Background of the homepage/pricing \"POPULAR\" strip."
+      "$note": "Gradient background for highlight badges or strips."
     }
   },
   "breakpoint": {
-    "$note": "UNKNOWN \u2014 the notes were captured on desktop only. derive-tokens reads @media rules from captured stylesheets (/reference/styles/_media.json).",
+    "$note": "Inferred from @media rules in the measured stylesheets.",
     "sm": {
       "$type": "dimension",
       "$value": "640px",

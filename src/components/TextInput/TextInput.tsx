@@ -6,9 +6,9 @@ export type TextInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix
   /** Visually hide the label when the screen heading already asks the question */
   hideLabel?: boolean;
   helper?: ReactNode;
-  /** Fixed prefix inside the field, e.g. "+1" on the registration phone field (observed) */
+  /** Fixed prefix inside the field, e.g. a country code or currency symbol */
   prefix?: ReactNode;
-  /** Error styling is UNKNOWN (no validation error was observed); uses the placeholder feedback-error token. */
+  /** Error message; styled with the feedback-error token. */
   error?: ReactNode;
 };
 

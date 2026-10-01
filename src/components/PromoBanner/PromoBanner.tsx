@@ -2,21 +2,27 @@ import type { ReactNode } from 'react';
 import './PromoBanner.css';
 
 export type PromoBannerProps = {
-  emoji?: string;
+  /** Optional leading emoji or icon */
+  icon?: ReactNode;
   children: ReactNode;
-  /** Omit to render a non-dismissible banner. Dismissal is OBSERVED on /entity. */
+  /** Omit to render a non-dismissible banner */
   onDismiss?: () => void;
+  /** Accessible label of the dismiss button */
+  dismissLabel?: string;
+  /** Accessible name of the banner region */
+  label?: string;
   /** Sticks to the top of the scroll container */
   sticky?: boolean;
 };
 
-export function PromoBanner({ emoji, children, onDismiss, sticky = true }: PromoBannerProps) {
+/** Full-width announcement strip, e.g. above a page header. */
+export function PromoBanner({ icon, children, onDismiss, dismissLabel = 'Dismiss', label = 'Announcement', sticky = true }: PromoBannerProps) {
   return (
-    <div className={`tb-promo${sticky ? ' tb-promo--sticky' : ''}`} role="region" aria-label="Promotion">
-      {emoji && <span className="tb-promo__emoji" aria-hidden>{emoji}</span>}
+    <div className={`tb-promo${sticky ? ' tb-promo--sticky' : ''}`} role="region" aria-label={label}>
+      {icon && <span className="tb-promo__icon" aria-hidden>{icon}</span>}
       <span className="tb-promo__text">{children}</span>
       {onDismiss && (
-        <button type="button" className="tb-promo__close tb-focusable" aria-label="Dismiss promotion" onClick={onDismiss}>×</button>
+        <button type="button" className="tb-promo__close tb-focusable" aria-label={dismissLabel} onClick={onDismiss}>×</button>
       )}
     </div>
   );

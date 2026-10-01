@@ -16,9 +16,12 @@ jobs:
           cache: npm
       - run: npm ci                      # also builds dist/ via the prepare script
       - run: npm run typecheck
-      - run: npm run build-storybook
+      - name: Design-system Storybook builds
+        run: npm run build-storybook
+      - name: Research Storybook builds
+        run: npm run research:build-storybook
       - run: npx playwright install --with-deps chromium
-      - name: Capture pipeline self-test (probe → derive round-trip)
-        run: npm run selftest
+      - name: Token pipeline self-test (probe → derive round-trip)
+        run: npm run research:selftest
       - name: Consumer app builds against the packed package
         run: npm run example

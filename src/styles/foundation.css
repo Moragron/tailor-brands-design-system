@@ -11,7 +11,6 @@
 .tb-h3 { font-family: var(--tb-font-family-heading); font-size: var(--tb-font-size-h3); font-weight: var(--tb-font-weight-h2); color: var(--tb-color-text-primary); margin: 0; }
 .tb-body { font-family: var(--tb-font-family-base); font-size: var(--tb-font-size-body); line-height: var(--tb-font-line-height-body); color: var(--tb-color-text-body); margin: 0; }
 .tb-caption { font-family: var(--tb-font-family-base); font-size: var(--tb-font-size-caption); color: var(--tb-color-text-muted); margin: 0; }
-.tb-not-captured { font-size: var(--tb-font-size-caption); color: var(--tb-color-text-muted); font-style: italic; }
-/* Focus ring: not observed on the live site. Added as an accessibility baseline (see README → Assumptions). */
+/* Accessible focus ring for keyboard users. */
 .tb-focusable:focus-visible { outline: 2px solid var(--tb-color-text-primary); outline-offset: 2px; }
 .tb-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
