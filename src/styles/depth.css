@@ -5,7 +5,7 @@
  * measured token set. Its colours were sampled from a reference screenshot of the questionnaire
  * flow: a white page with a soft blue glow rising from the bottom, a translucent sticky action
  * bar, a hairline under the header, and a pink → violet → blue gradient ring on the active input.
- * Shadows reuse the hues of the measured selected-chip shadow.
+ * Card and surface shadows are not part of this file yet.
  *
  * Import it after styles.css:
  *   @import 'tailor-brands-design-system/depth.css';
@@ -20,17 +20,6 @@
   --tb-color-accent-violet: #b760c8;    /* gradient ring, middle */
   --tb-color-accent-blue: #6074d8;      /* gradient ring, end */
   --tb-color-input-tint: #eef2fe;       /* faint blue inside the active input, right side */
-
-  /* Elevation scale: hairline < raised < floating. Tinted with the measured chip-shadow hues. */
-  --tb-shadow-hairline: rgba(61, 88, 143, 0.08) 0px 1px 3px 0px;
-  --tb-shadow-raised: rgba(61, 88, 143, 0.06) 0px 1px 2px 0px, rgba(134, 153, 237, 0.2) 0px 12px 32px -12px;
-  --tb-shadow-floating: rgba(61, 88, 143, 0.1) 0px 4px 12px -4px, rgba(134, 153, 237, 0.32) 0px 28px 64px -20px;
-  --tb-shadow-button: color-mix(in srgb, var(--tb-color-action-primary-bg) 40%, transparent) 0px 10px 24px -10px;
-
-  /* Existing tokens the components already read. */
-  --tb-shadow-card: var(--tb-shadow-raised);
-  --tb-shadow-option: var(--tb-shadow-hairline); /* unselected chips and selection cards stay subtle */
-  --tb-shadow-modal: var(--tb-shadow-floating);
 
   /* Gradients. The page glow sits low and wide: white at the top, blue haze behind the action bar. */
   --tb-effect-page-gradient:
@@ -67,13 +56,9 @@
   :root:not([data-tb-depth='flat']) .tb-chip-group__free-text:focus { padding: calc(var(--tb-space-3) - 1px) calc(var(--tb-space-4) - 1px); }
 }
 
-/* Tailwind v4 utilities for the depth tokens: shadow-tb-hairline/raised/floating/button,
-   bg-tb-glow, border-tb-divider. Ignored by browsers when not processed by Tailwind. */
+/* Tailwind v4 utilities for the depth colours: bg-tb-glow, border-tb-divider.
+   Ignored by browsers when not processed by Tailwind. */
 @theme inline {
-  --shadow-tb-hairline: var(--tb-shadow-hairline);
-  --shadow-tb-raised: var(--tb-shadow-raised);
-  --shadow-tb-floating: var(--tb-shadow-floating);
-  --shadow-tb-button: var(--tb-shadow-button);
   --color-tb-glow: var(--tb-color-glow);
   --color-tb-divider: var(--tb-color-divider);
 }
