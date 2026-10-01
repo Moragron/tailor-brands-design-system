@@ -18,7 +18,7 @@ Each PR also bumps `version` in `package.json`. Lovable keeps its own release nu
 
 ## 0.3.1: Sync into Lovable's design-system template
 
-- **PR:** (pending)
+- **PR:** [#6](https://github.com/Moragron/tailor-brands-design-system/pull/6)
 - **Restore point (main before this PR):** `2105e55d02f19f244be15077a993c48276ec2d04` (0.3.0)
 - **What changed:**
   - New `scripts/sync-lovable.mjs` (`npm run lovable:sync -- <path>`): copies the design system into the Lovable project's repository (`Moragron/tailor-brands-home-assignment`), which uses Lovable's TanStack design-system template and its preview tooling, so it can't simply be replaced by this repo.
