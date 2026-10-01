@@ -5,8 +5,8 @@ table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #ddd;pad
 img{max-width:420px;max-height:420px;border:1px solid #ddd}.flag{background:#fff3f0}.none{color:#888;font-style:italic}
 </style>
 <h1>Visual QA — built stories vs live-site captures</h1>
-<p>Generated 2026-09-27T20:58:42.746Z. 62 stories · 0 compared against a reference · <strong>0 flagged</strong> (&gt; 15% of pixels differ).</p>
-<p><strong>No reference captures exist yet</strong>, so this report only shows the built side. Run <code>npm run capture</code> on a network that can reach tailorbrands.com, then <code>npm run tokens &amp;&amp; npm run build-storybook &amp;&amp; npm run qa</code>.</p>
+<p>Generated 2026-10-01T17:34:26.476Z. 62 stories · 4 compared against a reference · <strong>4 flagged</strong> (&gt; 15% of pixels differ).</p>
+
 <p>Scores are a coarse screen for large deltas, not a pass/fail: AI-personalised copy and dynamic content on the live site will always differ.</p>
 <table><tr><th>Story</th><th>Built</th><th>Reference</th><th>Diff</th></tr>
 <tr class=""><td><strong>Components/AssistantMessage / Thinking</strong><br>ref: <code>10-entity__arrival.png</code><br><div class="none">Reference 10-entity__arrival.png not captured yet.</div></td>
@@ -25,8 +25,8 @@ img{max-width:420px;max-height:420px;border:1px solid #ddd}.flag{background:#fff
 <td><img src="shots/components-button--secondary.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
 <tr class=""><td><strong>Components/Button / Secondary — Remove</strong><br>ref: <code>11-liability.png</code> · role <code>primaryButtonDisabled</code><br><div class="none">Reference 11-liability.png not captured yet.</div></td>
 <td><img src="shots/components-button--remove.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
-<tr class=""><td><strong>Components/Button / Start</strong><br>ref: <code>00-home.png</code> · role <code>primaryButtonDisabled</code><br><div class="none">Reference 00-home.png not captured yet.</div></td>
-<td><img src="shots/components-button--start.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
+<tr class="flag"><td><strong>Components/Button / Start</strong><br>ref: <code>00-home.png</code> · role <code>primaryButtonDisabled</code><br>99.5% differ ⚠ flagged<div class="none">Role "primaryButtonDisabled" not found in capture — compared against full screenshot.</div></td>
+<td><img src="shots/components-button--start.png" loading="lazy"></td><td><img src="shots/components-button--start__ref.png" loading="lazy"></td><td><img src="shots/components-button--start__diff.png" loading="lazy"></td></tr>
 <tr class=""><td><strong>Components/FlowLayout / Question Screen</strong><br>ref: <code>02-business-state.png</code><br><div class="none">Reference 02-business-state.png not captured yet.</div></td>
 <td><img src="shots/components-flowlayout--question-screen.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
 <tr class=""><td><strong>Components/FlowLayout / Recommendation Screen</strong><br>ref: <code>11-liability.png</code><br><div class="none">Reference 11-liability.png not captured yet.</div></td>
@@ -43,8 +43,8 @@ img{max-width:420px;max-height:420px;border:1px solid #ddd}.flag{background:#fff
 <td><img src="shots/components-percentloader--static.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
 <tr class=""><td><strong>Components/PercentLoader / Animated (15s, rotating status — observed timing)</strong><br>ref: <code>08-scanning__t6s.png</code><br><div class="none">Reference 08-scanning__t6s.png not captured yet.</div></td>
 <td><img src="shots/components-percentloader--animated.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
-<tr class=""><td><strong>Components/PricingCard / Plans</strong><br>ref: <code>00-home.png</code><br><div class="none">Reference 00-home.png not captured yet.</div></td>
-<td><img src="shots/components-pricingcard--plans.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
+<tr class="flag"><td><strong>Components/PricingCard / Plans</strong><br>ref: <code>00-home.png</code><br>98.1% differ ⚠ flagged<div class="none"></div></td>
+<td><img src="shots/components-pricingcard--plans.png" loading="lazy"></td><td><img src="shots/components-pricingcard--plans__ref.png" loading="lazy"></td><td><img src="shots/components-pricingcard--plans__diff.png" loading="lazy"></td></tr>
 <tr class=""><td><strong>Components/ProgressStepper / Fraction</strong><br>ref: <code>02-business-state.png</code> · role <code>stepCounter</code><br><div class="none">Reference 02-business-state.png not captured yet.</div></td>
 <td><img src="shots/components-progressstepper--fraction.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
 <tr class=""><td><strong>Components/ProgressStepper / Fraction Last</strong><br>ref: <code>07-business-expenses.png</code> · role <code>stepCounter</code><br><div class="none">Reference 07-business-expenses.png not captured yet.</div></td>
@@ -85,8 +85,8 @@ img{max-width:420px;max-height:420px;border:1px solid #ddd}.flag{background:#fff
 <td><img src="shots/components-textinput--business-activity.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
 <tr class=""><td><strong>Components/TextInput / Filled</strong><br>ref: <code>03-business-activity.png</code> · role <code>input</code><br><div class="none">Reference 03-business-activity.png not captured yet.</div></td>
 <td><img src="shots/components-textinput--filled.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
-<tr class=""><td><strong>Components/TextInput / Business Name</strong><br>ref: <code>00-home.png</code> · role <code>input</code><br><div class="none">Reference 00-home.png not captured yet.</div></td>
-<td><img src="shots/components-textinput--business-name.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
+<tr class="flag"><td><strong>Components/TextInput / Business Name</strong><br>ref: <code>00-home.png</code> · role <code>input</code><br>75.9% differ ⚠ flagged<div class="none"></div></td>
+<td><img src="shots/components-textinput--business-name.png" loading="lazy"></td><td><img src="shots/components-textinput--business-name__ref.png" loading="lazy"></td><td><img src="shots/components-textinput--business-name__diff.png" loading="lazy"></td></tr>
 <tr class=""><td><strong>Components/TextInput / Phone (+1 prefix, observed)</strong><br>ref: <code>13-registration.png</code> · role <code>input</code><br><div class="none">Reference 13-registration.png not captured yet.</div></td>
 <td><img src="shots/components-textinput--phone-with-prefix.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
 <tr class=""><td><strong>Components/TextInput / Password</strong><br>ref: <code>13-registration.png</code> · role <code>input</code><br><div class="none">Reference 13-registration.png not captured yet.</div></td>
@@ -99,8 +99,8 @@ img{max-width:420px;max-height:420px;border:1px solid #ddd}.flag{background:#fff
 <td><img src="shots/components-timelinetabs--quarterly-selected.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
 <tr class=""><td><strong>Onboarding flow/Screens / ▶ Full flow (click-through prototype)</strong><br><div class="none">No reference assigned (proposal / variant story).</div></td>
 <td><img src="shots/onboarding-flow-screens--click-through.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
-<tr class=""><td><strong>Onboarding flow/Screens / S00 Home</strong><br>ref: <code>00-home.png</code><br><div class="none">Reference 00-home.png not captured yet.</div></td>
-<td><img src="shots/onboarding-flow-screens--s-00-home.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
+<tr class="flag"><td><strong>Onboarding flow/Screens / S00 Home</strong><br>ref: <code>00-home.png</code><br>93.0% differ ⚠ flagged<div class="none"></div></td>
+<td><img src="shots/onboarding-flow-screens--s-00-home.png" loading="lazy"></td><td><img src="shots/onboarding-flow-screens--s-00-home__ref.png" loading="lazy"></td><td><img src="shots/onboarding-flow-screens--s-00-home__diff.png" loading="lazy"></td></tr>
 <tr class=""><td><strong>Onboarding flow/Screens / S01 Intro</strong><br>ref: <code>01-intro.png</code><br><div class="none">Reference 01-intro.png not captured yet.</div></td>
 <td><img src="shots/onboarding-flow-screens--s-01-intro.png" loading="lazy"></td><td><span class="none">—</span></td><td><span class="none">—</span></td></tr>
 <tr class=""><td><strong>Onboarding flow/Screens / S02 Business State</strong><br>ref: <code>02-business-state.png</code><br><div class="none">Reference 02-business-state.png not captured yet.</div></td>

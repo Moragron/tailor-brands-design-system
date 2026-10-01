@@ -4,7 +4,7 @@ Instructions for AI coding agents (v0, Claude Code, Cursor, …) building UI wit
 
 ## Stack
 
-React ≥18 (tested with 19), Next.js App Router, Tailwind CSS v4. There is no provider, theme wrapper or context, and no web font to load.
+React ≥18 (tested with 19), Next.js App Router, Tailwind CSS v4. There is no provider, theme wrapper or context. Fonts: the tokens name Tailor Brands' licensed fonts (Proxima Nova, Gazpacho Bold) with fallbacks; the package does not ship them, so don't add font files or `next/font` for them unless the app has a licence.
 
 ## Install
 
@@ -30,7 +30,7 @@ In the global stylesheet (`app/globals.css`), **in this order**:
 
 ## Tokens
 
-- **Status: PLACEHOLDER.** Check `tokens/tokens.json` → `$meta.status`. Until a live capture runs, values are neutral grays, not Tailor Brands' real palette. Build with the tokens anyway: re-capturing restyles everything automatically.
+- **Status: PARTIAL (observed from the live site).** Check `tokens/tokens.json` → `$meta.status`. 55 of 69 tokens are measured from tailorbrands.com (`"$observed": true`), including the primary blue `#166cff`, pill buttons, 4px shadowed cards and the page gradient. The rest are neutral placeholders. Always use the tokens: re-capturing restyles everything automatically.
 - **Never hard-code colors, font sizes, radii or shadows.** Use tokens:
   - CSS variables: `var(--tb-color-action-primary-bg)`, `var(--tb-space-4)`, `var(--tb-radius-card)`. The full list is in `tokens/tokens.css`.
   - Tailwind utilities (v4, generated in `tokens/tailwind.css`):

@@ -17,7 +17,7 @@ const preview: Preview = {
       <div className="sb-frame">
         {tokens.$meta.status !== 'observed' && (
           <div className="sb-token-status" role="note">
-            Tokens: <strong>{tokens.$meta.status}</strong> — values are not yet Tailor Brands' observed values. See README → Known gaps.
+            Tokens: <strong>{tokens.$meta.status}</strong> — {tokens.$meta.statusNote} See README → Known gaps.
           </div>
         )}
         {/* data-tb-story is the element visual-qa screenshots */}

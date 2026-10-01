@@ -12,7 +12,9 @@ import { execFileSync } from 'node:child_process';
 // Overridable so selftest-pipeline.mjs can run against a temp dir without touching the real files.
 const stylesDir = process.env.TB_STYLES_DIR ?? new URL('../reference/styles/', import.meta.url).pathname;
 const tokensPath = process.env.TB_TOKENS_JSON ?? new URL('../tokens/tokens.json', import.meta.url).pathname;
-const tokens = JSON.parse(readFileSync(tokensPath, 'utf8'));
+// Always start from the baseline (rules + placeholders) so a re-run never keeps a stale observed value.
+const basePath = process.env.TB_TOKENS_BASE ?? new URL('../tokens/tokens.base.json', import.meta.url).pathname;
+const tokens = JSON.parse(readFileSync(existsSync(basePath) ? basePath : tokensPath, 'utf8'));
 
 // Desktop captures only (mobile files carry an @<width> suffix); onboarding screens first.
 const files = existsSync(stylesDir)
@@ -26,6 +28,7 @@ const captures = files.map((f) => ({ file: f, ...JSON.parse(readFileSync(stylesD
 const isOnboarding = (c) => !/^00-/.test(c.file);
 
 const toHex = (v) => {
+  if (v === 'rgba(0, 0, 0, 0)') return 'transparent';
   const m = /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)$/.exec(v ?? '');
   if (!m || (m[4] !== undefined && Number(m[4]) !== 1)) return v;
   return `#${[m[1], m[2], m[3]].map((n) => Number(n).toString(16).padStart(2, '0')).join('')}`;
@@ -37,7 +40,10 @@ function resolve(rule) {
     for (const pool of [captures.filter(isOnboarding), captures.filter((c) => !isOnboarding(c))]) {
       const hits = pool
         .map((c) => ({ file: c.file, v: c.roles?.[role]?.styles?.[prop] }))
-        .filter((x) => x.v !== undefined && x.v !== null && x.v !== '' && x.v !== 'none' && x.v !== 'rgba(0, 0, 0, 0)');
+        .filter((x) => x.v !== undefined && x.v !== null && x.v !== '' && x.v !== 'none')
+        // A transparent background usually means "painted by a parent", so it isn't evidence; a
+        // transparent border, though, is a real design decision (e.g. borderless cards).
+        .filter((x) => !(prop === 'backgroundColor' && x.v === 'rgba(0, 0, 0, 0)'));
       if (!hits.length) continue;
       const counts = {};
       hits.forEach((x) => { counts[x.v] = (counts[x.v] ?? 0) + 1; });
@@ -83,6 +89,14 @@ function inferBreakpoints() {
       widths[w] = (widths[w] ?? 0) + count;
     }
   });
+  // Merge widths within 2px (e.g. max-width:719px and min-width:720px describe the same breakpoint).
+  const merged = {};
+  Object.entries(widths).sort((a, b) => b[1] - a[1]).forEach(([w, n]) => {
+    const near = Object.keys(merged).find((m) => Math.abs(Number(m) - Number(w)) <= 2);
+    merged[near ?? w] = (merged[near ?? w] ?? 0) + n;
+  });
+  Object.keys(widths).forEach((k) => delete widths[k]);
+  Object.assign(widths, merged);
   const top = Object.entries(widths).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([w]) => Number(w)).sort((a, b) => a - b);
   return top.length ? { top, evidence: Object.entries(widths).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([w, n]) => `${w}px×${n}`).join(', ') } : null;
 }

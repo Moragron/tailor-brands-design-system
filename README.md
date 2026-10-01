@@ -2,7 +2,10 @@
 
 This is a design system (tokens, components, and Storybook) for Tailor Brands' tailored-onboarding flow (`studio.tailorbrands.com/tailored-onboarding/…`), rebuilt without access to their Figma or source code. It was built for a Growth PM take-home. The flow's order, copy and defects come from [`reference/onboarding-flow-notes.md`](reference/onboarding-flow-notes.md) (observed 26 Sep 2026, desktop, mock business "Swell & Salt Surf Co.", a CA surf shop). The visual layer comes from a scripted capture of the live site.
 
-> **Status: structure complete, visual values pending capture.** The environment this repo was built in could not reach `tailorbrands.com`: its network policy blocks the domain, and the Wayback Machine too (see [`reference/CAPTURE_LOG.md`](reference/CAPTURE_LOG.md)). So `tokens/tokens.json` currently holds neutral grayscale **placeholders**, each flagged `"$observed": false`. That follows the brief's "never invent a value" rule, and Storybook shows a banner while it's true. One command on any normal network replaces them with observed, source-linked values (see [Finishing the capture](#finishing-the-capture)). Everything else is built and verified: the components, the flow prototype, the capture → token pipeline, visual QA, and these docs.
+> **Status: tokens partly observed (55 of 69).** The live capture ran on 1 Oct 2026. Every observed token in `tokens/tokens.json` is flagged `"$observed": true` with a `$source` pointing at the exact capture in `reference/styles/`; the rest are still neutral placeholders (`"$observed": false`), per the brief's "never invent a value" rule. Two things happened that matter for reading those values:
+>
+> 1. **The flow in the notes is no longer served.** Since the walkthrough on 26 Sep, the homepage's "Start" sends every new visitor to a different onboarding (`/boarding/business-guide/<id>/…`, a 10-step questionnaire), and the old `/tailored-onboarding/…` URLs redirect to the studio home. Four fresh visitors all landed in the new flow. The tokens were therefore measured on the **current** flow: the same studio app and brand system (same buttons, cards, fonts, colours). The components and screens remain based on the notes.
+> 2. **The capture stops after 3 steps** because the site calls hosts this environment's network policy blocks (`sauron.tailorbrands.com`, `statsigapi.net`, `featureassets.org`, `www.google.com`, `cloudflare-dns.com`); the app then shows its error page. Tokens that only appear later in the flow (modal, banner, disabled button, progress track) are still placeholders. See [Finishing the capture](#finishing-the-capture).
 
 ```bash
 npm install                # also builds the package (dist/) via prepare
@@ -44,7 +47,8 @@ import { FlowLayout, ProgressStepper, ChipGroup, Button } from 'tailor-brands-de
 
 | Path | What |
 |---|---|
-| `tokens/tokens.json` | **Source of truth.** Colours, type, spacing, radii, shadows, blur, breakpoints, layout. Each token carries `$derive` (the capture rule it comes from), `$observed`, and `$source` (file + JSON path of the capture it came from). |
+| `tokens/tokens.base.json` | Derivation rules + neutral placeholders; `npm run tokens` starts from it every run. |
+| `tokens/tokens.json` | **Source of truth** for apps (generated). Colours, type, spacing, radii, shadows, blur, breakpoints, layout. Each token carries `$derive` (the capture rule it comes from), `$observed`, and `$source` (file + JSON path of the capture it came from). |
 | `tokens/tokens.css`, `tokens/tailwind.css` | Generated CSS custom properties (`--tb-*`, each with a provenance comment) and the Tailwind v4 theme mapping. |
 | `src/index.ts` → `dist/` | Package entry; `npm run build` (`scripts/build-lib.mjs`) produces `dist/index.js`, `dist/types`, `dist/styles.css`. |
 | `AGENTS.md`, `docs/v0-import.md` | Usage contract for AI agents; v0 import guide. |
@@ -118,10 +122,18 @@ Done in the build environment:
 
 ## Known gaps
 
-1. **All visual token values**: pending a capture (see status above). Typography, colour and spacing in Storybook today are placeholders.
-2. **States never observed**: hover, active, focus, error/validation, loading, and empty/no-results, for every component. See the per-component list in the [inventory](docs/component-inventory.md).
-3. **Mobile.** The notes are desktop-only. Breakpoints get inferred from `@media` rules, but mobile *behaviour* needs `npm run capture -- --viewport 390x844`.
-4. **Copy not recorded:**
+1. **14 of 69 tokens are still placeholders.** These are the ones that only appear later in the flow or not at all in it:
+   - modal: radius, shadow, scrim, backdrop blur
+   - promo banner: colours, radius
+   - disabled primary button (the current flow shows *Skip* instead of a disabled *Next*)
+   - progress track, muted surface, `h3`, error colour, and the solid badge colour (the only badge seen sits on a gradient, recorded as `effect.badge-gradient`)
+
+   `reference/styles/_derivation.md` lists every token with its source, the number of captures that agree, and conflicting values.
+2. **Fonts are licensed, so they're referenced, not shipped.** Tailor Brands uses **Proxima Nova** (body) and **Gazpacho Bold** (headings), and neither is bundled. Tokens carry a not-observed `$fallback` (Helvetica/Arial; Georgia), so apps without the licence still render sensibly. Load the real fonts in an app that has the licence.
+3. **Role mapping is approximate where the flows differ.** The old flow's chips map to the new flow's option cards, which are white with 4px corners, a shadow and no border; "caption" maps to the 20px question subtitle. `h1` sizes vary per screen (32px landing, 28px question, 26px two-question pages); the most common value wins, and the alternatives are listed in `_derivation.md`.
+4. **States never observed**: hover, active, focus, error/validation, loading, and empty/no-results, for every component. See the per-component list in the [inventory](docs/component-inventory.md).
+5. **Mobile.** The notes are desktop-only. Breakpoints get inferred from `@media` rules, but mobile *behaviour* needs `npm run capture -- --viewport 390x844`.
+6. **Copy not recorded:**
    - screen 4's AI-generated owner chips
    - the intermediate revenue bands
    - the "What is it" section bodies
@@ -130,21 +142,27 @@ Done in the build environment:
    - Quarterly/Yearly tab content (only reachable after registering)
    - the full legal line
    - the SSO button label
-5. **Post-registration screens**: not reachable without a real phone number and email. Deliberately not attempted.
-6. **Personalisation is non-deterministic.** Copy on screens 4–5 and 10–12 is AI-generated per session. Captures across runs will differ in text, but not in style.
+7. **Post-registration screens**: not reachable without a real phone number and email. Deliberately not attempted.
+8. **Personalisation is non-deterministic.** Copy on screens 4–5 and 10–12 is AI-generated per session. Captures across runs will differ in text, but not in style.
 
 ## Finishing the capture
 
-On any machine that can reach tailorbrands.com (≈3 minutes):
+`npm run capture` detects which flow the homepage routes to. It runs the scripted notes flow if that comes back, and otherwise the generic **business-guide walker**. The walker captures each step, answers it with the first option under each question (or the mock text/state), and stops at any sign-up or payment gate without submitting. `npm run tokens` always rebuilds `tokens.json` from the baseline `tokens/tokens.base.json`, so a re-run never keeps a stale value.
+
+To capture the rest of the flow, the capturing machine needs to reach every host the site uses. On a normal computer that's automatic. In the Claude Code cloud environment, allow these in its network settings (or choose a broader access level):
+
+`tailorbrands.com`, `www.tailorbrands.com`, `studio.tailorbrands.com`, `sauron.tailorbrands.com`, `statsigapi.net`, `featureassets.org`, `www.google.com`, `cloudflare-dns.com`
+
+Then:
 
 ```bash
-npx playwright install chromium   # first time only
-npm run capture                   # or: npm run capture -- --start-url https://studio.tailorbrands.com/tailored-onboarding/<id>/business-state
-npm run tokens                    # tokens.json/.css now observed + reference/styles/_derivation.md
+npx playwright install chromium   # first time only (not needed in the cloud environment)
+npm run capture
+npm run tokens                    # tokens.json/.css + reference/styles/_derivation.md
 npm run build-storybook && npm run qa   # open qa-report/index.html, review flagged rows
 ```
 
-If a step can't find its target (for example, if the live copy has changed), the capture saves `<screen>__FAILED.png`, logs it, and stops; it doesn't guess. Fix the matching text in `scripts/flow.config.mjs` and resume with `--start-url`. For hard cases, `--headed` lets you watch and click through manually.
+Behind a TLS-intercepting proxy (like the cloud environment's), the capture tells Chromium to trust exactly that proxy's CA key (`CAPTURE_PROXY_CA`, auto-detected); it never disables certificate checks. If a step can't proceed, the capture saves a screenshot, logs it to `reference/CAPTURE_LOG.md`, and stops; it doesn't guess. `--headed` lets you watch.
 
 ## Growth notes
 
@@ -178,6 +196,7 @@ The design system choices below are aimed at the friction points already flagged
 **Design-system decision:** `RegistrationModal` **derives the legal line from `ctaLabel`** by default. A mismatch now has to be set explicitly (`legalCtaLabel`), and only the *As observed* story does so. Rule for the system: *consent copy that names a control must read the label from that control.* This matters beyond polish, because whether a clickwrap agreement holds up can depend on the named button matching the one actually clicked. See the stories *RegistrationModal / As observed* vs *Fixed*.
 
 ### Also worth raising
-- **Name truncation** ("Swell Salt" for "Swell & Salt Surf Co.", screens 4–5). The flow's pitch is "I know your business", and it gets the business name wrong on the first personalised screen. `displayName()` renders the user's input verbatim; the stories show both versions.
+- **Name truncation** ("Swell Salt" for "Swell & Salt Surf Co.", screens 4–5). The flow's pitch is "I know your business", and it gets the business name wrong on the first personalised screen. `displayName()` renders the user's input verbatim; the stories show both versions. **Root cause found in the 1 Oct capture:** the homepage strips `&` and `.` *before the flow starts*. "Start" navigates to `…/tailored-onboarding?name=Swell%20Salt%20Surf%20Co`, and the new flow greets "Let's get to know Swell Salt Surf Co". So the fix is in the homepage form handler, not in the onboarding copy.
+- **The onboarding changed within 5 days** (26 Sep → 1 Oct): a 13-screen AI-personalised flow with pre-added suites became a 10-step "business guide" questionnaire. That's consistent with an active experiment: the app loads Statsig (`statsigapi.net`). Worth asking in the interview which variant is winning, and on what metric.
 - **"After filling"** on the blueprint: a copy typo on the screen meant to show competence.
 - **Fear framing without a check** on Branding ("If swellsaltsurfco.com or similar domain is unavailable…"), with no availability lookup. A small domain-availability component would turn the fear framing into something the user can check and act on.

@@ -25,7 +25,7 @@ export const COMMON_ROLES = [
   { role: 'secondaryButton', selectors: ['button', 'a'], text: '^(skip|remove|back|decline all)$' },
   // climbToBox: the visible border often lives on a wrapper, not on the <input> itself.
   { role: 'input', selectors: ['input[type=text]', 'input:not([type=hidden]):not([type=checkbox]):not([type=radio])', 'textarea'], climbToBox: true },
-  { role: 'stepCounter', selectors: ['*'], text: '^\\s*[1-6]\\s*/\\s*6\\s*$', leaf: true },
+  { role: 'stepCounter', selectors: ['*'], text: '^\\s*\\d{1,2}\\s*/\\s*\\d{1,2}\\s*$', leaf: true },
   { role: 'content', selectors: ['main', '[class*=content]', '[class*=container]'] },
 ];
 
@@ -38,14 +38,20 @@ export const SCREENS = [
     roles: [
       { role: 'cookieBanner', selectors: ['div', 'section'], text: 'decline all', climbToBox: true },
       { role: 'pricingCard', selectors: ['div', 'section', 'article'], text: '^\\s*essential', climbToBox: true },
-      { role: 'badge', selectors: ['*'], text: '^popular$', leaf: true },
+      // "POPULAR": white text (badgeText) on a gradient strip (badge). Recorded separately because the
+      // strip's colour is a background-image, not a background-color.
+      { role: 'badgeText', selectors: ['*'], text: '^popular$', leaf: true },
+      { role: 'badge', selectors: ['*'], text: '^popular$', leaf: true, climbToBox: true },
     ],
     act: async (page, h) => {
       await h.clickText(/^decline all$/i, { optional: true });
       await h.fillFirstInput(MOCK.businessName);
       await h.clickText(/^start$/i);
     },
-    expectUrl: /tailored-onboarding\/.+\/intro/,
+    // As of 1 Oct 2026 the homepage sends new visitors to the "business guide" flow instead;
+    // capture.mjs detects which one it landed in (see BUSINESS_GUIDE below).
+    expectUrl: /tailored-onboarding\/.+\/intro|boarding\/business-guide\/\d+/,
+    expectTimeout: 60000,
   },
   {
     id: '01-intro',
@@ -206,3 +212,38 @@ export const SCREENS = [
     act: async () => {},
   },
 ];
+
+// ---------------------------------------------------------------------------------------------
+// "Business guide" flow (studio.tailorbrands.com/boarding/business-guide/<id>/<step>).
+// Observed 1 Oct 2026: the homepage now routes every new visitor here, and the tailored-onboarding
+// URLs above redirect to the studio home. This flow is a generic questionnaire (X/10), so it is
+// walked by capture.mjs's business-guide walker rather than a fixed per-screen script.
+// Selectors below come from inspecting the live DOM on 1 Oct 2026 (Ember app, Tailwind classes,
+// data-testing-id attributes).
+export const BUSINESS_GUIDE = {
+  urlPattern: /boarding\/business-guide\/\d+/,
+  maxSteps: 30,
+  // Overrides COMMON_ROLES entries with the same role name.
+  roles: [
+    { role: 'h1', selectors: ['[class*=font-gazpacho]', 'h1'] },
+    { role: 'helper', selectors: ['[class*=text-text-secondary]'] },
+    { role: 'body', selectors: ['main'] },
+    { role: 'primaryButton', selectors: ['.tailor-primary-btn:not([disabled])'] },
+    { role: 'primaryButtonDisabled', selectors: ['.tailor-primary-btn[disabled]', '.tailor-primary-btn:disabled'] },
+    { role: 'secondaryButton', selectors: ['.tailor-secondary-btn'] },
+    { role: 'chip', selectors: ['[role=button][data-testing-id^=segmentation_]', '[role=button][data-testing-id]'] },
+    { role: 'card', selectors: ['[role=button][data-testing-id^=segmentation_]', '[role=button][data-testing-id]'] },
+    { role: 'input', selectors: ['input[type=text]', 'textarea'], climbToBox: true },
+    { role: 'loaderFill', selectors: ['.cp-global-header-progress-bar'] },
+    { role: 'loaderTrack', selectors: [':has(> .cp-global-header-progress-bar)'] },
+    { role: 'pageBackground', selectors: ['main *', 'main', 'body *'], styleMatch: { prop: 'backgroundImage', re: 'gradient' } },
+    // The question column (e.g. md:max-w-148 = 37rem), not the outer page container.
+    { role: 'content', selectors: ['[class*="md:max-w-"][class*="mx-auto"]', 'main'] },
+    { role: 'modal', selectors: ['[role=dialog]', '[aria-modal=true]', '[class*=modal]'] },
+    { role: 'modalBackdrop', selectors: ['[class*=overlay]', '[class*=backdrop]'] },
+  ],
+  mock: {
+    state: 'California',
+    text: 'Surf shop selling surfboards, wetsuits and surf lessons',
+  },
+};

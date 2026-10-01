@@ -30,7 +30,9 @@ function walk(node, path) {
     if ('$value' in val) {
       const name = `--tb-${[...path, key].join('-')}`;
       const provenance = val.$observed ? `observed: ${val.$source}` : 'PLACEHOLDER — not observed';
-      lines.push(`  ${name}: ${val.$value}; /* ${provenance} */`);
+      // $fallback (font stacks) is appended so apps without the licensed font degrade gracefully.
+      const value = val.$fallback ? `${val.$value}, ${val.$fallback}` : val.$value;
+      lines.push(`  ${name}: ${value}; /* ${provenance}${val.$fallback ? '; fallback appended (not observed)' : ''} */`);
       const tw = twName([...path, key]);
       if (tw) tailwind.push(`  ${tw}: var(${name});`);
     } else {
