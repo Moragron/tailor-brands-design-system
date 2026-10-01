@@ -17,13 +17,17 @@ This repo is the source of a **local-source design system project** in Lovable (
 
 [`.lovable/system.md`](.lovable/system.md) is the full guide the Lovable agent follows: setup for Tailwind 4 and 3, the look, tokens, every component and its props, design rules and the "don't" list.
 
-### Setting up the Lovable project (GitHub sync)
+### The Lovable project and the sync
 
-1. In Lovable, open the **+** menu → **Design** → **Use a design system** → **Create design system**, and name it (the name becomes `<slug>`).
-2. Connect that project to GitHub (Lovable creates a repository for it).
-3. Push this repo's contents to the synced repository's default branch, e.g. `git push <lovable-repo-url> main`. Lovable picks up the commit.
-4. Check the preview (the showcase app), then select **Release version**. Re-release after every change you want connected projects to receive.
-5. Connect projects via **Project settings → General → Design system** (or pick it when creating a project). Lovable copies the files, merges dependencies and verifies the CSS wiring.
+The Lovable design-system project is **`Tailor Brands`**, synced with GitHub [`Moragron/tailor-brands-home-assignment`](https://github.com/Moragron/tailor-brands-home-assignment). Lovable created that repository from its TanStack "custom design system" template, whose preview tooling (`mockupPreviewPlugin.ts`, the `__component` / `__mockup` preview routes, `.lovable/meta.yaml`) must stay in place, so the two repositories are kept in sync rather than one replacing the other:
+
+- **This repository is the source of truth.** Make design-system changes here (PR + CHANGELOG as usual).
+- **`npm run lovable:sync -- <path-to-lovable-checkout>`** copies the paths the design system owns into the Lovable checkout: `src/index.ts`, `src/components/` (without stories), `src/styles/`, `src/pages/Showcase.tsx`, `tokens/*.json`, `scripts/build-tokens-css.mjs`, `.lovable/system.md`, `.dsignore`, and a generated `src/styles.css` (the Lovable project's stylesheet). It never touches Lovable's template files, and anything edited in Lovable inside those paths is overwritten.
+- Then, in the Lovable checkout: `bun install && bunx tsc --noEmit && bun run build`, commit, push to `main`. Lovable picks up the push; select **Release version** to ship it to connected projects.
+
+One-time template changes already made in the Lovable repository (not part of the sync): Tailwind 4 via `@tailwindcss/vite`, the showcase on the home route (`src/routes/index.tsx`), the page title, `<html data-tb-depth="flat">` in `src/routes/__root.tsx`, and a `tokens:css` script.
+
+Connect projects via **Project settings → General → Design system** (or pick it when creating a project). Lovable copies the files, merges dependencies and verifies the CSS wiring.
 
 ## The look
 
@@ -51,7 +55,8 @@ White pages with a 576px content column. Black headings in a condensed display s
 | `src/index.ts`, `src/components/`, `src/styles/` | The design system: everything Lovable copies into connected projects |
 | `src/main.tsx`, `src/App.tsx`, `src/pages/` | Showcase app for Lovable's preview (not copied) |
 | `.lovable/system.md` | Hand-written agent guide (Lovable never overwrites it) |
-| `.dsignore` | Extra exclusions from the copy (Storybook-only folders) |
+| `.dsignore` | Extra exclusions from the copy (Storybook-only folders, Lovable template plumbing) |
+| `scripts/sync-lovable.mjs` | Copies the design system into the Lovable project's repository (see above) |
 | `tokens/` | `tokens.json` (source of truth) and `tokens.base.json` (derivation rules + placeholders) |
 | `scripts/build-tokens-css.mjs` | Generates the token files in `src/styles/` |
 | `research/` | **Not part of the design system.** How the tokens were measured: capture pipeline, screenshots, notes, and a prototype of the source site's flow. See [`research/README.md`](research/README.md). |

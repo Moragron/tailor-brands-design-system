@@ -149,8 +149,9 @@ export function InterestsStep({ onNext }: { onNext: (v: string[]) => void }) {
 
 Ignore this section in connected projects.
 
+- **Source of truth:** GitHub `Moragron/tailor-brands-design-system`. This Lovable project receives the design system through `scripts/sync-lovable.mjs` there, which replaces `src/index.ts`, `src/components/`, `src/styles/`, `src/styles.css`, `src/pages/Showcase.tsx`, `tokens/`, `scripts/build-tokens-css.mjs`, `.lovable/system.md` and `.dsignore`. Edits made to those paths in Lovable are overwritten by the next sync: make design-system changes in the source repository. Lovable's template files (routes, router, `vite.config.ts`, `mockupPreviewPlugin.ts`, `package.json`) are never touched by the sync.
 - `src/` is what ships: `src/index.ts` (barrel, the component catalog), `src/components/*`, `src/styles/*`. Keep every import inside `src/` **relative** (no `@/` alias); the folder is relocated to `src/design-system/<slug>/` on attach.
 - Components don't import CSS. Each component's `.css` is listed in `src/styles/components.css`; add new components there and to `src/index.ts`. Component CSS is plain (no `@layer`, no `@theme`): the entry files apply the cascade layer.
 - Tokens: edit `tokens/tokens.json`, then run `npm run tokens:css`. It regenerates `src/styles/tokens.css`, `theme.css`, `shadcn.css`, `tw3/preset.ts` and `tw3/shadcn.css`. Never edit those by hand.
-- The showcase (`src/App.tsx`, `src/pages/`) and Storybook stories are previews only and are not copied to connected projects. Use placeholder copy there.
+- The showcase (`src/pages/Showcase.tsx`, rendered by `src/routes/index.tsx` in the Lovable project and by `src/App.tsx` locally) and Storybook stories are previews only and are not copied to connected projects. Use placeholder copy there.
 - Ignore the `research/` folder: it holds the analysis that produced the tokens (captures, notes, a prototype). Never copy its text, screens or flows into components, the showcase or an app.
