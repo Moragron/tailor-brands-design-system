@@ -18,7 +18,7 @@ Each PR also bumps `version` in `package.json`. Lovable keeps its own release nu
 
 ## 0.3.0: Lovable design system (replaces the npm package and v0 setup)
 
-- **PR:** (pending)
+- **PR:** [#5](https://github.com/Moragron/tailor-brands-design-system/pull/5)
 - **Restore point (main before this PR):** `4a2117b6ccaa6b6d95880648edfe234b5e5d7a22` (0.2.0)
 - **What changed:**
   - The repo is now a Lovable design-system project (local source, "Path A"): a Vite app whose `src/` is copied into connected projects at `src/design-system/<slug>/`.
