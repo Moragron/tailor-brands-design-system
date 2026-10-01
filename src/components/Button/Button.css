@@ -8,9 +8,9 @@
   border: 1px solid transparent;
   cursor: pointer;
 }
-.tb-button--primary { background: var(--tb-color-action-primary-bg); color: var(--tb-color-action-primary-fg); }
+.tb-button--primary { background: var(--tb-color-action-primary-bg); color: var(--tb-color-action-primary-fg); box-shadow: var(--tb-shadow-button, none); }
 .tb-button--primary:hover:not(:disabled) { background: var(--tb-color-action-primary-hover-bg); }
 .tb-button--secondary { background: var(--tb-color-action-secondary-bg); color: var(--tb-color-action-secondary-fg); border-color: var(--tb-color-action-secondary-border); }
-.tb-button:disabled { background: var(--tb-color-action-primary-disabled-bg); color: var(--tb-color-action-primary-disabled-fg); border-color: transparent; cursor: not-allowed; }
+.tb-button:disabled { background: var(--tb-color-action-primary-disabled-bg); color: var(--tb-color-action-primary-disabled-fg); border-color: transparent; box-shadow: none; cursor: not-allowed; }
 .tb-button--full { width: 100%; }
 /* Active and loading states are not defined by the system. */

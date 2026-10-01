@@ -1,0 +1,40 @@
+/* OPTIONAL "layered" look — shipped as `tailor-brands-design-system/depth.css`.
+ *
+ * The measured site is flat: cards and modals have no shadow and the page has no gradient
+ * (see tokens.json: shadow.card, shadow.modal = none; effect.page-gradient = placeholder).
+ * This file is an opt-in extension, NOT measured. It fills those same tokens with an elevation
+ * scale and a soft page gradient derived from the measured palette (the blue-tinted shadow of a
+ * selected chip, the primary blue, the banner yellow), so components pick it up with no code change.
+ *
+ * Import it after styles.css:
+ *   @import 'tailor-brands-design-system/depth.css';
+ * Opt a page (or subtree's root <html>) back out with <html data-tb-depth="flat">.
+ * The selector outranks tokens.css's :root, so import order relative to tokens doesn't matter.
+ */
+:root:not([data-tb-depth='flat']) {
+  /* Elevation scale: hairline < raised < floating. Tinted with the measured chip-shadow hues. */
+  --tb-shadow-hairline: rgba(61, 88, 143, 0.08) 0px 1px 3px 0px;
+  --tb-shadow-raised: rgba(61, 88, 143, 0.06) 0px 1px 2px 0px, rgba(134, 153, 237, 0.2) 0px 12px 32px -12px;
+  --tb-shadow-floating: rgba(61, 88, 143, 0.1) 0px 4px 12px -4px, rgba(134, 153, 237, 0.32) 0px 28px 64px -20px;
+  --tb-shadow-button: color-mix(in srgb, var(--tb-color-action-primary-bg) 40%, transparent) 0px 10px 24px -10px;
+
+  /* Existing tokens the components already read. */
+  --tb-shadow-card: var(--tb-shadow-raised);
+  --tb-shadow-option: var(--tb-shadow-hairline); /* unselected chips and selection cards stay subtle */
+  --tb-shadow-modal: var(--tb-shadow-floating);
+
+  /* Backgrounds: a blue glow at the top and a warm corner, both from brand colours. */
+  --tb-effect-page-gradient:
+    radial-gradient(120% 55% at 50% 0%, color-mix(in srgb, var(--tb-color-action-primary-bg) 10%, transparent) 0%, transparent 70%),
+    radial-gradient(60% 40% at 100% 100%, color-mix(in srgb, var(--tb-color-banner-bg) 22%, transparent) 0%, transparent 70%);
+  --tb-effect-section-gradient: linear-gradient(180deg, color-mix(in srgb, var(--tb-color-action-primary-bg) 6%, var(--tb-color-surface-page)) 0%, var(--tb-color-surface-page) 100%);
+}
+
+/* Tailwind v4 utilities for the new elevation tokens: shadow-tb-hairline, shadow-tb-raised,
+   shadow-tb-floating, shadow-tb-button. Ignored by browsers when not processed by Tailwind. */
+@theme inline {
+  --shadow-tb-hairline: var(--tb-shadow-hairline);
+  --shadow-tb-raised: var(--tb-shadow-raised);
+  --shadow-tb-floating: var(--tb-shadow-floating);
+  --shadow-tb-button: var(--tb-shadow-button);
+}

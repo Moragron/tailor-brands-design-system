@@ -34,6 +34,7 @@ Required global CSS, in app/globals.css, in this order:
   @import 'tailor-brands-design-system/styles.css';
   @import 'tailor-brands-design-system/tailwind.css';
   @import 'tailor-brands-design-system/base.css';   (optional body defaults)
+  @import 'tailor-brands-design-system/depth.css';  (optional layered look: shadows + page gradient; include it if pages should not look flat)
 No provider or theme wrapper. Don't also import the CSS from JS. Fonts (Proxima Nova, Memories) are licensed and not bundled; the tokens fall back to Helvetica/Arial and Georgia, so don't add font files.
 
 Read AGENTS.md at the repo root first: it lists every component, prop and token that is safe to use, and the design rules. The reference consumer app is examples/next-app (app/globals.css, app/layout.tsx, app/question-step.tsx).
@@ -43,6 +44,8 @@ Every export is a client component ('use client' is in the bundle). Keep interac
 Use tokens, never hard-coded values: CSS variables var(--tb-*) or the Tailwind utilities bg-tb-*, text-tb-*, border-tb-*, rounded-tb-*, shadow-tb-*, font-tb-*, leading-tb-*. Spacing is CSS variables only: p-(--tb-space-4).
 
 Look: white pages, 576px content column (StepLayout), display-serif headings (tb-h1/tb-h2), grey sans body text, pill buttons/chips/inputs, one bright-blue primary action per view.
+
+Depth: the default look is flat. When depth.css is imported, layer pages as page gradient (bg-(image:--tb-effect-page-gradient)) -> white cards (bg-tb-surface-card rounded-tb-card shadow-tb-raised) -> floating layers (shadow-tb-floating); bands use bg-(image:--tb-effect-section-gradient). See "Depth" in AGENTS.md.
 
 Do not add shadcn/ui components for anything the package covers (buttons, chips, inputs, selection cards, modal, tabs, pricing cards).
 ```

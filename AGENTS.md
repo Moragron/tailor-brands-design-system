@@ -28,6 +28,7 @@ In the global stylesheet (`app/globals.css`), **in this order**:
 @import 'tailor-brands-design-system/styles.css';   /* tokens + component styles (@layer components) */
 @import 'tailor-brands-design-system/tailwind.css'; /* token utilities: bg-tb-*, text-tb-*, rounded-tb-*, shadow-tb-* */
 @import 'tailor-brands-design-system/base.css';     /* optional: page defaults on <body> */
+@import 'tailor-brands-design-system/depth.css';    /* optional: layered look (shadows + page gradient) */
 ```
 
 - Don't also import the CSS from JavaScript.
@@ -50,6 +51,18 @@ Measured from a production website: 67 of 72 values are real (`"$observed": true
   | Type | size `text-tb-h1` … `text-tb-caption` · family `font-tb-base`, `font-tb-heading` · weight `font-tb-h1`, `font-tb-button` · line height `leading-tb-body` |
   | Radius / shadow | `rounded-tb-button`, `rounded-tb-chip`, `rounded-tb-card`, `shadow-tb-chip-selected` |
   | Spacing | `p-(--tb-space-4)`, `gap-(--tb-space-2)` (spacing tokens are CSS variables only; base unit 4px) |
+
+### Depth (optional layered look)
+
+The measured site is **flat**: cards and modals have no shadow and pages have no gradient. If the app should feel layered, import `depth.css` (see Setup). It is an opt-in extension, not measured, and is built only from the measured palette. It changes no component API:
+
+- Fills `--tb-shadow-card` (cards), `--tb-shadow-modal` (modal, autocomplete list) and `--tb-effect-page-gradient` (`StepLayout` and `base.css` body), gives unselected chips/selection cards a hairline shadow and the primary `Button` a soft blue glow.
+- Adds an elevation scale for your own surfaces: `shadow-tb-hairline` < `shadow-tb-raised` < `shadow-tb-floating`, plus `shadow-tb-button` (CSS: `var(--tb-shadow-raised)` …).
+- Gradients for your own sections: `bg-(image:--tb-effect-page-gradient)` (page/hero) and `bg-(image:--tb-effect-section-gradient)` (a band that fades into the page).
+- Layering recipe: page gradient → white cards (`bg-tb-surface-card rounded-tb-card shadow-tb-raised`) → floating layers (`shadow-tb-floating`). Keep one level of lift per surface; don't stack shadows.
+- Opt a page back out with `<html data-tb-depth="flat">`.
+
+Only use these utilities when `depth.css` is imported; without it they don't exist.
 
 **Typography classes:** `tb-h1`, `tb-h2`, `tb-h3`, `tb-body`, `tb-caption`.
 

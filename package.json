@@ -23,6 +23,7 @@
     },
     "./styles.css": "./dist/styles.css",
     "./base.css": "./src/styles/base.css",
+    "./depth.css": "./src/styles/depth.css",
     "./tailwind.css": "./tokens/tailwind.css",
     "./tokens.css": "./tokens/tokens.css",
     "./tokens.json": "./tokens/tokens.json",
@@ -32,6 +33,7 @@
     "dist",
     "tokens",
     "src/styles/base.css",
+    "src/styles/depth.css",
     "AGENTS.md",
     "README.md"
   ],

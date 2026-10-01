@@ -6,7 +6,7 @@
   color: var(--tb-color-text-body);
   border: 1px solid var(--tb-color-border-card);
   border-radius: var(--tb-radius-card);
-  box-shadow: var(--tb-shadow-card);
+  box-shadow: var(--tb-shadow-option, var(--tb-shadow-card));
   padding: var(--tb-space-4);
   cursor: pointer;
 }

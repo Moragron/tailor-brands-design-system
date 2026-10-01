@@ -8,3 +8,6 @@
 
 /* Optional: Tailor-branded page defaults (styles <body>). */
 @import 'tailor-brands-design-system/base.css';
+
+/* Optional: layered look (card/modal shadows, page gradient). Remove for the measured flat look. */
+@import 'tailor-brands-design-system/depth.css';
