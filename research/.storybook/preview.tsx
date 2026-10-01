@@ -1,7 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
 import { ReferencePanel } from '../prototype/storybook/ReferencePanel';
-import '../../tokens/tokens.css';
-import '../../src/styles/foundation.css';
+import '../../src/styles/tw3/index.css';
 import '../../src/styles/base.css';
 import '../../.storybook/preview.css';
 

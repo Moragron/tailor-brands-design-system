@@ -1,0 +1,5 @@
+# Lovable design-system attach: files under src/ that are NOT copied into connected projects.
+# gitignore syntax, layered on Lovable's defaults (src/pages/, src/routes/, *.stories.*,
+# src/main.tsx, src/App.tsx, tests). Folders below hold Storybook-only stories.
+src/tokens/
+src/patterns/

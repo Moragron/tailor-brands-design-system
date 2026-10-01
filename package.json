@@ -1,58 +1,26 @@
 {
   "name": "tailor-brands-design-system",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
-  "description": "React design system (tokens, components, Tailwind v4 theme) with a visual language measured from tailorbrands.com. Content-free: bring your own copy.",
+  "description": "Tailor Brands design system for Lovable: design tokens + content-free React components, styled for Tailwind 4 (Tailwind 3 preset included). Bring your own copy.",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
     "url": "https://github.com/Moragron/tailor-brands-design-system.git"
   },
   "type": "module",
-  "sideEffects": [
-    "**/*.css"
-  ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./styles.css": "./dist/styles.css",
-    "./base.css": "./src/styles/base.css",
-    "./depth.css": "./src/styles/depth.css",
-    "./tailwind.css": "./tokens/tailwind.css",
-    "./tokens.css": "./tokens/tokens.css",
-    "./tokens.json": "./tokens/tokens.json",
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist",
-    "tokens",
-    "src/styles/base.css",
-    "src/styles/depth.css",
-    "AGENTS.md",
-    "CHANGELOG.md",
-    "README.md"
-  ],
   "engines": {
     "node": ">=20"
   },
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
-  },
   "scripts": {
-    "build": "node scripts/build-lib.mjs",
-    "prepare": "node scripts/build-lib.mjs",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "typecheck": "tsc --noEmit",
+    "tokens:css": "node scripts/build-tokens-css.mjs",
+    "tokens:check": "node scripts/build-tokens-css.mjs && git diff --exit-code -- src/styles",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-static",
-    "tokens:css": "node scripts/build-tokens-css.mjs",
-    "example": "npm --prefix examples/next-app install && npm --prefix examples/next-app run build",
     "research:storybook": "storybook dev -c research/.storybook -p 6007",
     "research:build-storybook": "storybook build -c research/.storybook -o research/storybook-static",
     "research:capture": "node research/scripts/capture.mjs",
@@ -60,17 +28,21 @@
     "research:qa": "node research/scripts/visual-qa.mjs",
     "research:selftest": "node research/scripts/selftest-pipeline.mjs"
   },
+  "dependencies": {
+    "react": "^18.3.1 || ^19.0.0",
+    "react-dom": "^18.3.1 || ^19.0.0"
+  },
   "devDependencies": {
     "@storybook/react-vite": "^10.6.0",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
     "pixelmatch": "^7.2.0",
     "playwright": "^1.63.0",
     "pngjs": "^7.0.0",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
     "storybook": "^10.6.0",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
     "vite": "^8.3.1"
   }

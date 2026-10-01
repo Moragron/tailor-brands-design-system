@@ -1,6 +1,4 @@
 import { useId, useMemo, useState, type KeyboardEvent } from 'react';
-import '../TextInput/TextInput.css';
-import './AutocompleteInput.css';
 
 export type AutocompleteInputProps = {
   label: string;

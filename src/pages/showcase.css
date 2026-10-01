@@ -1,0 +1,5 @@
+/* Showcase stylesheet: wired exactly like a connected Tailwind 4 project's global CSS. */
+@import 'tailwindcss';
+@import '../styles/index.css';
+@import '../styles/depth.css';
+@import '../styles/base.css';

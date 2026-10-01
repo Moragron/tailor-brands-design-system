@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './PercentLoader.css';
 
 export type LoaderMessage = { text: string; /** Optional secondary line, e.g. a source or file name */ source?: string };
 

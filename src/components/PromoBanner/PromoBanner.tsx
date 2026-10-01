@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import './PromoBanner.css';
 
 export type PromoBannerProps = {
   /** Optional leading emoji or icon */

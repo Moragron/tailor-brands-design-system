@@ -1,5 +1,4 @@
 import { useId, useState, type ReactNode } from 'react';
-import './InfoDrawer.css';
 
 export type InfoDrawerSection = { heading: string; body: ReactNode };
 

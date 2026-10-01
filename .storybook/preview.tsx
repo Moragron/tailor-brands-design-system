@@ -1,8 +1,8 @@
 import type { Preview } from '@storybook/react-vite';
-import '../tokens/tokens.css';
-import '../src/styles/foundation.css';
+// Plain-CSS entry (no Tailwind in Storybook), then the optional layers.
+import '../src/styles/tw3/index.css';
 import '../src/styles/base.css';
-import '../src/styles/depth.css';
+import '../src/styles/tw3/depth.css';
 import './preview.css';
 
 const preview: Preview = {
