@@ -53,6 +53,8 @@ export function probe({ specs, PROPS }) {
       }
       if (re && spec.leaf) els = els.filter((el) => ![...el.children].some((c) => re.test(text(c))));
       if (spec.chip) els = els.filter(looksLikeChip);
+      // styleMatch: { prop, re } keeps elements whose computed style matches, e.g. a gradient background.
+      if (spec.styleMatch) els = els.filter((el) => new RegExp(spec.styleMatch.re, 'i').test(getComputedStyle(el)[spec.styleMatch.prop]));
       if (els.length) { found = els[0]; usedSel = sel; break; }
     }
     if (!found) { out[spec.role] = null; continue; }

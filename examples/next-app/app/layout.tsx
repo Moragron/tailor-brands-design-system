@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description: 'Reference consumer app for tailor-brands-design-system',
 };
 
-// No provider or theme wrapper is required. Fonts come from the tokens
-// (--tb-font-family-*); no web font is loaded until the live capture records one.
+// No provider or theme wrapper is required. Fonts come from the tokens (--tb-font-family-*):
+// Tailor Brands' licensed Proxima Nova / Gazpacho Bold with fallbacks; they are not bundled.
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">

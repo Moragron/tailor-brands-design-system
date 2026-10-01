@@ -5,7 +5,7 @@
  *   @import "tailor-brands-design-system/styles.css";
  *   @import "tailor-brands-design-system/tailwind.css";
  * `inline` keeps utilities pointing at the --tb-* variables, so re-capturing tokens restyles them.
- * Token set status: PLACEHOLDER
+ * Token set status: PARTIAL
  */
 @theme inline {
   --color-tb-text-primary: var(--tb-color-text-primary);

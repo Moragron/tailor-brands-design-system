@@ -12,4 +12,4 @@ The raw evidence every token and component traces back to. Written by `npm run c
 | `styles/_media.json` | All `@media` conditions seen, with counts (breakpoint evidence). |
 | `styles/_derivation.md` | Written by `npm run tokens`: token → value → source → agreement → conflicting values. |
 
-**Current state:** only the notes and the capture log are here. The build environment's network policy blocks tailorbrands.com (see `CAPTURE_LOG.md`), so the screenshot/dom/styles folders are empty until `npm run capture` runs on an open network.
+**Current state (1 Oct 2026):** captures exist for the pricing page, the homepage and the first three steps of the current "business guide" onboarding (`bg-*`), plus `bg-04-error__exit.png`, where the flow failed because hosts it depends on are blocked in the build environment (see `CAPTURE_LOG.md`). The tailored-onboarding flow described in `onboarding-flow-notes.md` is no longer served to new visitors, so no captures of it exist. Earlier failed attempts are kept in the log.

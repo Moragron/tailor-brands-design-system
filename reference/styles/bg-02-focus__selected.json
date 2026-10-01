@@ -1,0 +1,101 @@
+{
+  "screen": "bg-02-focus__selected",
+  "url": "https://studio.tailorbrands.com/boarding/business-guide/131864768/focus",
+  "viewport": {
+    "w": 1440,
+    "h": 900
+  },
+  "capturedAt": "2026-10-01T17:28:40.429Z",
+  "roles": {
+    "chipSelected": {
+      "matchedSelector": "[data-tb-pick=\"0\"]",
+      "path": "div.flex.flex-col > div.md:mx-auto.mt-3 > div.flex.flex-col > div > div > div.h-full.flex",
+      "text": "Business guidance",
+      "rect": {
+        "x": 432,
+        "y": 204,
+        "w": 576,
+        "h": 92
+      },
+      "styles": {
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "backgroundImage": "none",
+        "fontFamily": "proxima-nova, helvetica, arial, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "paddingTop": "0px",
+        "paddingRight": "0px",
+        "paddingBottom": "0px",
+        "paddingLeft": "0px",
+        "marginTop": "0px",
+        "marginRight": "0px",
+        "marginBottom": "0px",
+        "marginLeft": "0px",
+        "gap": "normal",
+        "borderTopWidth": "2px",
+        "borderTopStyle": "solid",
+        "borderTopColor": "rgb(22, 108, 255)",
+        "borderTopLeftRadius": "4px",
+        "borderTopRightRadius": "4px",
+        "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(16, 24, 40, 0.06) 0px 2px 4px -2px, rgba(16, 24, 40, 0.15) 0px 4px 8px -2px",
+        "maxWidth": "none",
+        "width": "576px",
+        "height": "92px",
+        "opacity": "1",
+        "filter": "none",
+        "backdropFilter": "none",
+        "cursor": "pointer",
+        "transition": "background-color 0.2s, border-color 0.2s, color 0.2s, fill 0.2s, stroke 0.2s, opacity 0.2s, box-shadow 0.2s, transform 0.2s"
+      }
+    },
+    "cardSelected": {
+      "matchedSelector": "[data-tb-pick=\"0\"]",
+      "path": "div.flex.flex-col > div.md:mx-auto.mt-3 > div.flex.flex-col > div > div > div.h-full.flex",
+      "text": "Business guidance",
+      "rect": {
+        "x": 432,
+        "y": 204,
+        "w": 576,
+        "h": 92
+      },
+      "styles": {
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "backgroundImage": "none",
+        "fontFamily": "proxima-nova, helvetica, arial, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "paddingTop": "0px",
+        "paddingRight": "0px",
+        "paddingBottom": "0px",
+        "paddingLeft": "0px",
+        "marginTop": "0px",
+        "marginRight": "0px",
+        "marginBottom": "0px",
+        "marginLeft": "0px",
+        "gap": "normal",
+        "borderTopWidth": "2px",
+        "borderTopStyle": "solid",
+        "borderTopColor": "rgb(22, 108, 255)",
+        "borderTopLeftRadius": "4px",
+        "borderTopRightRadius": "4px",
+        "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(16, 24, 40, 0.06) 0px 2px 4px -2px, rgba(16, 24, 40, 0.15) 0px 4px 8px -2px",
+        "maxWidth": "none",
+        "width": "576px",
+        "height": "92px",
+        "opacity": "1",
+        "filter": "none",
+        "backdropFilter": "none",
+        "cursor": "pointer",
+        "transition": "background-color 0.2s, border-color 0.2s, color 0.2s, fill 0.2s, stroke 0.2s, opacity 0.2s, box-shadow 0.2s, transform 0.2s"
+      }
+    }
+  }
+}

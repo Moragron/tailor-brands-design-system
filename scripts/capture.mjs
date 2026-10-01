@@ -12,7 +12,8 @@
 //   npm run capture -- --headed                      # watch it / step in manually
 import { chromium } from 'playwright';
 import { existsSync, mkdirSync, writeFileSync, appendFileSync, readFileSync } from 'node:fs';
-import { COMMON_ROLES, SCREENS, HOME_URL, PRICING_URLS } from './flow.config.mjs';
+import { COMMON_ROLES, SCREENS, HOME_URL, PRICING_URLS, BUSINESS_GUIDE } from './flow.config.mjs';
+import { X509Certificate, createHash } from 'node:crypto';
 import { PROPS, probe, histogram } from './probe.mjs';
 
 const root = new URL('../reference/', import.meta.url).pathname;
@@ -57,12 +58,23 @@ function recordMedia(css, id) {
 }
 
 // ---------- run ----------
+// Behind a TLS-intercepting proxy (e.g. a sandbox egress proxy), Chromium must trust that proxy's
+// CA. Trust exactly that one key (SPKI pin) rather than disabling certificate checks.
+// Set CAPTURE_PROXY_CA=<pem path>, or it is auto-detected in the Claude Code cloud sandbox.
+function proxyCaArgs() {
+  const caPath = process.env.CAPTURE_PROXY_CA ?? '/root/.ccr/agent-proxy-ca.crt';
+  if (!existsSync(caPath)) return [];
+  const spki = new X509Certificate(readFileSync(caPath)).publicKey.export({ type: 'spki', format: 'der' });
+  return [`--ignore-certificate-errors-spki-list=${createHash('sha256').update(spki).digest('base64')}`];
+}
+
 async function launch() {
-  try { return await chromium.launch({ headless: !headed }); }
+  const args = proxyCaArgs();
+  try { return await chromium.launch({ headless: !headed, args }); }
   catch (e) {
     const fallback = '/opt/pw-browsers/chromium';
     if (!existsSync(fallback)) throw e;
-    return chromium.launch({ headless: !headed, executablePath: fallback });
+    return chromium.launch({ headless: !headed, executablePath: fallback, args });
   }
 }
 
@@ -119,7 +131,7 @@ if (startUrl) {
       if (res && res.ok()) {
         await h.screenshot('00-pricing');
         writeFileSync(`${dirs.dom}00-pricing${suffix}.html`, await page.content());
-        await h.captureRoles('00-pricing', [...COMMON_ROLES, { role: 'pricingCard', selectors: ['div', 'section', 'article'], text: '^\\s*essential', climbToBox: true }, { role: 'badge', selectors: ['*'], text: '^popular$', leaf: true }]);
+        await h.captureRoles('00-pricing', [...COMMON_ROLES, { role: 'pricingCard', selectors: ['div', 'section', 'article'], text: '^\\s*essential', climbToBox: true }, { role: 'badgeText', selectors: ['*'], text: '^popular$', leaf: true }, { role: 'badge', selectors: ['*'], text: '^popular$', leaf: true, climbToBox: true }]);
         log(`- ✅ 00-pricing (${url})`);
       } else log(`- ⚠️ 00-pricing: ${url} returned ${res?.status()} — pricing lives on the homepage per the notes`);
     } catch (e) { log(`- ⚠️ 00-pricing: ${e.message.split('\n')[0]}`); }
@@ -149,11 +161,121 @@ for (const screen of screens) {
     await screen.act(page, h);
     if (screen.expectUrl) await page.waitForURL(screen.expectUrl, { timeout: screen.expectTimeout ?? 20000 });
     log(`- ✅ ${id} — ${page.url()}${missing.length ? ` (roles not found: ${missing.join(', ')})` : ''}`);
+    if (BUSINESS_GUIDE.urlPattern.test(page.url())) {
+      log('- ↪ Homepage routed to the "business guide" flow (not tailored-onboarding). Switching to the business-guide walker.');
+      await runBusinessGuide();
+      break;
+    }
   } catch (e) {
     await h.screenshot(`${id}__FAILED`).catch(() => {});
     log(`- ❌ ${id} — ${e.message.split('\n')[0]}. Stopped here; later screens not captured. See screenshots/${id}__FAILED${suffix}.png`);
     break;
   }
+}
+
+// ---------- business-guide walker ----------
+// Generic questionnaire walk: capture the step, answer it with a neutral choice (first option under
+// each question, or the mock text/state), press the primary CTA, wait for the next step. Stops at a
+// sign-up/payment gate (captured, never submitted), on leaving the flow, or when nothing changes.
+async function runBusinessGuide() {
+  const roleSpecs = [...COMMON_ROLES.filter((c) => !BUSINESS_GUIDE.roles.some((b) => b.role === c.role)), ...BUSINESS_GUIDE.roles];
+  // Snapshot of "which question is showing". A navigation mid-read throws; treat that as movement.
+  const signature = () => page.evaluate(() => location.pathname + '|' + [...document.querySelectorAll('[class*=font-gazpacho], h1, h2')].map((e) => e.innerText).join('|').slice(0, 300))
+    .catch(() => `navigating:${Date.now()}`);
+  let selectedCaptured = false;
+  let stalls = 0;
+  for (let n = 1; n <= BUSINESS_GUIDE.maxSteps; n++) {
+    await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
+    await page.waitForTimeout(2500);
+    const url = page.url();
+    const seg = new URL(url).pathname.split('/').filter(Boolean).pop();
+    const id = `bg-${String(n).padStart(2, '0')}-${seg}`;
+    try {
+      if (!BUSINESS_GUIDE.urlPattern.test(url)) {
+        // Error pages and exits are evidence for the log, not design: screenshot only, no styles.
+        await h.screenshot(`${id}__exit`);
+        log(`- ⏹ left the business-guide flow at ${url} — screenshot ${id}__exit${suffix}.png, not measured. Stopping.`);
+        return;
+      }
+      await h.screenshot(id);
+      writeFileSync(`${dirs.dom}${id}${suffix}.html`, await page.content());
+      const css = await collectCss(page);
+      writeFileSync(`${dirs.dom}${id}${suffix}.css`, css);
+      recordMedia(css, id);
+      const roles = await page.evaluate(probe, { specs: roleSpecs, PROPS });
+      roles.histogram = await page.evaluate(histogram);
+      const heading = roles.h1?.text ?? '';
+      writeFileSync(`${dirs.styles}${id}${suffix}.json`, JSON.stringify({ screen: id, flow: 'business-guide', heading, url, viewport: { w: vw, h: vh }, capturedAt: new Date().toISOString(), roles }, null, 2));
+
+      const hasPassword = await page.locator('input[type=password]').filter({ visible: true }).count();
+      if (hasPassword || /checkout|payment|billing/i.test(url)) {
+        log(`- ✅ ${id} — "${heading}" — sign-up/payment gate reached; captured, not submitted. Stopping.`);
+        return;
+      }
+
+      const before = await signature();
+      // 1) choose the first option under each question on the page
+      const picks = await page.evaluate(() => {
+        const vis = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
+        document.querySelectorAll('[data-tb-pick]').forEach((e) => e.removeAttribute('data-tb-pick'));
+        const heads = [...document.querySelectorAll('[class*=font-gazpacho]')].filter(vis);
+        const cards = [...document.querySelectorAll('[role=button][data-testing-id]')].filter(vis);
+        const chosen = [];
+        if (!heads.length && cards[0]) chosen.push(cards[0]);
+        heads.forEach((hd, i) => {
+          const next = heads[i + 1];
+          const c = cards.find((c) => (hd.compareDocumentPosition(c) & Node.DOCUMENT_POSITION_FOLLOWING) && (!next || (next.compareDocumentPosition(c) & Node.DOCUMENT_POSITION_PRECEDING)));
+          if (c && !chosen.includes(c)) chosen.push(c);
+        });
+        chosen.forEach((c, i) => c.setAttribute('data-tb-pick', String(i)));
+        return chosen.map((c) => (c.innerText || '').trim().split('\n')[0]);
+      }).catch(() => []);
+      for (let i = 0; i < picks.length; i++) {
+        await page.locator(`[data-tb-pick="${i}"]`).click({ timeout: 8000 }).catch(() => {});
+        await page.waitForTimeout(700);
+        if ((await signature()) !== before) break; // single-select questions may auto-advance
+        if (!selectedCaptured) {
+          await h.captureRoles(`${id}__selected`, [
+            { role: 'chipSelected', selectors: [`[data-tb-pick="${i}"]`] },
+            { role: 'cardSelected', selectors: [`[data-tb-pick="${i}"]`] },
+          ]);
+          await h.screenshot(`${id}__selected`, { fullPage: false });
+          selectedCaptured = true;
+        }
+      }
+      // 2) no options: answer text / state inputs
+      if (!picks.length && (await signature()) === before) {
+        const input = page.locator('input[type=text], input:not([type]), textarea').filter({ visible: true }).first();
+        if (await input.count() && !(await input.inputValue())) {
+          const pageText = (await page.locator('main').innerText().catch(() => '')).toLowerCase();
+          const isState = /\bstate\b|based|located/.test(pageText);
+          await input.click();
+          await input.pressSequentially(isState ? BUSINESS_GUIDE.mock.state : BUSINESS_GUIDE.mock.text, { delay: 30 });
+          await page.waitForTimeout(1200);
+          if (isState) await page.getByText(new RegExp(`^${BUSINESS_GUIDE.mock.state}$`)).first().click({ timeout: 5000 }).catch(() => {});
+        }
+      }
+      // 3) press the primary CTA (or Skip), unless the page already moved on
+      if ((await signature()) === before) {
+        const primary = page.locator('.tailor-primary-btn:not([disabled])').filter({ visible: true }).first();
+        const named = page.getByRole('button', { name: /^(next|continue|let'?s go|get started|show me|see (my|your) .*)$/i }).filter({ visible: true }).first();
+        const skip = page.locator('.tailor-secondary-btn').filter({ visible: true }).first();
+        const target = (await primary.count()) ? primary : (await named.count()) ? named : skip;
+        if (await target.count()) await target.click({ timeout: 8000 }).catch(() => {});
+      }
+      // 4) wait for the next step (loaders can take a while)
+      let moved = false;
+      for (let t = 0; t < 60 && !moved; t++) { await page.waitForTimeout(500); moved = (await signature()) !== before; }
+      log(`- ✅ ${id} — "${heading}"${picks.length ? ` — chose: ${picks.join(' / ')}` : ''}${moved ? '' : ' — (no change after 30s)'}`);
+      if (!moved && ++stalls >= 2) { log(`- ⏹ stopped at ${id}: the page did not advance twice in a row. See screenshots/${id}${suffix}.png`); return; }
+      if (moved) stalls = 0;
+    } catch (e) {
+      await h.screenshot(`${id}__FAILED`).catch(() => {});
+      log(`- ❌ ${id} — ${e.message.split('\n')[0]}. Stopped here. See screenshots/${id}__FAILED${suffix}.png`);
+      return;
+    }
+  }
+  log(`- ⏹ reached the ${BUSINESS_GUIDE.maxSteps}-step limit.`);
 }
 
 writeFileSync(mediaPath, JSON.stringify(media, null, 2));

@@ -7,6 +7,7 @@
   color: var(--tb-color-chip-fg);
   border: 1px solid var(--tb-color-chip-border);
   border-radius: var(--tb-radius-chip);
+  box-shadow: var(--tb-shadow-card); /* the live option cards are lifted by a shadow, not a border */
   padding: var(--tb-space-2) var(--tb-space-4);
   cursor: pointer;
 }
