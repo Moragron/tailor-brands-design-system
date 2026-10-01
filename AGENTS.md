@@ -28,6 +28,7 @@ In the global stylesheet (`app/globals.css`), **in this order**:
 @import 'tailor-brands-design-system/styles.css';   /* tokens + component styles (@layer components) */
 @import 'tailor-brands-design-system/tailwind.css'; /* token utilities: bg-tb-*, text-tb-*, rounded-tb-*, shadow-tb-* */
 @import 'tailor-brands-design-system/base.css';     /* optional: page defaults on <body> */
+@import 'tailor-brands-design-system/depth.css';    /* optional: page gradient + layered questionnaire shell */
 ```
 
 - Don't also import the CSS from JavaScript.
@@ -50,6 +51,18 @@ Measured from a production website: 67 of 72 values are real (`"$observed": true
   | Type | size `text-tb-h1` … `text-tb-caption` · family `font-tb-base`, `font-tb-heading` · weight `font-tb-h1`, `font-tb-button` · line height `leading-tb-body` |
   | Radius / shadow | `rounded-tb-button`, `rounded-tb-chip`, `rounded-tb-card`, `shadow-tb-chip-selected` |
   | Spacing | `p-(--tb-space-4)`, `gap-(--tb-space-2)` (spacing tokens are CSS variables only; base unit 4px) |
+
+### Depth (optional layered look)
+
+The automated captures measured **flat** surfaces: no page gradient. For the layered questionnaire look (white page with a soft blue glow rising from the bottom, translucent sticky action bar, gradient ring on the active input), import `depth.css` (see Setup). It's opt-in and not part of the measured token set (colours sampled from a reference screenshot). It changes no component API:
+
+- `StepLayout`: page glow (`--tb-effect-page-gradient`, also on `<body>` via `base.css`), a hairline under the header, and the `footer` becomes a sticky, translucent, blurred action bar with a divider. **Build every questionnaire step with `StepLayout`** so it gets this automatically; don't recreate the background yourself.
+- Inputs (`TextInput`, `AutocompleteInput`, the `ChipGroup` free-text field): a pink → violet → blue gradient ring and faint blue fill when focused, and on `AutocompleteInput` once a value is picked.
+- Colours for your own elements: `bg-tb-glow`, `border-tb-divider`.
+- Gradients for your own elements: `bg-(image:--tb-effect-page-gradient)` (a page not using `StepLayout`), `bg-(image:--tb-effect-section-gradient)` (a band fading into the glow), `bg-(image:--tb-effect-accent-gradient)` (accent ring/line; use sparingly).
+- Opt a page back out with `<html data-tb-depth="flat">`.
+
+Only use these utilities when `depth.css` is imported; without it they don't exist.
 
 **Typography classes:** `tb-h1`, `tb-h2`, `tb-h3`, `tb-body`, `tb-caption`.
 

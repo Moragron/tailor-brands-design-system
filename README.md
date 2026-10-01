@@ -18,6 +18,7 @@ npm install github:Moragron/tailor-brands-design-system
 @import 'tailor-brands-design-system/styles.css';
 @import 'tailor-brands-design-system/tailwind.css';
 @import 'tailor-brands-design-system/base.css';   /* optional page defaults */
+@import 'tailor-brands-design-system/depth.css';  /* optional: page gradient + layered questionnaire shell */
 ```
 
 ```tsx
@@ -33,6 +34,8 @@ import { StepLayout, ProgressStepper, ChipGroup, Button } from 'tailor-brands-de
 
 White pages with a 576px content column. Black headings in a condensed display serif; grey `#727585` body text in a clean sans. Pill-shaped buttons, chips and inputs. Primary actions in bright blue `#166cff` (hover `#155cba`, disabled at 30% opacity). Selected options go bold and lift on a soft blue-tinted shadow instead of a border. Overlays are white at 85% with a 12px backdrop blur. Warm-yellow `#ffd272` highlight banners. Spacing on a 4px grid.
 
+**Flat by default, layered on request.** The measured captures have no page gradient, so flat is the default. `depth.css` is an opt-in layer for the questionnaire look: a soft blue glow rising from the bottom of the page, a translucent sticky action bar and a gradient ring on the active input; see *Depth* in [`AGENTS.md`](AGENTS.md). In Storybook, switch between the two with the **Depth** toolbar button.
+
 **Fonts are licensed and not bundled.** The tokens name Proxima Nova (text) and Memories (headings), then fall back to Helvetica/Arial and Georgia. Load the real fonts only if you hold a licence.
 
 ## Package entry points
@@ -43,6 +46,7 @@ White pages with a 576px content column. Black headings in a condensed display s
 | `…/styles.css` | Tokens + all component styles in `@layer components` (Tailwind utilities override; preflight doesn't) |
 | `…/tailwind.css` | Tailwind v4 `@theme inline` mapping: `bg-tb-*`, `text-tb-*`, `rounded-tb-*`, `shadow-tb-*`, `font-tb-*`, `leading-tb-*` |
 | `…/base.css` | Optional `<body>` defaults |
+| `…/depth.css` | Optional layered questionnaire look: bottom page glow, sticky translucent action bar, gradient input ring |
 | `…/tokens.css`, `…/tokens.json` | Raw tokens (CSS variables; JSON with provenance) |
 
 ## Repository layout
@@ -67,5 +71,7 @@ npm run example          # clean install + build of examples/next-app
 ```
 
 To re-measure the tokens from the live site, see `research/README.md` (`npm run research:capture && npm run research:tokens`).
+
+**Every PR** adds an entry to [`CHANGELOG.md`](CHANGELOG.md) (what changed and the restore point, i.e. the `main` commit before it) and bumps `version` in `package.json`. `CHANGELOG.md` also explains how to revert a PR or pin an app to an earlier version.
 
 CI (`.github/workflows/ci.yml`) typechecks, builds the package and Storybook, runs the token pipeline self-test and builds the example app. `storybook-pages.yml` publishes the design-system Storybook to GitHub Pages.
