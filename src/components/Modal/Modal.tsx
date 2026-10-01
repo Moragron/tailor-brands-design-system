@@ -1,5 +1,4 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react';
-import './Modal.css';
 
 export type ModalProps = {
   open: boolean;
@@ -45,9 +44,14 @@ export type GatedContentProps = {
 
 /** Puts a gate (usually a <Modal>) over blurred, non-interactive content until unlocked. */
 export function GatedContent({ children, locked, gate }: GatedContentProps) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  // Set as a DOM property: the `inert` JSX prop only exists in React 19, and Lovable projects may run React 18.
+  useEffect(() => {
+    if (contentRef.current) contentRef.current.inert = locked;
+  }, [locked]);
   return (
     <div className="tb-gated">
-      <div className="tb-gated__content" data-locked={locked || undefined} aria-hidden={locked || undefined} inert={locked || undefined}>
+      <div ref={contentRef} className="tb-gated__content" data-locked={locked || undefined} aria-hidden={locked || undefined}>
         {children}
       </div>
       {locked && gate}

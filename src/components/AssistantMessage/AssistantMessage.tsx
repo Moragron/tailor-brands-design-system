@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import './AssistantMessage.css';
 
 export type AssistantMessageProps = {
   /** Shows an animated "working" indicator instead of the content */

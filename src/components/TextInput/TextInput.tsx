@@ -1,5 +1,4 @@
 import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from 'react';
-import './TextInput.css';
 
 export type TextInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix'> & {
   label: string;

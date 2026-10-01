@@ -14,8 +14,12 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
-      - run: npm ci                      # also builds dist/ via the prepare script
+      - run: npm ci
       - run: npm run typecheck
+      - name: Generated token files are up to date
+        run: npm run tokens:check
+      - name: Showcase builds (Lovable preview)
+        run: npm run build
       - name: Design-system Storybook builds
         run: npm run build-storybook
       - name: Research Storybook builds
@@ -23,5 +27,3 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Token pipeline self-test (probe → derive round-trip)
         run: npm run research:selftest
-      - name: Consumer app builds against the packed package
-        run: npm run example

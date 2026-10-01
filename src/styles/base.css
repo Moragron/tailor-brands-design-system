@@ -1,4 +1,4 @@
-/* OPTIONAL global page styles — shipped as `tailor-brands-design-system/base.css`.
+/* OPTIONAL global page styles (any Tailwind version): import after the main styles entry.
    Opt in only for apps that are fully Tailor-branded; it styles <body>. */
 body {
   margin: 0;

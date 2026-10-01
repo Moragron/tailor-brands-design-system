@@ -1,5 +1,4 @@
 import { useId, type ReactNode } from 'react';
-import './SelectionChip.css';
 
 export type SelectionChipProps = {
   label: ReactNode;

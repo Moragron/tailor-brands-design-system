@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import { Button } from '../Button/Button';
 import { InfoDrawer, type InfoDrawerSection } from '../InfoDrawer/InfoDrawer';
-import './AddOnCard.css';
 
 export type AddOnCardProps = {
   /** Small uppercase heading of the group */

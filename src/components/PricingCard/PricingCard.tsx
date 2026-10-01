@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import { Button } from '../Button/Button';
-import './PricingCard.css';
 
 export type PricingCardProps = {
   name: string;

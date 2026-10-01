@@ -1,4 +1,4 @@
-// reference/styles/*.json (captured computed styles) -> tokens/tokens.json -> tokens/tokens.css
+// reference/styles/*.json (captured computed styles) -> tokens/tokens.json -> src/styles/tokens.css (+ theme.css, shadcn bridges, tw3 preset)
 //
 // Every token in tokens.json declares a `$derive` rule, e.g. "primaryButton.backgroundColor".
 // This script resolves each rule against the captures, takes the most frequent value across

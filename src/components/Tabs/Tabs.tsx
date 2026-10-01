@@ -1,5 +1,4 @@
 import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
-import './Tabs.css';
 
 export type TabItem = { id: string; label: string; content: ReactNode };
 

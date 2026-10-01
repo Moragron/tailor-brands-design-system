@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import './StepLayout.css';
 
 export type StepLayoutProps = {
   /** Left of the header: your logo or wordmark */

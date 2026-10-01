@@ -1,6 +1,6 @@
 # Research: how the design system was measured
 
-> **This folder is not part of the design system.** The package (`src/`, `tokens/`) is content-free and is what you use in apps and v0. This folder is the evidence and analysis behind it, kept for the Growth PM take-home: how every token was measured from tailorbrands.com, plus findings about the onboarding flow. Nothing here ships in the package or in the published Storybook. You can delete the folder without affecting the design system; the only loss is the ability to re-measure tokens.
+> **This folder is not part of the design system.** The design system (`src/`, `tokens/`) is content-free and is what Lovable copies into connected projects. This folder is the evidence and analysis behind it, kept for the Growth PM take-home: how every token was measured from tailorbrands.com, plus findings about the onboarding flow. Nothing here ships in the package or in the published Storybook. You can delete the folder without affecting the design system; the only loss is the ability to re-measure tokens.
 
 **Source:** the Tailor Brands tailored-onboarding flow (`studio.tailorbrands.com/tailored-onboarding/…`). The walkthrough notes are in [`reference/onboarding-flow-notes.md`](reference/onboarding-flow-notes.md) (26 Sep 2026, desktop, mock business "Swell & Salt Surf Co.", a CA surf shop). The live capture of all 14 screens is from 1 Oct 2026, homepage through registration overlay, with nothing submitted.
 
@@ -12,7 +12,7 @@
 |---|---|
 | `reference/` | Raw evidence: notes, screenshots, DOM + CSS snapshots, computed styles per UI role, capture log, derivation audit |
 | `scripts/capture.mjs` + `flow.config.mjs` + `probe.mjs` | Playwright walk of the homepage, pricing page and flow → screenshots, DOM/CSS, `getComputedStyle()` per UI role |
-| `scripts/derive-tokens.mjs` | Captures + `../tokens/tokens.base.json` (rules) → `../tokens/tokens.json` → `tokens.css`, plus `reference/styles/_derivation.md` |
+| `scripts/derive-tokens.mjs` | Captures + `../tokens/tokens.base.json` (rules) → `../tokens/tokens.json` → `../src/styles/tokens.css` (and the other generated style files), plus `reference/styles/_derivation.md` |
 | `scripts/visual-qa.mjs` | Renders the prototype screens next to their captures, pixel-diffs them → `qa-report/index.html` |
 | `scripts/selftest-pipeline.mjs` | Offline proof that capture → derive round-trips tokens (runs in CI) |
 | `prototype/` | The observed flow rebuilt from the public design-system API, with all flow copy kept here, never in the package. Includes `RegistrationModal`, the only flow-specific component. |
@@ -62,7 +62,7 @@ Done in the build environment:
 
 - `npm run typecheck`: clean.
 - `npm run research:build-storybook`: builds the prototype Storybook (14 flow screens + variants).
-- **Package in a real app:** `examples/next-app` (Next.js 16 + Tailwind 4) installs the packed package and builds with both routes prerendered. In the browser, component styles survive Tailwind preflight, `text-tb-*` / `bg-tb-*` utilities resolve to the tokens, and there are no hydration errors. Every Tailwind token utility listed in `AGENTS.md` was compiled and checked.
+- **Package in a real app (0.2.0, before the move to Lovable):** `examples/next-app` (Next.js 16 + Tailwind 4) installs the packed package and builds with both routes prerendered. In the browser, component styles survive Tailwind preflight, `text-tb-*` / `bg-tb-*` utilities resolve to the tokens, and there are no hydration errors. Every Tailwind token utility listed in `AGENTS.md` was compiled and checked.
 - **Click-through test:** Playwright drove the full prototype from homepage to registration. It confirmed:
   - Next is disabled until a state is chosen
   - chips toggle `aria-checked`

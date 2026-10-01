@@ -1,6 +1,7 @@
-// Public API of tailor-brands-design-system: design tokens + content-free components.
-// Styles are NOT imported by JS — import `tailor-brands-design-system/styles.css` once (see AGENTS.md).
-import './styles/foundation.css';
+// Public API of the Tailor Brands design system: content-free components.
+// Lovable reads the component catalog from this barrel. Styles are not imported from JS: the app
+// imports one CSS entry (styles/index.css, or styles/tw3/index.css on Tailwind 3); see .lovable/system.md.
+// Keep every import in src/ relative: in connected projects this folder lives at src/design-system/<slug>/.
 
 export * from './components/Button/Button';
 export * from './components/ProgressStepper/ProgressStepper';

@@ -1,5 +1,4 @@
 import { useId, useRef, type KeyboardEvent, type ReactNode } from 'react';
-import './SelectionCard.css';
 
 export type SelectionCardOption = { value: string; label: ReactNode; description?: ReactNode };
 

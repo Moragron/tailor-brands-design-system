@@ -1,4 +1,4 @@
-/* Scoped helpers shared by every component. Class-scoped only: no element or global selectors,
+/* Scoped helpers shared by every component (imported via components.css). Class-scoped only: no element or global selectors,
    so the library can sit next to Tailwind preflight / shadcn without restyling the host app. */
 :where([class^='tb-'], [class*=' tb-']),
 :where([class^='tb-'], [class*=' tb-'])::before,

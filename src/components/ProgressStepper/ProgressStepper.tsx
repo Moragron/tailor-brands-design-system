@@ -1,4 +1,3 @@
-import './ProgressStepper.css';
 
 type FractionProps = { variant?: 'fraction'; current: number; total: number };
 type SectionsProps = { variant: 'sections'; sections: string[]; activeIndex: number };
