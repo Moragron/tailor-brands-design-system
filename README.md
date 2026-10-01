@@ -34,7 +34,7 @@ import { StepLayout, ProgressStepper, ChipGroup, Button } from 'tailor-brands-de
 
 White pages with a 576px content column. Black headings in a condensed display serif; grey `#727585` body text in a clean sans. Pill-shaped buttons, chips and inputs. Primary actions in bright blue `#166cff` (hover `#155cba`, disabled at 30% opacity). Selected options go bold and lift on a soft blue-tinted shadow instead of a border. Overlays are white at 85% with a 12px backdrop blur. Warm-yellow `#ffd272` highlight banners. Spacing on a 4px grid.
 
-**Flat by default, layered on request.** The measured site uses almost no elevation (no card or modal shadows, no page gradient), so that is the default. `depth.css` is an opt-in, unmeasured extension that fills those tokens with a blue-tinted elevation scale and a soft page gradient derived from the palette; see *Depth* in [`AGENTS.md`](AGENTS.md). In Storybook, switch between the two with the **Depth** toolbar button.
+**Flat by default, layered on request.** The measured site uses almost no elevation (no card or modal shadows, no page gradient), so that is the default. `depth.css` is an opt-in layer for the questionnaire look: a soft blue glow rising from the bottom of the page, a translucent sticky action bar, a gradient ring on the active input, and a blue-tinted elevation scale; see *Depth* in [`AGENTS.md`](AGENTS.md). In Storybook, switch between the two with the **Depth** toolbar button.
 
 **Fonts are licensed and not bundled.** The tokens name Proxima Nova (text) and Memories (headings), then fall back to Helvetica/Arial and Georgia. Load the real fonts only if you hold a licence.
 

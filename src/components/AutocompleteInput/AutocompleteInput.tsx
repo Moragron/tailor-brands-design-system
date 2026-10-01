@@ -36,7 +36,7 @@ export function AutocompleteInput({ label, hideLabel, options, value, onChange, 
   return (
     <div className="tb-field tb-autocomplete">
       <label htmlFor={id} className={hideLabel ? 'tb-visually-hidden' : 'tb-field__label'}>{label}</label>
-      <div className="tb-field__control">
+      <div className="tb-field__control" data-filled={value ? true : undefined}>
         <input
           id={id}
           className="tb-field__input"

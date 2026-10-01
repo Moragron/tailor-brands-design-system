@@ -25,7 +25,11 @@ export function StepLayout({ brand, top, banner, children, footer }: StepLayoutP
         </header>
       )}
       <main className="tb-step-layout__main">{children}</main>
-      {footer && <footer className="tb-step-layout__footer">{footer}</footer>}
+      {footer && (
+        <footer className="tb-step-layout__footer">
+          <div className="tb-step-layout__footer-inner">{footer}</div>
+        </footer>
+      )}
     </div>
   );
 }

@@ -1,17 +1,26 @@
 /* OPTIONAL "layered" look — shipped as `tailor-brands-design-system/depth.css`.
  *
- * The measured site is flat: cards and modals have no shadow and the page has no gradient
- * (see tokens.json: shadow.card, shadow.modal = none; effect.page-gradient = placeholder).
- * This file is an opt-in extension, NOT measured. It fills those same tokens with an elevation
- * scale and a soft page gradient derived from the measured palette (the blue-tinted shadow of a
- * selected chip, the primary blue, the banner yellow), so components pick it up with no code change.
+ * The automated captures measured flat surfaces (tokens.json: shadow.card, shadow.modal = none;
+ * effect.page-gradient = placeholder). This file is an opt-in layer that is NOT part of the
+ * measured token set. Its colours were sampled from a reference screenshot of the questionnaire
+ * flow: a white page with a soft blue glow rising from the bottom, a translucent sticky action
+ * bar, a hairline under the header, and a pink → violet → blue gradient ring on the active input.
+ * Shadows reuse the hues of the measured selected-chip shadow.
  *
  * Import it after styles.css:
  *   @import 'tailor-brands-design-system/depth.css';
- * Opt a page (or subtree's root <html>) back out with <html data-tb-depth="flat">.
+ * Opt a page back out with <html data-tb-depth="flat">.
  * The selector outranks tokens.css's :root, so import order relative to tokens doesn't matter.
  */
 :root:not([data-tb-depth='flat']) {
+  /* Colours sampled from the reference screenshot. */
+  --tb-color-glow: #dde8f5;             /* bottom-of-page blue haze (peaks around #e2ecf6) */
+  --tb-color-divider: #dfe7ef;          /* hairline above the action bar / under the header */
+  --tb-color-accent-pink: #d46fbb;      /* gradient ring, start */
+  --tb-color-accent-violet: #b760c8;    /* gradient ring, middle */
+  --tb-color-accent-blue: #6074d8;      /* gradient ring, end */
+  --tb-color-input-tint: #eef2fe;       /* faint blue inside the active input, right side */
+
   /* Elevation scale: hairline < raised < floating. Tinted with the measured chip-shadow hues. */
   --tb-shadow-hairline: rgba(61, 88, 143, 0.08) 0px 1px 3px 0px;
   --tb-shadow-raised: rgba(61, 88, 143, 0.06) 0px 1px 2px 0px, rgba(134, 153, 237, 0.2) 0px 12px 32px -12px;
@@ -23,18 +32,48 @@
   --tb-shadow-option: var(--tb-shadow-hairline); /* unselected chips and selection cards stay subtle */
   --tb-shadow-modal: var(--tb-shadow-floating);
 
-  /* Backgrounds: a blue glow at the top and a warm corner, both from brand colours. */
+  /* Gradients. The page glow sits low and wide: white at the top, blue haze behind the action bar. */
   --tb-effect-page-gradient:
-    radial-gradient(120% 55% at 50% 0%, color-mix(in srgb, var(--tb-color-action-primary-bg) 10%, transparent) 0%, transparent 70%),
-    radial-gradient(60% 40% at 100% 100%, color-mix(in srgb, var(--tb-color-banner-bg) 22%, transparent) 0%, transparent 70%);
-  --tb-effect-section-gradient: linear-gradient(180deg, color-mix(in srgb, var(--tb-color-action-primary-bg) 6%, var(--tb-color-surface-page)) 0%, var(--tb-color-surface-page) 100%);
+    radial-gradient(60% 60% at 50% 95%, var(--tb-color-glow) 0%, color-mix(in srgb, var(--tb-color-glow) 55%, transparent) 45%, transparent 100%);
+  --tb-effect-section-gradient: linear-gradient(180deg, var(--tb-color-surface-page) 0%, var(--tb-color-glow) 100%);
+  --tb-effect-accent-gradient: linear-gradient(80deg, var(--tb-color-accent-pink) 0%, var(--tb-color-accent-violet) 30%, var(--tb-color-accent-blue) 80%, var(--tb-color-accent-blue) 100%);
+  --tb-effect-input-fill: linear-gradient(90deg, var(--tb-color-surface-card) 45%, var(--tb-color-input-tint) 100%);
+  --tb-effect-bar-bg: color-mix(in srgb, var(--tb-color-surface-page) 35%, transparent);
 }
 
-/* Tailwind v4 utilities for the new elevation tokens: shadow-tb-hairline, shadow-tb-raised,
-   shadow-tb-floating, shadow-tb-button. Ignored by browsers when not processed by Tailwind. */
+/* Component layering. Same layer as the component styles, so className utilities still win. */
+@layer components {
+  /* Questionnaire shell: hairline under the header; the action bar sticks to the bottom and is
+     translucent, so the page glow shows through it (blurred), like the reference. */
+  :root:not([data-tb-depth='flat']) .tb-step-layout__header { border-bottom: 1px solid var(--tb-color-divider); }
+  :root:not([data-tb-depth='flat']) .tb-step-layout__footer {
+    position: sticky; bottom: 0; z-index: 5;
+    background: var(--tb-effect-bar-bg);
+    backdrop-filter: blur(var(--tb-effect-backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--tb-effect-backdrop-blur));
+    border-top: 1px solid var(--tb-color-divider);
+  }
+
+  /* Active (focused) or answered input: 2px gradient ring + faint blue fill. The ring replaces
+     the black focus outline and keeps a visible focus indicator. */
+  :root:not([data-tb-depth='flat']) :is(.tb-field__control:focus-within, .tb-field__control[data-filled]):not([data-invalid]),
+  :root:not([data-tb-depth='flat']) .tb-chip-group__free-text:focus {
+    border: 2px solid transparent;
+    background: var(--tb-effect-input-fill) padding-box, var(--tb-effect-accent-gradient) border-box;
+    outline: 0;
+  }
+  /* Keep the field height stable when the border goes from 1px to 2px. */
+  :root:not([data-tb-depth='flat']) :is(.tb-field__control:focus-within, .tb-field__control[data-filled]):not([data-invalid]) .tb-field__input { padding: calc(var(--tb-space-3) - 1px) calc(var(--tb-space-4) - 1px); }
+  :root:not([data-tb-depth='flat']) .tb-chip-group__free-text:focus { padding: calc(var(--tb-space-3) - 1px) calc(var(--tb-space-4) - 1px); }
+}
+
+/* Tailwind v4 utilities for the depth tokens: shadow-tb-hairline/raised/floating/button,
+   bg-tb-glow, border-tb-divider. Ignored by browsers when not processed by Tailwind. */
 @theme inline {
   --shadow-tb-hairline: var(--tb-shadow-hairline);
   --shadow-tb-raised: var(--tb-shadow-raised);
   --shadow-tb-floating: var(--tb-shadow-floating);
   --shadow-tb-button: var(--tb-shadow-button);
+  --color-tb-glow: var(--tb-color-glow);
+  --color-tb-divider: var(--tb-color-divider);
 }

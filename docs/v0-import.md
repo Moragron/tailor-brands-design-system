@@ -45,7 +45,7 @@ Use tokens, never hard-coded values: CSS variables var(--tb-*) or the Tailwind u
 
 Look: white pages, 576px content column (StepLayout), display-serif headings (tb-h1/tb-h2), grey sans body text, pill buttons/chips/inputs, one bright-blue primary action per view.
 
-Depth: the default look is flat. When depth.css is imported, layer pages as page gradient (bg-(image:--tb-effect-page-gradient)) -> white cards (bg-tb-surface-card rounded-tb-card shadow-tb-raised) -> floating layers (shadow-tb-floating); bands use bg-(image:--tb-effect-section-gradient). See "Depth" in AGENTS.md.
+Depth: the default look is flat. With depth.css imported, build every questionnaire step with StepLayout: it adds the bottom blue page glow, the header hairline and the sticky translucent action bar, and inputs get the gradient ring. Don't recreate those by hand. For other pages, layer as page gradient (bg-(image:--tb-effect-page-gradient)) -> white cards (bg-tb-surface-card rounded-tb-card shadow-tb-raised) -> floating layers (shadow-tb-floating); bands use bg-(image:--tb-effect-section-gradient). See "Depth" in AGENTS.md.
 
 Do not add shadcn/ui components for anything the package covers (buttons, chips, inputs, selection cards, modal, tabs, pricing cards).
 ```

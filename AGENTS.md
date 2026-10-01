@@ -54,11 +54,13 @@ Measured from a production website: 67 of 72 values are real (`"$observed": true
 
 ### Depth (optional layered look)
 
-The measured site is **flat**: cards and modals have no shadow and pages have no gradient. If the app should feel layered, import `depth.css` (see Setup). It is an opt-in extension, not measured, and is built only from the measured palette. It changes no component API:
+The automated captures measured **flat** surfaces: no card or modal shadow, no page gradient. For the layered questionnaire look (white page with a soft blue glow rising from the bottom, translucent sticky action bar, gradient ring on the active input), import `depth.css` (see Setup). It's opt-in and not part of the measured token set (colours sampled from a reference screenshot). It changes no component API:
 
-- Fills `--tb-shadow-card` (cards), `--tb-shadow-modal` (modal, autocomplete list) and `--tb-effect-page-gradient` (`StepLayout` and `base.css` body), gives unselected chips/selection cards a hairline shadow and the primary `Button` a soft blue glow.
-- Adds an elevation scale for your own surfaces: `shadow-tb-hairline` < `shadow-tb-raised` < `shadow-tb-floating`, plus `shadow-tb-button` (CSS: `var(--tb-shadow-raised)` …).
-- Gradients for your own sections: `bg-(image:--tb-effect-page-gradient)` (page/hero) and `bg-(image:--tb-effect-section-gradient)` (a band that fades into the page).
+- `StepLayout`: page glow (`--tb-effect-page-gradient`, also on `<body>` via `base.css`), a hairline under the header, and the `footer` becomes a sticky, translucent, blurred action bar with a divider. **Build every questionnaire step with `StepLayout`** so it gets this automatically; don't recreate the background yourself.
+- Inputs (`TextInput`, `AutocompleteInput`, the `ChipGroup` free-text field): a pink → violet → blue gradient ring and faint blue fill when focused, and on `AutocompleteInput` once a value is picked.
+- Fills `--tb-shadow-card` (cards) and `--tb-shadow-modal` (modal, autocomplete list), gives unselected chips/selection cards a hairline shadow and the primary `Button` a soft blue glow.
+- Adds an elevation scale for your own surfaces: `shadow-tb-hairline` < `shadow-tb-raised` < `shadow-tb-floating`, plus `shadow-tb-button`; colours `bg-tb-glow`, `border-tb-divider`.
+- Gradients for your own elements: `bg-(image:--tb-effect-page-gradient)` (a page not using `StepLayout`), `bg-(image:--tb-effect-section-gradient)` (a band fading into the glow), `bg-(image:--tb-effect-accent-gradient)` (accent ring/line; use sparingly).
 - Layering recipe: page gradient → white cards (`bg-tb-surface-card rounded-tb-card shadow-tb-raised`) → floating layers (`shadow-tb-floating`). Keep one level of lift per surface; don't stack shadows.
 - Opt a page back out with `<html data-tb-depth="flat">`.
 
