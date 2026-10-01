@@ -7,15 +7,17 @@ export type PricingCardProps = {
   price: string;
   period?: string;
   priceNote?: string;
-  /** e.g. "POPULAR" on Essential */
+  /** Small highlight tag, e.g. "Most popular" */
   badge?: string;
   features: ReactNode[];
-  /** CTA label on the homepage pricing table was not recorded. */
+  /** Renders a full-width button when set */
   ctaLabel?: string;
+  onCtaClick?: () => void;
   highlighted?: boolean;
 };
 
-export function PricingCard({ name, price, period, priceNote, badge, features, ctaLabel, highlighted }: PricingCardProps) {
+/** Plan or product card: name, price, feature list and an optional call to action. */
+export function PricingCard({ name, price, period, priceNote, badge, features, ctaLabel, onCtaClick, highlighted }: PricingCardProps) {
   return (
     <article className="tb-pricing" data-highlighted={highlighted || undefined}>
       <header className="tb-pricing__head">
@@ -28,7 +30,7 @@ export function PricingCard({ name, price, period, priceNote, badge, features, c
       </div>
       {priceNote && <p className="tb-caption">{priceNote}</p>}
       <ul className="tb-pricing__features">{features.map((f, i) => <li key={i}>{f}</li>)}</ul>
-      {ctaLabel && <Button fullWidth variant={highlighted ? 'primary' : 'secondary'}>{ctaLabel}</Button>}
+      {ctaLabel && <Button fullWidth variant={highlighted ? 'primary' : 'secondary'} onClick={onCtaClick}>{ctaLabel}</Button>}
     </article>
   );
 }

@@ -10,11 +10,7 @@ export type SelectionCardGroupProps = {
   onChange: (value: string) => void;
 };
 
-/**
- * Single-select list of cards (radio semantics), e.g. the revenue bands on /business-expenses.
- * Whether the live site renders these as cards or as chips is NOT recorded in the notes —
- * confirm against reference/screenshots/07-business-expenses.png.
- */
+/** Single-select list of cards (radio semantics) for options that need a label and a description. */
 export function SelectionCardGroup({ label, options, value, onChange }: SelectionCardGroupProps) {
   const id = useId();
   const refs = useRef<(HTMLButtonElement | null)[]>([]);

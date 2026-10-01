@@ -1,5 +1,6 @@
 .tb-button {
   font: inherit;
+  font-family: var(--tb-font-family-base);
   font-size: var(--tb-font-size-button);
   font-weight: var(--tb-font-weight-button);
   border-radius: var(--tb-radius-button);
@@ -8,8 +9,8 @@
   cursor: pointer;
 }
 .tb-button--primary { background: var(--tb-color-action-primary-bg); color: var(--tb-color-action-primary-fg); }
+.tb-button--primary:hover:not(:disabled) { background: var(--tb-color-action-primary-hover-bg); }
 .tb-button--secondary { background: var(--tb-color-action-secondary-bg); color: var(--tb-color-action-secondary-fg); border-color: var(--tb-color-action-secondary-border); }
-/* Disabled: OBSERVED (Next on /business-state until a state is chosen). Exact colours come from primaryButtonDisabled capture. */
 .tb-button:disabled { background: var(--tb-color-action-primary-disabled-bg); color: var(--tb-color-action-primary-disabled-fg); border-color: transparent; cursor: not-allowed; }
 .tb-button--full { width: 100%; }
-/* Hover / active / loading: UNKNOWN — not observed. Intentionally unstyled. */
+/* Active and loading states are not defined by the system. */

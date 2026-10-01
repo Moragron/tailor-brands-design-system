@@ -1,14 +1,14 @@
 import Link from 'next/link';
-import { CustomersStep } from './customers-step';
+import { QuestionStep } from './question-step';
 
-// Server component: passes data down; the design system components are client components.
+// Server component: renders a client step; design-system components can also render here directly.
 export default function Page() {
   return (
     <>
-      <CustomersStep businessName="Swell & Salt Surf Co." />
+      <QuestionStep />
       <nav className="fixed bottom-4 left-4 text-tb-caption">
-        <Link className="underline text-tb-text-muted" href="/plan">
-          See the plan + registration gate →
+        <Link className="underline text-tb-text-muted" href="/results">
+          Gated results page →
         </Link>
       </nav>
     </>

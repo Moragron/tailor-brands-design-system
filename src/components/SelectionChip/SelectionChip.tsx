@@ -25,14 +25,14 @@ export function SelectionChip({ label, selected, onToggle, mode = 'multi' }: Sel
 }
 
 export type ChipGroupProps = {
-  /** Question heading, used as the group's accessible name */
+  /** Accessible name of the group (usually the question or heading it answers) */
   label: string;
   options: string[];
   value: string[];
   onChange: (value: string[]) => void;
   mode?: 'multi' | 'single';
-  /** Free-text field under the chips (observed on "Who are …'s customers?") */
-  freeText?: { placeholder?: string; value: string; onChange: (v: string) => void };
+  /** Optional free-text field under the chips, for answers not in the list */
+  freeText?: { placeholder?: string; label?: string; value: string; onChange: (v: string) => void };
 };
 
 export function ChipGroup({ label, options, value, onChange, mode = 'multi', freeText }: ChipGroupProps) {
@@ -52,7 +52,7 @@ export function ChipGroup({ label, options, value, onChange, mode = 'multi', fre
       {freeText && (
         <input
           className="tb-chip-group__free-text tb-focusable"
-          aria-label={`${label} — other`}
+          aria-label={freeText.label ?? `${label}: other`}
           placeholder={freeText.placeholder}
           value={freeText.value}
           onChange={(e) => freeText.onChange(e.target.value)}

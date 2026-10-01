@@ -4,4 +4,3 @@
 .tb-info-drawer__panel { display: grid; gap: var(--tb-space-3); margin-top: var(--tb-space-3); padding: var(--tb-space-4); background: var(--tb-color-surface-muted); border-radius: var(--tb-radius-card); }
 .tb-info-drawer__heading { margin: 0 0 var(--tb-space-1); font-size: var(--tb-font-size-caption); font-weight: var(--tb-font-weight-button); color: var(--tb-color-text-primary); }
 .tb-info-drawer__body { font-size: var(--tb-font-size-caption); }
-/* Trigger style, chevron and open animation: UNKNOWN — not observed. */

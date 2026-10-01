@@ -2,7 +2,7 @@
   "name": "tailor-brands-design-system",
   "version": "0.1.0",
   "private": true,
-  "description": "Reverse-engineered React design system for the Tailor Brands tailored-onboarding flow: tokens, components, Tailwind v4 theme.",
+  "description": "React design system (tokens, components, Tailwind v4 theme) with a visual language measured from tailorbrands.com. Content-free: bring your own copy.",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
@@ -45,15 +45,17 @@
   "scripts": {
     "build": "node scripts/build-lib.mjs",
     "prepare": "node scripts/build-lib.mjs",
+    "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-static",
-    "typecheck": "tsc --noEmit",
-    "capture": "node scripts/capture.mjs",
-    "tokens": "node scripts/derive-tokens.mjs",
     "tokens:css": "node scripts/build-tokens-css.mjs",
-    "qa": "node scripts/visual-qa.mjs",
-    "selftest": "node scripts/selftest-pipeline.mjs",
-    "example": "npm --prefix examples/next-app install && npm --prefix examples/next-app run build"
+    "example": "npm --prefix examples/next-app install && npm --prefix examples/next-app run build",
+    "research:storybook": "storybook dev -c research/.storybook -p 6007",
+    "research:build-storybook": "storybook build -c research/.storybook -o research/storybook-static",
+    "research:capture": "node research/scripts/capture.mjs",
+    "research:tokens": "node research/scripts/derive-tokens.mjs",
+    "research:qa": "node research/scripts/visual-qa.mjs",
+    "research:selftest": "node research/scripts/selftest-pipeline.mjs"
   },
   "devDependencies": {
     "@storybook/react-vite": "^10.6.0",

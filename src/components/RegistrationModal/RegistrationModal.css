@@ -1,8 +1,0 @@
-.tb-registration { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--tb-space-3); }
-.tb-registration__row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--tb-space-3); }
-.tb-registration__sso { display: inline-flex; justify-content: center; gap: var(--tb-space-2); }
-.tb-registration__divider { display: flex; align-items: center; gap: var(--tb-space-3); color: var(--tb-color-text-muted); font-size: var(--tb-font-size-caption); }
-.tb-registration__divider::before, .tb-registration__divider::after { content: ''; flex: 1; border-top: 1px solid var(--tb-color-border-card); }
-.tb-registration__legal { text-align: center; }
-@media (max-width: 480px) { .tb-registration__row { grid-template-columns: 1fr; } }
-/* Field order within the modal, the divider, and the SSO button look: UNKNOWN — confirm against 13-registration.png. */

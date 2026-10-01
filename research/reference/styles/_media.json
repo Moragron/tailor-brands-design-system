@@ -1,0 +1,552 @@
+{
+  "not (prefers-reduced-motion)": {
+    "count": 52,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-width: 960px)": {
+    "count": 13,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-width: 782px)": {
+    "count": 26,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(max-width: 781px)": {
+    "count": 13,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-width: 768px)": {
+    "count": 52,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(max-width: 768px)": {
+    "count": 52,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(max-width: 767px)": {
+    "count": 52,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-width: 481px)": {
+    "count": 41,
+    "screens": [
+      "00-home",
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "only screen and (max-width: 768px)": {
+    "count": 26,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "only screen and (min-width: 1000px)": {
+    "count": 13,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "only screen and (max-width: 400px)": {
+    "count": 13,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "only screen and (min-width: 641px)": {
+    "count": 13,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "screen and (prefers-reduced-motion: reduce)": {
+    "count": 13,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-resolution: 192dpi)": {
+    "count": 13,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "screen and (max-width: 600px)": {
+    "count": 26,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(max-width: 991.98px)": {
+    "count": 2080,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(max-width: 767.98px)": {
+    "count": 1029,
+    "screens": [
+      "00-home",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  },
+  "(prefers-reduced-motion: no-preference)": {
+    "count": 13,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-width: 1200px)": {
+    "count": 13,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-width: 769px)": {
+    "count": 13,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(max-width: 575.98px)": {
+    "count": 4329,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-width: 992px)": {
+    "count": 468,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-width: 768px) and (max-width: 991.98px)": {
+    "count": 91,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-width: 576px) and (max-width: 767.98px)": {
+    "count": 156,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(max-width: 991.98px) and (min-width: 576px)": {
+    "count": 13,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-width: 576px) and (max-width: 991.98px)": {
+    "count": 234,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(min-width: 640px)": {
+    "count": 117,
+    "screens": [
+      "00-home"
+    ]
+  },
+  "(prefers-reduced-motion: reduce)": {
+    "count": 1136,
+    "screens": [
+      "00-home",
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  },
+  "(prefers-color-scheme: dark)": {
+    "count": 45,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "(max-width: 500px)": {
+    "count": 15,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)": {
+    "count": 30,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx)": {
+    "count": 15,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "(max-width: 540px)": {
+    "count": 369,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer",
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  },
+  "(max-width: 480px)": {
+    "count": 30,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "(max-width: 480px) and (min-width: 481px)": {
+    "count": 30,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "(min-width: 1180px)": {
+    "count": 1855,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer",
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  },
+  "(min-width: 720px)": {
+    "count": 18847,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer",
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  },
+  "screen and (max-width: 767px)": {
+    "count": 30,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "screen and (max-width: 640px)": {
+    "count": 15,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "screen and (max-width: 720px)": {
+    "count": 3555,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer",
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  },
+  "screen and (min-width: 720px) and (max-width: 1180px)": {
+    "count": 135,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "(min-width: 1540px)": {
+    "count": 45,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "screen and (min-width: 1280px) and (max-width: 1440px)": {
+    "count": 15,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "screen and (min-width: 1180px) and (max-width: 1280px)": {
+    "count": 60,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "screen and (max-width: 1180px)": {
+    "count": 330,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "only screen and (max-width: 640px)": {
+    "count": 60,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "(min-width: 1280px)": {
+    "count": 30,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "only screen and (min-width: 768px)": {
+    "count": 15,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "only screen and (min-width: 1024px)": {
+    "count": 15,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "not all and (min-width: 1180px)": {
+    "count": 176,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer",
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  },
+  "not all and (min-width: 720px)": {
+    "count": 96,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer",
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  },
+  "(min-width: 1800px)": {
+    "count": 15,
+    "screens": [
+      "bg-01-landing-page",
+      "bg-02-focus",
+      "bg-03-offer"
+    ]
+  },
+  "(hover: hover) and (pointer: fine)": {
+    "count": 162,
+    "screens": [
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  },
+  "(pointer: coarse)": {
+    "count": 81,
+    "screens": [
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  },
+  "(max-width: 720px)": {
+    "count": 162,
+    "screens": [
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  },
+  "(pointer: fine)": {
+    "count": 81,
+    "screens": [
+      "bg-04-error",
+      "01-intro",
+      "02-business-state",
+      "03-business-activity",
+      "04-about-your-business-1",
+      "05-about-your-business-2",
+      "06-about-your-business-3",
+      "07-business-expenses",
+      "08-scanning",
+      "09-blueprint",
+      "10-entity",
+      "11-liability",
+      "12-branding",
+      "13-registration"
+    ]
+  }
+}

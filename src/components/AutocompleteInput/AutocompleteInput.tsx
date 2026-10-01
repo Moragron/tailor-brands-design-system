@@ -13,8 +13,8 @@ export type AutocompleteInputProps = {
 };
 
 /**
- * Combobox (WAI-ARIA 1.2 pattern). Observed on /business-state: the Next button stays
- * disabled until an option is chosen, so free text alone never counts as a value.
+ * Combobox (WAI-ARIA 1.2 pattern). Only choosing an option sets a value; free text alone
+ * never does, so a form can stay incomplete until a real option is picked.
  */
 export function AutocompleteInput({ label, hideLabel, options, value, onChange, placeholder, maxResults = 8 }: AutocompleteInputProps) {
   const id = useId();

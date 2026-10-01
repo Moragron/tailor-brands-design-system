@@ -7,12 +7,12 @@
   color: var(--tb-color-chip-fg);
   border: 1px solid var(--tb-color-chip-border);
   border-radius: var(--tb-radius-chip);
-  box-shadow: var(--tb-shadow-card); /* the live option cards are lifted by a shadow, not a border */
+  box-shadow: var(--tb-shadow-card);
   padding: var(--tb-space-2) var(--tb-space-4);
   cursor: pointer;
 }
-.tb-chip[data-selected] { background: var(--tb-color-chip-selected-bg); color: var(--tb-color-chip-selected-fg); border-color: var(--tb-color-chip-selected-border); }
-/* Hover / disabled / max-selection states: UNKNOWN — not observed. */
+.tb-chip[data-selected] { background: var(--tb-color-chip-selected-bg); color: var(--tb-color-chip-selected-fg); border-color: var(--tb-color-chip-selected-border); box-shadow: var(--tb-shadow-chip-selected); font-weight: var(--tb-font-weight-chip-selected); }
+/* Hover, disabled and max-selection states are not defined by the system. */
 .tb-chip-group__free-text {
   font: inherit;
   padding: var(--tb-space-3) var(--tb-space-4);

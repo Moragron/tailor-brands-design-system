@@ -18,6 +18,7 @@
   --color-tb-border-card: var(--tb-color-border-card);
   --color-tb-action-primary-bg: var(--tb-color-action-primary-bg);
   --color-tb-action-primary-fg: var(--tb-color-action-primary-fg);
+  --color-tb-action-primary-hover-bg: var(--tb-color-action-primary-hover-bg);
   --color-tb-action-primary-disabled-bg: var(--tb-color-action-primary-disabled-bg);
   --color-tb-action-primary-disabled-fg: var(--tb-color-action-primary-disabled-fg);
   --color-tb-action-secondary-bg: var(--tb-color-action-secondary-bg);
@@ -49,6 +50,7 @@
   --font-weight-tb-h2: var(--tb-font-weight-h2);
   --font-weight-tb-body: var(--tb-font-weight-body);
   --font-weight-tb-button: var(--tb-font-weight-button);
+  --font-weight-tb-chip-selected: var(--tb-font-weight-chip-selected);
   --leading-tb-h1: var(--tb-font-line-height-h1);
   --leading-tb-h2: var(--tb-font-line-height-h2);
   --leading-tb-body: var(--tb-font-line-height-body);
@@ -60,4 +62,5 @@
   --radius-tb-banner: var(--tb-radius-banner);
   --shadow-tb-card: var(--tb-shadow-card);
   --shadow-tb-modal: var(--tb-shadow-modal);
+  --shadow-tb-chip-selected: var(--tb-shadow-chip-selected);
 }

@@ -3,4 +3,3 @@
 .tb-loader__track { height: 8px; background: var(--tb-color-progress-track); border-radius: var(--tb-radius-chip); overflow: hidden; }
 .tb-loader__fill { height: 100%; background: var(--tb-color-progress-fill); }
 .tb-loader__status { display: grid; gap: var(--tb-space-1); min-height: 3em; }
-/* Whether a bar (vs. ring / number only) exists is UNKNOWN — notes only say "loader w/ %". */

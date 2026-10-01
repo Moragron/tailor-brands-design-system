@@ -1,0 +1,249 @@
+{
+  "screen": "01-intro",
+  "note": "\"Before we begin\" — first-person AI persona intro.",
+  "url": "https://studio.tailorbrands.com/tailored-onboarding/131864904/intro",
+  "viewport": {
+    "w": 1440,
+    "h": 900
+  },
+  "capturedAt": "2026-10-01T18:14:24.181Z",
+  "roles": {
+    "page": {
+      "matchedSelector": "body",
+      "path": "html > body",
+      "text": "(332) 286-2770 BEFORE WE BEGIN I'm so happy you're starting this journey . Whether you're selling, consulting, or creati",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 900
+      },
+      "styles": {
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "backgroundImage": "none",
+        "fontFamily": "proxima-nova, helvetica, arial, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "paddingTop": "0px",
+        "paddingRight": "0px",
+        "paddingBottom": "0px",
+        "paddingLeft": "0px",
+        "marginTop": "0px",
+        "marginRight": "0px",
+        "marginBottom": "0px",
+        "marginLeft": "0px",
+        "gap": "normal",
+        "borderTopWidth": "0px",
+        "borderTopStyle": "solid",
+        "borderTopColor": "rgb(209, 213, 219)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "boxShadow": "none",
+        "maxWidth": "none",
+        "width": "1440px",
+        "height": "900px",
+        "opacity": "1",
+        "filter": "none",
+        "backdropFilter": "none",
+        "cursor": "auto",
+        "transition": "all"
+      }
+    },
+    "h1": null,
+    "h2": null,
+    "h3": null,
+    "body": {
+      "matchedSelector": "main p",
+      "path": "div.layout_funnel-content__gVYTE > div.upsell_upsell-container__JTcFY.upsell_upsell-container-transparent__LW+DZ > div.upsell_upsell-content__VZGra > div.upsell_upsell-content-inner__dFva+.upsell_upsell-content-inner-static__IhoAC > div.intro-step_intro-body__XB9Q3 > p.intro-step_intro-eyebrow__sBiPs",
+      "text": "BEFORE WE BEGIN",
+      "rect": {
+        "x": 432,
+        "y": 304,
+        "w": 157,
+        "h": 20
+      },
+      "styles": {
+        "color": "rgb(22, 108, 255)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "fontFamily": "proxima-nova, helvetica, arial, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "400",
+        "lineHeight": "19.5px",
+        "letterSpacing": "2.34px",
+        "textTransform": "uppercase",
+        "paddingTop": "0px",
+        "paddingRight": "0px",
+        "paddingBottom": "0px",
+        "paddingLeft": "0px",
+        "marginTop": "0px",
+        "marginRight": "0px",
+        "marginBottom": "0px",
+        "marginLeft": "0px",
+        "gap": "normal",
+        "borderTopWidth": "0px",
+        "borderTopStyle": "solid",
+        "borderTopColor": "rgb(209, 213, 219)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "boxShadow": "none",
+        "maxWidth": "none",
+        "width": "157.172px",
+        "height": "19.5px",
+        "opacity": "1",
+        "filter": "none",
+        "backdropFilter": "none",
+        "cursor": "auto",
+        "transition": "all"
+      }
+    },
+    "primaryButton": {
+      "matchedSelector": "button:not([disabled]):not([aria-disabled=true])",
+      "path": "button#react-aria1236881866-_r_0_",
+      "text": "Next",
+      "rect": {
+        "x": 683,
+        "y": 846,
+        "w": 75,
+        "h": 38
+      },
+      "styles": {
+        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgb(22, 108, 255)",
+        "backgroundImage": "none",
+        "fontFamily": "proxima-nova, helvetica, arial, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "20px",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "paddingTop": "8px",
+        "paddingRight": "16px",
+        "paddingBottom": "8px",
+        "paddingLeft": "16px",
+        "marginTop": "0px",
+        "marginRight": "0px",
+        "marginBottom": "0px",
+        "marginLeft": "0px",
+        "gap": "normal",
+        "borderTopWidth": "1px",
+        "borderTopStyle": "solid",
+        "borderTopColor": "rgba(0, 0, 0, 0)",
+        "borderTopLeftRadius": "9999px",
+        "borderTopRightRadius": "9999px",
+        "boxShadow": "none",
+        "maxWidth": "none",
+        "width": "74.9062px",
+        "height": "38px",
+        "opacity": "1",
+        "filter": "none",
+        "backdropFilter": "none",
+        "cursor": "pointer",
+        "transition": "0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      }
+    },
+    "primaryButtonDisabled": null,
+    "secondaryButton": null,
+    "input": null,
+    "stepCounter": null,
+    "content": {
+      "matchedSelector": "[class*=upsell-content-inner] *",
+      "path": "div.layout_funnel-shell__ZSTSk > div.layout_funnel-content__gVYTE > div.upsell_upsell-container__JTcFY.upsell_upsell-container-transparent__LW+DZ > div.upsell_upsell-content__VZGra > div.upsell_upsell-content-inner__dFva+.upsell_upsell-content-inner-static__IhoAC > div.intro-step_intro-body__XB9Q3",
+      "text": "BEFORE WE BEGIN I'm so happy you're starting this journey . Whether you're selling, consulting, or creating, I'm here to",
+      "rect": {
+        "x": 432,
+        "y": 304,
+        "w": 576,
+        "h": 282
+      },
+      "styles": {
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "fontFamily": "proxima-nova, helvetica, arial, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "paddingTop": "0px",
+        "paddingRight": "0px",
+        "paddingBottom": "0px",
+        "paddingLeft": "0px",
+        "marginTop": "0px",
+        "marginRight": "0px",
+        "marginBottom": "0px",
+        "marginLeft": "0px",
+        "gap": "20px",
+        "borderTopWidth": "0px",
+        "borderTopStyle": "solid",
+        "borderTopColor": "rgb(209, 213, 219)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "boxShadow": "none",
+        "maxWidth": "576px",
+        "width": "576px",
+        "height": "282.281px",
+        "opacity": "1",
+        "filter": "none",
+        "backdropFilter": "none",
+        "cursor": "auto",
+        "transition": "all"
+      }
+    },
+    "histogram": {
+      "backgroundColor": {
+        "rgb(255, 255, 255)": 1,
+        "rgba(255, 255, 255, 0.4)": 1,
+        "rgb(22, 108, 255)": 1
+      },
+      "spacing": {
+        "12px": 2,
+        "24px": 6,
+        "8px": 4,
+        "72px": 1,
+        "32px": 2,
+        "20px": 2,
+        "2px": 2,
+        "16px": 6
+      },
+      "color": {
+        "rgb(114, 117, 133)": 1,
+        "rgb(22, 108, 255)": 1,
+        "rgb(0, 0, 0)": 4,
+        "rgb(255, 255, 255)": 1
+      },
+      "fontFamily": {
+        "proxima-nova, helvetica, arial, sans-serif": 7
+      },
+      "fontSize": {
+        "15px": 1,
+        "13px": 1,
+        "26px": 4,
+        "16px": 1
+      },
+      "fontWeight": {
+        "400": 3,
+        "600": 4
+      },
+      "lineHeight": {
+        "22.5px": 1,
+        "19.5px": 1,
+        "33.8px": 4,
+        "20px": 1
+      },
+      "borderRadius": {
+        "9999px": 4,
+        "2px": 1
+      },
+      "borderColor": {
+        "rgba(0, 0, 0, 0.05)": 1,
+        "rgba(0, 0, 0, 0)": 1
+      }
+    }
+  }
+}
