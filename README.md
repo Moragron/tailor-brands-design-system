@@ -72,4 +72,6 @@ npm run example          # clean install + build of examples/next-app
 
 To re-measure the tokens from the live site, see `research/README.md` (`npm run research:capture && npm run research:tokens`).
 
+**Every PR** adds an entry to [`CHANGELOG.md`](CHANGELOG.md) (what changed and the restore point, i.e. the `main` commit before it) and bumps `version` in `package.json`. `CHANGELOG.md` also explains how to revert a PR or pin an app to an earlier version.
+
 CI (`.github/workflows/ci.yml`) typechecks, builds the package and Storybook, runs the token pipeline self-test and builds the example app. `storybook-pages.yml` publishes the design-system Storybook to GitHub Pages.

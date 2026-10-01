@@ -1,6 +1,6 @@
 {
   "name": "tailor-brands-design-system",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "React design system (tokens, components, Tailwind v4 theme) with a visual language measured from tailorbrands.com. Content-free: bring your own copy.",
   "license": "UNLICENSED",
@@ -35,6 +35,7 @@
     "src/styles/base.css",
     "src/styles/depth.css",
     "AGENTS.md",
+    "CHANGELOG.md",
     "README.md"
   ],
   "engines": {
