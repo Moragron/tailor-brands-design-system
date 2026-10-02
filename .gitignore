@@ -5,3 +5,8 @@ storybook-static
 dist
 *.tgz
 research/storybook-static
+preview-dist
+
+# Machine-local Claude Code settings and notes: never committed.
+.claude/settings.local.json
+CLAUDE.local.md

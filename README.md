@@ -54,7 +54,9 @@ White pages with a 576px content column. Black headings in a condensed display s
 |---|---|
 | `src/index.ts`, `src/components/`, `src/styles/` | The design system: everything Lovable copies into connected projects |
 | `src/main.tsx`, `src/App.tsx`, `src/pages/` | Showcase app for Lovable's preview (not copied) |
-| `.lovable/system.md` | Hand-written agent guide (Lovable never overwrites it) |
+| `.lovable/system.md` | Hand-written agent guide (Lovable never overwrites it); also the canonical component reference for Claude |
+| `CLAUDE.md`, `.claude/skills/` | Claude layer: repo guide for Claude Code, and skills to change the system (`tb-ds-change`), publish a preview (`tb-ds-preview`) and build UI with it (`tb-ds-build-ui`) |
+| `scripts/build-preview.mjs` | `npm run preview:build`: the showcase as a shareable preview page (claude.ai Artifact) |
 | `.dsignore` | Extra exclusions from the copy (Storybook-only folders, Lovable template plumbing) |
 | `scripts/sync-lovable.mjs` | Copies the design system into the Lovable project's repository (see above) |
 | `tokens/` | `tokens.json` (source of truth) and `tokens.base.json` (derivation rules + placeholders) |
@@ -70,6 +72,7 @@ npm run build            # showcase production build (what Lovable's preview bui
 npm run typecheck
 npm run tokens:css       # after editing tokens/tokens.json
 npm run storybook        # http://localhost:6006
+npm run preview:build    # showcase as a shareable preview → preview-dist/ (published as a claude.ai Artifact)
 ```
 
 Rules for changing the system are at the end of [`.lovable/system.md`](.lovable/system.md): keep imports inside `src/` relative, register new component CSS in `src/styles/components.css`, never hand-edit generated token files.
