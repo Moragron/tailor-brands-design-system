@@ -59,7 +59,7 @@ The owner works from Claude Code on the web (a cloud container), so there is no 
 
 - `npm run preview:build` builds the showcase into `preview-dist/` with a stamp (version, branch, commit, build time).
 - Publish it with the Artifact tool to the **same preview URL every time**, so the owner keeps one link:
-  **Preview artifact:** PREVIEW_URL
+  **Preview artifact:** https://claude.ai/artifact/6NpXAHGbinWXpdYicHXm1e
 - Details in `.claude/skills/tb-ds-preview/SKILL.md`.
 
 Storybook from `main` is also deployed to GitHub Pages by `.github/workflows/storybook-pages.yml`.
