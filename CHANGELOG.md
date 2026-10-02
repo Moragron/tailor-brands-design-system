@@ -16,6 +16,17 @@ Each PR also bumps `version` in `package.json`. Lovable keeps its own release nu
 
 ---
 
+## 0.3.2: Claude layer (CLAUDE.md, skills, shareable previews)
+
+- **PR:** _to be linked_
+- **Restore point (main before this PR):** `6cccef4425adbb9fa6fe098cbc669ba09736d33b` (0.3.1)
+- **What changed:**
+  - New `CLAUDE.md`: the repo guide for Claude Code. One core, two platform layers (Lovable and Claude); `.lovable/system.md` stays the canonical component reference; personal-project rules (no workplace conventions, personal git identity).
+  - New project skills in `.claude/skills/`: `tb-ds-change` (change → verify → preview → PR → Lovable sync), `tb-ds-preview` (publish the showcase to one fixed preview link), `tb-ds-build-ui` (build screens with the system in Claude).
+  - New `npm run preview:build` (`scripts/build-preview.mjs`): the showcase with relative asset paths and a version/branch/commit stamp, ready to publish as a claude.ai Artifact, since cloud sessions have no localhost.
+  - `.gitignore`: `preview-dist/`, `.claude/settings.local.json`, `CLAUDE.local.md`.
+- **Risk if reverted:** none for connected projects; nothing here is shipped to Lovable (the sync and `.dsignore` don't touch these files).
+
 ## 0.3.1: Sync into Lovable's design-system template
 
 - **PR:** [#6](https://github.com/Moragron/tailor-brands-design-system/pull/6)
