@@ -18,7 +18,7 @@ Each PR also bumps `version` in `package.json`. Lovable keeps its own release nu
 
 ## 0.3.2: Claude layer (CLAUDE.md, skills, shareable previews)
 
-- **PR:** _to be linked_
+- **PR:** [#7](https://github.com/Moragron/tailor-brands-design-system/pull/7)
 - **Restore point (main before this PR):** `6cccef4425adbb9fa6fe098cbc669ba09736d33b` (0.3.1)
 - **What changed:**
   - New `CLAUDE.md`: the repo guide for Claude Code. One core, two platform layers (Lovable and Claude); `.lovable/system.md` stays the canonical component reference; personal-project rules (no workplace conventions, personal git identity).
